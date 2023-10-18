@@ -1,12 +1,13 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 
-export default function Home() {
+const page = () => {
   return (
     <main className={styles.main}>
       <NavBar />
-      <h1>HOME</h1>
+      <h1>SCHEMA</h1>
     </main>
   )
 }
+
+export default page
