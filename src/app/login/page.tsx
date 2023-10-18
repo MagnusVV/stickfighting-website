@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import styles from '../page.module.css'
 
 const page = () => {
   const [email, setEmail] = useState('')
@@ -23,30 +24,36 @@ const page = () => {
     if (response.ok) {
       router.push('./admin')
     } else {
-      console.log(response)
+      console.log(response) // TODO: Ta bort senare!!!
     }
   }
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="email"
-          onChange={e => setEmail(e.target.value)}
-          value={email}
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          name="password"
-          onChange={e => setPassword(e.target.value)}
-          value={password}
-        />
-        <button type="submit">Sign In</button>
-      </form>
-    </div>
+    <main className={styles.main}>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label>
+            E-postadress
+            <input
+              name="email"
+              type="email"
+              onChange={e => setEmail(e.target.value)}
+              value={email}
+            />
+          </label>
+          <label>
+            Lösenord
+            <input
+              type="password"
+              name="password"
+              onChange={e => setPassword(e.target.value)}
+              value={password}
+            />
+          </label>
+          <button type="submit">Logga in</button>
+        </form>
+      </div>
+    </main>
   )
 }
 
