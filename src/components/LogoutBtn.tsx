@@ -14,7 +14,7 @@ const LogoutBtn = () => {
       console.log(error)
     }
 
-    router.push('/login')
+    router.push('/')
   }
   return (
     <>
