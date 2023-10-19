@@ -1,15 +1,17 @@
-import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
-import { NextResponse } from 'next/server'
+//TODO: Delete this or change the logout btn to make a call here
 
-export async function POST(request: Request) {
-  const requestUrl = new URL(request.url)
-  const cookieStore = cookies()
-  const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
+// import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
+// import { cookies } from 'next/headers'
+// import { NextResponse } from 'next/server'
 
-  await supabase.auth.signOut()
+// export async function POST(request: Request) {
+//   const requestUrl = new URL(request.url)
+//   const cookieStore = cookies()
+//   const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
 
-  return NextResponse.redirect(`${requestUrl.origin}/login`, {
-    status: 301,
-  })
-}
+//   await supabase.auth.signOut()
+
+//   return NextResponse.redirect(`${requestUrl.origin}/login`, {
+//     status: 301,
+//   })
+// }

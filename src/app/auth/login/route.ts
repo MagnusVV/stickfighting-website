@@ -5,10 +5,8 @@ import { redirect } from 'next/navigation'
 import { json } from 'stream/consumers'
 
 export async function POST(request: Request) {
-  console.log('tja')
   const requestUrl = new URL(request.url)
   const formData = await request.json()
-  console.log(formData)
   const cookieStore = cookies()
   const supabase = createRouteHandlerClient({ cookies: () => cookieStore })
 
