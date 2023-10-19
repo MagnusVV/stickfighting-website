@@ -1,3 +1,5 @@
+//TODO: Delete this or change the logout btn to make a call here
+
 // import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs'
 // import { cookies } from 'next/headers'
 // import { NextResponse } from 'next/server'
