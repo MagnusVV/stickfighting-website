@@ -25,16 +25,19 @@ const AboutUsText = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(aboutText)
 
     //make update call to supabase
-    const { error } = await supabase
+    const { data, error } = await supabase
       .from('our_philosophy')
       .update({ body_text: 'snälla fungera' })
       .match({ id: 2, profile_id: userId })
 
     if (error) {
       console.log(error)
+    }
+
+    if (data) {
+      console.log(data)
     }
   }
 
