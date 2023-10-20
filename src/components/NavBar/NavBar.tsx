@@ -5,7 +5,7 @@ import Link from 'next/link'
 import styles from './Navbar.module.css'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import { Database } from '@/lib/supabase'
+import { Database } from '@/lib/codeBlockSupabase'
 
 const NavBar: React.FC = () => {
   // TODO: Replace this part with Logged in-prop from the page.tsx this component is placed in? -MV --->

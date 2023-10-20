@@ -2,7 +2,7 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { cookies } from 'next/headers'
-import { Database } from '@/lib/codeBlockSupabase '
+import { Database } from '@/lib/codeBlockSupabase'
 
 const AboutUsText = () => {
   const [aboutText, setAboutText] = useState<string>('')
