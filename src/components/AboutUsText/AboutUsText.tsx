@@ -1,28 +1,44 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { cookies } from 'next/headers'
-import type { Database } from '../../lib/codeBlockSupabase'
+import { Database } from '@/lib/codeBlockSupabase '
 
 const AboutUsText = () => {
   const [aboutText, setAboutText] = useState<string>('')
+  const [userId, setUserId] = useState<string>('')
 
   //connect to supabase
   const supabase = createClientComponentClient<Database>()
+
+  useEffect(() => {
+    //fetch the active session
+    const fetchUserID = async () => {
+      const cookie = await supabase.auth.getSession()
+      const user = cookie.data.session
+      //set the session as a state
+      setUserId(user?.user.id as string)
+    }
+
+    fetchUserID()
+  }, [])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     console.log(aboutText)
 
     //make update call to supabase
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from('our_philosophy')
-      .insert({ body_text: 'hejsan' })
+      .update({ body_text: 'snälla fungera' })
+      .match({ id: 2, profile_id: userId })
 
     if (error) {
       console.log(error)
     }
   }
+
+  console.log(userId)
 
   return (
     <>

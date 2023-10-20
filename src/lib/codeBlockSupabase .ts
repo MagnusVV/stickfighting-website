@@ -14,21 +14,31 @@ export interface Database {
           body_text: string | null
           created_at: string
           id: number
+          profile_id: string | null
           title: string | null
         }
         Insert: {
           body_text?: string | null
           created_at?: string
           id?: number
+          profile_id?: string | null
           title?: string | null
         }
         Update: {
           body_text?: string | null
           created_at?: string
           id?: number
+          profile_id?: string | null
           title?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'about_association_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
       }
       instructors: {
         Row: {
@@ -36,20 +46,30 @@ export interface Database {
           created_at: string
           id: number
           name: string | null
+          profile_id: string | null
         }
         Insert: {
           body_text?: string | null
           created_at?: string
           id?: number
           name?: string | null
+          profile_id?: string | null
         }
         Update: {
           body_text?: string | null
           created_at?: string
           id?: number
           name?: string | null
+          profile_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'instructors_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
       }
       news: {
         Row: {
@@ -57,6 +77,7 @@ export interface Database {
           created_at: string
           id: number
           ingress: string | null
+          profile_id: string | null
           title: string | null
         }
         Insert: {
@@ -64,6 +85,7 @@ export interface Database {
           created_at: string
           id?: number
           ingress?: string | null
+          profile_id?: string | null
           title?: string | null
         }
         Update: {
@@ -71,30 +93,48 @@ export interface Database {
           created_at?: string
           id?: number
           ingress?: string | null
+          profile_id?: string | null
           title?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'news_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
       }
       our_philosophy: {
         Row: {
           body_text: string | null
           created_at: string
           id: number
+          profile_id: string | null
           title: string | null
         }
         Insert: {
           body_text?: string | null
           created_at?: string
           id?: number
+          profile_id?: string | null
           title?: string | null
         }
         Update: {
           body_text?: string | null
           created_at?: string
           id?: number
+          profile_id?: string | null
           title?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: 'our_philosophy_profile_id_fkey'
+            columns: ['profile_id']
+            referencedRelation: 'profiles'
+            referencedColumns: ['id']
+          },
+        ]
       }
       profiles: {
         Row: {
@@ -123,11 +163,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            referencedRelation: "users"
-            referencedColumns: ["id"]
-          }
+            foreignKeyName: 'profiles_id_fkey'
+            columns: ['id']
+            referencedRelation: 'users'
+            referencedColumns: ['id']
+          },
         ]
       }
     }
