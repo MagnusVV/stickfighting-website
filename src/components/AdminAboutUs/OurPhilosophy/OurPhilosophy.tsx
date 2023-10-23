@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import { cookies } from 'next/headers'
 import { Database } from '@/lib/codeBlockSupabase'
 
-const AboutUsText = () => {
+const OurPhilosophy = () => {
   const [aboutText, setAboutText] = useState<string>('')
   const [userId, setUserId] = useState<string>('')
 
@@ -29,19 +29,15 @@ const AboutUsText = () => {
     //make update call to supabase
     const { data, error } = await supabase
       .from('our_philosophy')
-      .update({ body_text: 'snälla fungera' })
+      .update({ body_text: 'funkar detta' })
       .match({ id: 2, profile_id: userId })
 
     if (error) {
       console.log(error)
     }
 
-    if (data) {
-      console.log(data)
-    }
+    console.log(data)
   }
-
-  console.log(userId)
 
   return (
     <>
@@ -61,4 +57,4 @@ const AboutUsText = () => {
   )
 }
 
-export default AboutUsText
+export default OurPhilosophy
