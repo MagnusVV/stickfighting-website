@@ -4,36 +4,19 @@ import { Database } from '@/lib/codeBlockSupabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-interface AboutPageParams {
-  aboutUsTitle: string
-  aboutUsBody: string
-  instructorsTitle: string
-  instructorName: string
-  instructorBody: string
-  ourPhilosophyTitle: string
-  ourPhilosophyBody: string
-}
-
 const page = async () => {
   const cookiesStore = cookies()
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookiesStore,
   })
 
-  const { data: philosophies } = await supabase.from('our_philosophy').select()
-
-  const { data: fromTwo } = await supabase.from('about_page').select(`   
-      our_philosophy (*),
-      about_association(id, body_text)
-  `)
-
-  fromTwo?.map(singleFromTwo =>
-    console.log(singleFromTwo.our_philosophy?.created_at),
-  )
-
   const { data: aboutPage, error } = await supabase
     .from('about_page')
     .select(`about_association (*), instructors (*), our_philosophy (*)`)
+
+  if (error) {
+    console.log(error)
+  }
 
   return (
     <main className={styles.main}>
