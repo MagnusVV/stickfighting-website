@@ -32,7 +32,7 @@ const AdminAboutUs = () => {
     }
 
     handleMasterFetch()
-  }, [])
+  }, [supabase])
 
   // if Philosophy hasn't finished fetching data from supabase return a loading paragraph.
   return !philosophy ? (
@@ -42,7 +42,6 @@ const AdminAboutUs = () => {
       <h1>AdminAboutUsComponent</h1>
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
       <p>{about?.body_text}</p>
-      <p>{philosophy?.body_text}</p>
     </>
   )
 }

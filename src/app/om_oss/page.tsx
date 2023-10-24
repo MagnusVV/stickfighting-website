@@ -36,7 +36,7 @@ const page = async () => {
         <h2>Våra instruktörer</h2>
         <div>
           {aboutPage?.map(instructor => (
-            <div>
+            <div key={instructor.instructors?.id}>
               <h3>{instructor.instructors?.name}</h3>
               <p>{instructor.instructors?.body_text}</p>
             </div>
