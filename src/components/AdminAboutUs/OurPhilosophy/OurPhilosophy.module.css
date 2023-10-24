@@ -1,0 +1,6 @@
+.form {
+  border: 2px solid hotpink;
+  background-color: aqua;
+  display: flex;
+  flex-direction: column;
+}
