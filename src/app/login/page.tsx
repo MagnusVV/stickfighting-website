@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import styles from '../page.module.css'
 
-const page = () => {
+const Page = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
@@ -57,4 +57,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page

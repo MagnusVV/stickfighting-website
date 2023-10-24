@@ -30,7 +30,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
     }
 
     fetchUserID()
-  }, [])
+  }, [supabase.auth])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -45,8 +45,6 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
     if (error) {
       console.log(error)
     }
-
-    console.log(data)
   }
 
   return (
