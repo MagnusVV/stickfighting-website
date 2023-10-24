@@ -33,11 +33,51 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'about_association_profile_id_fkey'
-            columns: ['profile_id']
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
+            foreignKeyName: "about_association_profile_id_fkey"
+            columns: ["profile_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
+        ]
+      }
+      about_page: {
+        Row: {
+          about_id: number | null
+          id: number
+          intructor_id: number | null
+          philosophy_id: number | null
+        }
+        Insert: {
+          about_id?: number | null
+          id?: number
+          intructor_id?: number | null
+          philosophy_id?: number | null
+        }
+        Update: {
+          about_id?: number | null
+          id?: number
+          intructor_id?: number | null
+          philosophy_id?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "about_page_about_id_fkey"
+            columns: ["about_id"]
+            referencedRelation: "about_association"
+            referencedColumns: ["id"]
           },
+          {
+            foreignKeyName: "about_page_intructor_id_fkey"
+            columns: ["intructor_id"]
+            referencedRelation: "instructors"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "about_page_philosophy_id_fkey"
+            columns: ["philosophy_id"]
+            referencedRelation: "our_philosophy"
+            referencedColumns: ["id"]
+          }
         ]
       }
       instructors: {
@@ -64,11 +104,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'instructors_profile_id_fkey'
-            columns: ['profile_id']
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            foreignKeyName: "instructors_profile_id_fkey"
+            columns: ["profile_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       news: {
@@ -82,7 +122,7 @@ export interface Database {
         }
         Insert: {
           body_text?: string | null
-          created_at: string
+          created_at?: string
           id?: number
           ingress?: string | null
           profile_id?: string | null
@@ -98,11 +138,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'news_profile_id_fkey'
-            columns: ['profile_id']
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            foreignKeyName: "news_profile_id_fkey"
+            columns: ["profile_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       our_philosophy: {
@@ -129,11 +169,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'our_philosophy_profile_id_fkey'
-            columns: ['profile_id']
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            foreignKeyName: "our_philosophy_profile_id_fkey"
+            columns: ["profile_id"]
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       profiles: {
@@ -163,11 +203,11 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'profiles_id_fkey'
-            columns: ['id']
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
         ]
       }
     }
