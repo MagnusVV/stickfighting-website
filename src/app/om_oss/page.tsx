@@ -10,19 +10,48 @@ const page = async () => {
     cookies: () => cookiesStore,
   })
 
-  const { data: philosophies } = await supabase.from('our_philosophy').select()
+  const { data: aboutPage, error } = await supabase
+    .from('about_page')
+    .select(`about_association (*), instructors (*), our_philosophy (*)`)
 
-  philosophies?.map(philosophy => {
-    console.log(`philosophy: ${philosophy.body_text}`)
-  })
+  if (error) {
+    console.log(error)
+  }
 
   return (
     <main className={styles.main}>
       <NavBar />
       <h1>OM OSS</h1>
-      {philosophies?.map(philosophy => (
-        <p>{philosophy.body_text}</p>
-      ))}
+      {/* "Om föreningen" section */}
+      <div>
+        {aboutPage && (
+          <>
+            <h2>{aboutPage[0].about_association?.title}</h2>
+            <p>{aboutPage[0].about_association?.body_text}</p>
+          </>
+        )}
+      </div>
+      {/* "Våra instruktörer" section */}
+      <div>
+        <h2>Våra instruktörer</h2>
+        <div>
+          {aboutPage?.map(instructor => (
+            <div>
+              <h3>{instructor.instructors?.name}</h3>
+              <p>{instructor.instructors?.body_text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* "Vår filosofi" section */}
+      <div>
+        {aboutPage && (
+          <>
+            <h2>{aboutPage[0].our_philosophy?.title}</h2>
+            <p>{aboutPage[0].our_philosophy?.body_text}</p>
+          </>
+        )}
+      </div>
     </main>
   )
 }
