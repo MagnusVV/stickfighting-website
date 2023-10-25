@@ -47,7 +47,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
   }
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <form onSubmit={handleSubmit} className={styles.form}>
         <textarea
           name="about-us-text"
@@ -59,7 +59,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
         ></textarea>
         <button type="submit">Uppdatera om oss</button>
       </form>
-    </>
+    </div>
   )
 }
 

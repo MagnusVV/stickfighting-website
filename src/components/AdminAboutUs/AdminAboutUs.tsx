@@ -4,6 +4,8 @@ import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 import fetchObj from '@/lib/types'
+import AboutUs from './AboutUs/AboutUs'
+import { log } from 'console'
 
 interface Instructor {
   id: number
@@ -44,15 +46,14 @@ const AdminAboutUs = () => {
     handleMasterFetch()
   }, [supabase])
 
-  console.log(instructors)
-
-  // if Philosophy hasn't finished fetching data from supabase return a loading paragraph.
-  return !philosophy ? (
+  // if Philosophy or about hasn't finished fetching data from supabase return a loading paragraph.
+  return !philosophy || !about ? (
     <p>Loading...</p>
   ) : (
     <>
       <h1>AdminAboutUsComponent</h1>
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
+      <AboutUs about={about} setAbout={setAbout} />
       <p>{about?.body_text}</p>
     </>
   )
