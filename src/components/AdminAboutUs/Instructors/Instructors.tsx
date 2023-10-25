@@ -2,29 +2,29 @@
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
-import styles from './OurPhilosophy.module.css'
+import styles from './Instructors.module.css'
 import fetchObj from '@/lib/types'
 
-interface OurPhilosophyProps {
-  philosophy: fetchObj
-  setPhilosophy: React.Dispatch<React.SetStateAction<fetchObj | undefined>>
+interface InstructorsProps {
+  instructors: fetchObj
+  setInstructors: React.Dispatch<React.SetStateAction<fetchObj | undefined>>
 }
 
-const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
-  philosophy,
-  setPhilosophy,
+const Instructors: React.FC<InstructorsProps> = ({
+  instructors,
+  setInstructors,
 }) => {
   const [userId, setUserId] = useState<string>('')
 
-  //connect to supabase
+  // Supabase connection -MV
   const supabase = createClientComponentClient<Database>()
 
   useEffect(() => {
-    //fetch the active session
+    // Fetch active session -MV
     const fetchUserID = async () => {
       const cookie = await supabase.auth.getSession()
       const user = cookie.data.session
-      //set the session as a state
+      // Set session as state -MV
       setUserId(user?.user.id as string)
     }
 
@@ -34,12 +34,12 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
-    //make update call to supabase
+    // Update call to supabase -MV
     const { data, error } = await supabase
-      .from('our_philosophy')
-      //update with the text from the form
-      .update({ body_text: philosophy.body_text })
-      .match({ id: 2, profile_id: userId })
+      .from('instructors')
+      // Update with text from form -MV
+      .update({ body_text: instructors.body_text })
+      .match({ id: 1, profile_id: userId })
 
     if (error) {
       console.log(error)
@@ -54,13 +54,11 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
           cols={30}
           rows={10}
           placeholder="lorem ipsum"
-          onChange={e => setPhilosophy({ body_text: e.target.value })}
-          value={philosophy.body_text}
+          onChange={e => setInstructors({ body_text: e.target.value })}
+          value={instructors.body_text}
         ></textarea>
-        <button type="submit">Uppdatera om oss</button>
+        <button type="submit">Uppdatera instruktör</button>
       </form>
     </>
   )
 }
-
-export default OurPhilosophy

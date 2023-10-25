@@ -5,9 +5,17 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 import fetchObj from '@/lib/types'
 
+interface Instructor {
+  id: number
+  name: string
+  body_text: string
+}
+
+type Instructors = Instructor[]
+
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
-  const [instructors, setInstructors] = useState<fetchObj>()
+  const [instructors, setInstructors] = useState<Instructors>()
   const [philosophy, setPhilosophy] = useState<fetchObj>()
   const supabase = createClientComponentClient<Database>()
 
@@ -25,6 +33,8 @@ const AdminAboutUs = () => {
       }
 
       if (data) {
+        console.log(data)
+
         //set the fetch data into states
         setAbout(data[0]?.about_association as fetchObj)
         setPhilosophy(data[0]?.our_philosophy as fetchObj)
@@ -33,6 +43,8 @@ const AdminAboutUs = () => {
 
     handleMasterFetch()
   }, [supabase])
+
+  console.log(instructors)
 
   // if Philosophy hasn't finished fetching data from supabase return a loading paragraph.
   return !philosophy ? (
