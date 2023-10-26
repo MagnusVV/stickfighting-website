@@ -1,0 +1,7 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  border: 2px solid lightseagreen;
+  min-width: 300px;
+  min-height: 300px;
+}

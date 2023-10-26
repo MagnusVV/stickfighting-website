@@ -45,7 +45,6 @@ const AdminAboutUs = () => {
       <h1>AdminAboutUsComponent</h1>
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
       <AboutUs about={about} setAbout={setAbout} />
-      <AdminNews />
     </>
   )
 }
