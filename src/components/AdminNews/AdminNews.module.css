@@ -1,0 +1,18 @@
+.wrapper {
+  border: 2px solid lightseagreen;
+  padding: 10px;
+  width: 300px;
+  min-height: 300px;
+}
+
+.newscarousel {
+  height: 100px;
+  width: 100%;
+  background-color: cornflowerblue;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

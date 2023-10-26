@@ -6,6 +6,7 @@ import { Database } from '@/lib/codeBlockSupabase'
 import fetchObj from '@/lib/types'
 import AboutUs from './AboutUs/AboutUs'
 import { log } from 'console'
+import AdminNews from '../AdminNews/AdminNews'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
@@ -34,7 +35,7 @@ const AdminAboutUs = () => {
     }
 
     handleMasterFetch()
-  }, [])
+  }, [supabase])
 
   // if Philosophy or about hasn't finished fetching data from supabase return a loading paragraph.
   return !philosophy || !about ? (
@@ -44,7 +45,7 @@ const AdminAboutUs = () => {
       <h1>AdminAboutUsComponent</h1>
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
       <AboutUs about={about} setAbout={setAbout} />
-      <p>{about?.body_text}</p>
+      <AdminNews />
     </>
   )
 }
