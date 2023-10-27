@@ -3,18 +3,17 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './Instructors.module.css'
-import fetchObj from '@/lib/types'
+import { InstructorCollection } from '@/lib/types'
 
 interface InstructorsProps {
-  instructors: fetchObj
-  setInstructors: React.Dispatch<React.SetStateAction<fetchObj | undefined>>
+  instructors: InstructorCollection
 }
 
-const Instructors: React.FC<InstructorsProps> = ({
-  instructors,
-  setInstructors,
-}) => {
+const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   const [userId, setUserId] = useState<string>('')
+
+  // This state updates with every single key-input in the forms -MV
+  const [instructorValues, setInstructorValues] = useState(instructors)
 
   // Supabase connection -MV
   const supabase = createClientComponentClient<Database>()
@@ -34,12 +33,17 @@ const Instructors: React.FC<InstructorsProps> = ({
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
 
+    // Adding userId to "instructorValues" -MV
+    const authInstructorValues = instructorValues.map(instructorValue => ({
+      ...instructorValue,
+      profile_id: userId,
+    }))
+
     // Update call to supabase -MV
     const { data, error } = await supabase
       .from('instructors')
       // Update with text from form -MV
-      .update({ body_text: instructors.body_text })
-      .match({ id: 1, profile_id: userId })
+      .upsert(authInstructorValues)
 
     if (error) {
       console.log(error)
@@ -48,17 +52,56 @@ const Instructors: React.FC<InstructorsProps> = ({
 
   return (
     <>
-      <form onSubmit={handleSubmit} className={styles.form}>
-        <textarea
-          name="about-us-text"
-          cols={30}
-          rows={10}
-          placeholder="lorem ipsum"
-          onChange={e => setInstructors({ body_text: e.target.value })}
-          value={instructors.body_text}
-        ></textarea>
-        <button type="submit">Uppdatera instruktör</button>
-      </form>
+      {instructors.map(instructor => {
+        // Since you shouldn´t mutate states, we save the changes here before updating the state -MV
+        const updatedInstructorValues = [...instructorValues]
+        // Finds the specifc part of "instructorValues" state that will be updated -MV
+        const valueToUpdate = updatedInstructorValues.find(
+          value => value.id === instructor.id,
+        )
+
+        // TODO: Add Rich Text formatting, or similar? -MV
+
+        return (
+          <div key={instructor.id} className={styles.wrapper}>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              {/* Instructor name */}
+              <textarea
+                className={styles.textarea}
+                name={`instructor_${instructor.name}_name`}
+                cols={30}
+                rows={1}
+                placeholder="lorem ipsum"
+                onChange={e => {
+                  if (valueToUpdate) {
+                    valueToUpdate.name = e.target.value
+                    setInstructorValues(updatedInstructorValues)
+                  }
+                }}
+                value={valueToUpdate?.name}
+              ></textarea>
+              {/* Instructor facts */}
+              <textarea
+                className={styles.textarea}
+                name={`instructor_${instructor.name}_information`}
+                cols={30}
+                rows={10}
+                placeholder="lorem ipsum"
+                onChange={e => {
+                  if (valueToUpdate) {
+                    valueToUpdate.body_text = e.target.value
+                    setInstructorValues(updatedInstructorValues)
+                  }
+                }}
+                value={valueToUpdate?.body_text}
+              ></textarea>
+              <button type="submit">Uppdatera instruktör</button>
+            </form>
+          </div>
+        )
+      })}
     </>
   )
 }
+
+export default Instructors

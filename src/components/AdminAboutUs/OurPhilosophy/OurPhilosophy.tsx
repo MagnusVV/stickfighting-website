@@ -3,7 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './OurPhilosophy.module.css'
-import fetchObj from '@/lib/types'
+import { fetchObj } from '@/lib/types'
 
 interface OurPhilosophyProps {
   philosophy: fetchObj
