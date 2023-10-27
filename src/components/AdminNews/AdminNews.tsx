@@ -1,9 +1,7 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, ReactNode } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import fetchObj from '@/lib/types'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
-import { title } from 'process'
 
 interface newsFetch {
   id: number
@@ -20,7 +18,7 @@ const AdminNews = () => {
   const [newNews, setNewNews] = useState<string>('')
   const [ingress, setIngress] = useState<string>('')
   const [sessionId, setSessionId] = useState<string>('')
-  const [newsArticles, setNewsArticles] = useState<fetchObj[]>([])
+  const [newsArticles, setNewsArticles] = useState<newsParams>([])
   const supabase = createClientComponentClient<Database>()
 
   //fetch the active session
@@ -49,10 +47,10 @@ const AdminNews = () => {
         setNewsArticles(data as newsParams)
       }
     }
-
     fetchNews()
   }, [])
 
+  //create a new news
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const { error } = await supabase.from('news').insert({
@@ -72,19 +70,19 @@ const AdminNews = () => {
     setNewNews('')
   }
 
-  // console.log(newsArticles)
-
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
       <div>
         <h3>redigera nyheter</h3>
         <div className={styles.newscarousel}>
-          {newsArticles.map((article, id) => {
+          {newsArticles.map(article => {
             return (
-              <div className={styles.article} key={id}>
+              <div className={styles.article} key={article.id}>
                 <h3>{article.title}</h3>
+                <h4>{article.ingress}</h4>
                 <p>{article.body_text}</p>
+                <p>{article.created_at.slice(0, 10)}</p>
               </div>
             )
           })}
