@@ -1,7 +1,11 @@
 'use client'
-import React from 'react'
+import { useState, useEffect } from 'react'
 import styles from './AdminHome.module.css'
 import AdminNews from '../AdminNews/AdminNews'
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
+import { Database } from '@/lib/codeBlockSupabase'
+
+const supabase = createClientComponentClient<Database>()
 
 const AdminHome = () => {
   return (

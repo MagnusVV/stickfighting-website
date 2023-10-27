@@ -8,7 +8,7 @@ import adminStyles from './admin.module.css'
 
 const AdminPage = () => {
   return (
-    <main className={styles.main}>
+    <main className={`${styles.main} ${adminStyles.wrapper}`}>
       <NavBar />
       <h1>Welcome Admin</h1>
       <AdminAboutUs />

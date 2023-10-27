@@ -3,6 +3,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import fetchObj from '@/lib/types'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
+import { title } from 'process'
 
 const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
@@ -36,7 +37,10 @@ const AdminNews = () => {
       console.log(error)
     }
 
-    console.log(sessionId)
+    alert('Nyhet tillagd')
+    setNewsTitle('')
+    setIngress('')
+    setNewNews('')
   }
 
   return (
@@ -53,11 +57,13 @@ const AdminNews = () => {
             type="text"
             placeholder="titel"
             onChange={e => setNewsTitle(e.target.value)}
+            value={newsTitle}
           />
           <input
             type="text"
             placeholder="ingress"
             onChange={e => setIngress(e.target.value)}
+            value={ingress}
           />
           <textarea
             name="about-us-text"
@@ -65,6 +71,7 @@ const AdminNews = () => {
             rows={10}
             placeholder="en ny spännande nyhet"
             onChange={e => setNewNews(e.target.value)}
+            value={newNews}
           ></textarea>
           <button type="submit">Lägg till nyhet</button>
         </form>
