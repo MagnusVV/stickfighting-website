@@ -5,15 +5,26 @@ import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
 import { title } from 'process'
 
+interface newsFetch {
+  id: number
+  title: string
+  ingress: string
+  body_text: string
+  created_at: string
+  profile_id: string
+}
+type newsParams = newsFetch[]
+
 const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
   const [newNews, setNewNews] = useState<string>('')
   const [ingress, setIngress] = useState<string>('')
   const [sessionId, setSessionId] = useState<string>('')
+  const [newsArticles, setNewsArticles] = useState<fetchObj[]>([])
   const supabase = createClientComponentClient<Database>()
 
+  //fetch the active session
   useEffect(() => {
-    //fetch the active session
     const fetchUserID = async () => {
       const cookie = await supabase.auth.getSession()
       const user = cookie.data.session
@@ -22,6 +33,24 @@ const AdminNews = () => {
     }
 
     fetchUserID()
+  }, [])
+
+  //fetch news
+  useEffect(() => {
+    const fetchNews = async () => {
+      const { data, error } = await supabase.from('news').select('*')
+
+      if (error) {
+        console.log(error)
+      }
+
+      if (data) {
+        // console.log(data)
+        setNewsArticles(data as newsParams)
+      }
+    }
+
+    fetchNews()
   }, [])
 
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -43,12 +72,23 @@ const AdminNews = () => {
     setNewNews('')
   }
 
+  // console.log(newsArticles)
+
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
       <div>
         <h3>redigera nyheter</h3>
-        <div className={styles.newscarousel}></div>
+        <div className={styles.newscarousel}>
+          {newsArticles.map((article, id) => {
+            return (
+              <div className={styles.article} key={id}>
+                <h3>{article.title}</h3>
+                <p>{article.body_text}</p>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <div>
         <h3>Ny nyhet</h3>
