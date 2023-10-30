@@ -3,13 +3,13 @@ import React, { useEffect, useState } from 'react'
 import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
-import fetchObj from '@/lib/types'
+import { fetchObj, InstructorParams, InstructorCollection } from '@/lib/types'
 import AboutUs from './AboutUs/AboutUs'
-import { log } from 'console'
+import Instructors from './Instructors/Instructors'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
-  const [instructors, setInstructors] = useState<fetchObj>()
+  const [instructors, setInstructors] = useState<InstructorCollection>([])
   const [philosophy, setPhilosophy] = useState<fetchObj>()
   const supabase = createClientComponentClient<Database>()
 
@@ -30,21 +30,25 @@ const AdminAboutUs = () => {
         //set the fetch data into states
         setAbout(data[0]?.about_association as fetchObj)
         setPhilosophy(data[0]?.our_philosophy as fetchObj)
+
+        const instructorsList = data.map(item => item.instructors)
+
+        setInstructors(instructorsList as InstructorCollection)
       }
     }
 
     handleMasterFetch()
-  }, [])
+  }, [supabase])
 
-  // if Philosophy or about hasn't finished fetching data from supabase return a loading paragraph.
-  return !philosophy || !about ? (
+  // if Philosophy, imstructors or about hasn't finished fetching data from supabase return a loading paragraph.
+  return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
   ) : (
     <>
       <h1>AdminAboutUsComponent</h1>
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
       <AboutUs about={about} setAbout={setAbout} />
-      <p>{about?.body_text}</p>
+      <Instructors instructors={instructors} />
     </>
   )
 }

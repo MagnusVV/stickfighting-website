@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import styles from './AboutUs.module.css'
-import fetchObj from '@/lib/types'
+import { fetchObj } from '@/lib/types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 
