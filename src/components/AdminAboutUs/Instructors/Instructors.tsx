@@ -51,7 +51,8 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   }
 
   return (
-    <>
+    <div className={styles.wrapper}>
+      <h2>Våra instruktörer</h2>
       {instructors.map(instructor => {
         // Since you shouldn´t mutate states, we save the changes here before updating the state -MV
         const updatedInstructorValues = [...instructorValues]
@@ -63,7 +64,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
         // TODO: Add Rich Text formatting, or similar? -MV
 
         return (
-          <div key={instructor.id} className={styles.wrapper}>
+          <div key={instructor.id}>
             <form onSubmit={handleSubmit} className={styles.form}>
               {/* Instructor name */}
               <textarea
@@ -100,7 +101,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
           </div>
         )
       })}
-    </>
+    </div>
   )
 }
 

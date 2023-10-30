@@ -1,4 +1,6 @@
 import './globals.css'
+// TODO: CSS for React big Calendar -MV:
+
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 

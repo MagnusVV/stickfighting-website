@@ -6,6 +6,8 @@ import { Database } from '@/lib/codeBlockSupabase'
 import { fetchObj, InstructorParams, InstructorCollection } from '@/lib/types'
 import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
+// React-big-calendar -MV:
+import EventCalendar from '../EventCalendar/EventCalendar'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
@@ -46,9 +48,11 @@ const AdminAboutUs = () => {
   ) : (
     <>
       <h1>AdminAboutUsComponent</h1>
-      <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
       <AboutUs about={about} setAbout={setAbout} />
       <Instructors instructors={instructors} />
+      <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
+      <h1>Schema</h1>
+      <EventCalendar />
     </>
   )
 }

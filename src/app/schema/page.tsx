@@ -1,3 +1,4 @@
+import EventCalendar from '@/components/EventCalendar/EventCalendar'
 import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 
