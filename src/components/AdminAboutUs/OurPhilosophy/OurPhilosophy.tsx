@@ -1,10 +1,9 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
-import { cookies } from 'next/headers'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './OurPhilosophy.module.css'
-import fetchObj from '@/lib/types'
+import { fetchObj } from '@/lib/types'
 
 interface OurPhilosophyProps {
   philosophy: fetchObj
@@ -38,7 +37,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
     //make update call to supabase
     const { data, error } = await supabase
       .from('our_philosophy')
-      //uppdate with the text from the form
+      //update with the text from the form
       .update({ body_text: philosophy.body_text })
       .match({ id: 2, profile_id: userId })
 
@@ -58,7 +57,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
           onChange={e => setPhilosophy({ body_text: e.target.value })}
           value={philosophy.body_text}
         ></textarea>
-        <button type="submit">Updatera om oss</button>
+        <button type="submit">Uppdatera om oss</button>
       </form>
     </div>
   )
