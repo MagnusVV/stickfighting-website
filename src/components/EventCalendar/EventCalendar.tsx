@@ -5,7 +5,7 @@ import {
   Calendar,
   momentLocalizer,
   CalendarProps,
-  ViewProps,
+  Views,
 } from 'react-big-calendar'
 import moment from 'moment'
 import 'moment-timezone'
