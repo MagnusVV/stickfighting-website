@@ -16,9 +16,9 @@ const EditNews: React.FC<newsProps> = ({
   newsArticle,
   setEditNews,
 }) => {
-  const [title, setTitle] = useState<string>()
-  const [ingress, setIngress] = useState<string>()
-  const [bodyText, setBodyText] = useState<string>()
+  const [title, setTitle] = useState<string>('')
+  const [ingress, setIngress] = useState<string>('')
+  const [bodyText, setBodyText] = useState<string>('')
   const [sessionId, setSessionId] = useState<string>('')
 
   const supabase = createClientComponentClient<Database>()
@@ -69,36 +69,42 @@ const EditNews: React.FC<newsProps> = ({
     <div className={styles.wrapper}>
       <button onClick={() => setEditNews(false)}>CLOSE</button>
       <h1>Redigera nyheter</h1>
-      <form className={styles.form} onSubmit={submitNews}>
+      <form
+        className={styles.form}
+        onSubmit={submitNews}
+        id="editNewsForm"
+        name="editNewsForm"
+      >
         <label htmlFor="title">titel</label>
         <input
+          id="title"
           name="title"
           type="text"
           onChange={e => setTitle(e.target.value)}
-          placeholder={importedNews?.title}
-          value={title?.toString()}
+          value={title}
+          placeholder={title}
         />
         <label htmlFor="ingress">Ingress</label>
         <input
+          id="ingress"
           name="ingress"
           type="text"
           onChange={e => setIngress(e.target.value)}
-          placeholder={importedNews?.ingress}
-          value={ingress?.toString()}
+          value={ingress}
+          placeholder={ingress}
         />
+        <label htmlFor="body_text">Text</label>
         <textarea
+          id="body_text"
           name="body_text"
           cols={30}
           rows={10}
           onChange={e => setBodyText(e.target.value)}
-          placeholder={importedNews?.body_text}
-          value={bodyText?.toString()}
+          value={bodyText}
+          placeholder={bodyText}
         ></textarea>
         <button type="submit">Updatera</button>
       </form>
-      <p>{title}</p>
-      <p>{ingress}</p>
-      <p>{bodyText}</p>
     </div>
   )
 }
