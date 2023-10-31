@@ -1,0 +1,16 @@
+.wrapper {
+  height: 1000px;
+  width: 800px;
+  background-color: lightsteelblue;
+  position: absolute;
+  top: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}

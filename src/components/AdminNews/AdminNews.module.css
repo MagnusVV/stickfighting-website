@@ -1,0 +1,26 @@
+.wrapper {
+  border: 2px solid hotpink;
+  padding: 10px;
+  width: 500px;
+  min-height: 300px;
+}
+
+.newscarousel {
+  height: 200px;
+  width: 100%;
+  background-color: cornflowerblue;
+  display: flex;
+  gap: 10px;
+}
+
+.article {
+  height: auto;
+  width: 300px;
+  border: 2px solid red;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
