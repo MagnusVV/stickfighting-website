@@ -48,6 +48,7 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
 
   return (
     <div className={styles.wrapper}>
+      <h2>Vår filosofi</h2>
       <form onSubmit={handleSubmit} className={styles.form}>
         <textarea
           name="about-us-text"

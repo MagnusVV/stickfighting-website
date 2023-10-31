@@ -46,7 +46,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
 
   return (
     <div className={styles.wrapper}>
-      <h1>About update component</h1>
+      <h2>Om oss</h2>
       <form className={styles.form} onSubmit={updateAbout}>
         <textarea
           className="about-update-form"
