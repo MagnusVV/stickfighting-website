@@ -2,7 +2,6 @@
 import { SetStateAction, useEffect, useState } from 'react'
 import styles from './EditNews.module.css'
 import { newsFetch } from '../AdminNews/AdminNews'
-import fetchObj from '@/lib/types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 
@@ -10,15 +9,6 @@ interface newsProps {
   newsId: number
   newsArticle: newsFetch[]
   setEditNews: (editNews: boolean) => void
-}
-
-interface editNewsParams {
-  id: number
-  title: string
-  ingress: string
-  body_text: string
-  created_at: string
-  profile_id: string
 }
 
 const EditNews: React.FC<newsProps> = ({
