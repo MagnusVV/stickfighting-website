@@ -1,9 +1,11 @@
-import { useState, useEffect, ReactNode } from 'react'
+'use client'
+import { useState, useEffect, ReactNode, SetStateAction } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
+import EditNews from '../EditNews/EditNews'
 
-interface newsFetch {
+export interface newsFetch {
   id: number
   title: string
   ingress: string
@@ -11,7 +13,7 @@ interface newsFetch {
   created_at: string
   profile_id: string
 }
-type newsParams = newsFetch[]
+export type newsParams = newsFetch[]
 
 const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
@@ -19,6 +21,8 @@ const AdminNews = () => {
   const [ingress, setIngress] = useState<string>('')
   const [sessionId, setSessionId] = useState<string>('')
   const [newsArticles, setNewsArticles] = useState<newsParams>([])
+  const [editNews, setEditNews] = useState<boolean>(false)
+  const [newsId, setNewsId] = useState<number>(0)
   const supabase = createClientComponentClient<Database>()
 
   //fetch the active session
@@ -65,24 +69,51 @@ const AdminNews = () => {
     }
 
     alert('Nyhet tillagd')
+    // reset the fields after the insert is done
     setNewsTitle('')
     setIngress('')
     setNewNews('')
   }
 
+  const handleEdit = () => {
+    // setEditNews(true)
+    // setNewsId(article.id)
+  }
+
+  console.log(editNews)
+
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
+      {editNews && (
+        <EditNews
+          newsId={newsId}
+          newsArticle={newsArticles}
+          setEditNews={setEditNews}
+        />
+      )}
       <div>
         <h3>redigera nyheter</h3>
         <div className={styles.newscarousel}>
           {newsArticles.map(article => {
             return (
-              <div className={styles.article} key={article.id}>
+              <div
+                className={styles.article}
+                key={article.id}
+                id={article.id.toString()}
+              >
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
                 <p>{article.body_text}</p>
+                {/* shorten the date message to only include the readable date info */}
                 <p>{article.created_at.slice(0, 10)}</p>
+                <button
+                  onClick={() => {
+                    setNewsId(article.id), setEditNews(true)
+                  }}
+                >
+                  Redigera
+                </button>
               </div>
             )
           })}
