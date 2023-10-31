@@ -1,5 +1,6 @@
 import './globals.css'
-// TODO: CSS for React big Calendar -MV:
+// TODO: CSS for React big Calendar, maybe the path could be shortened? -MV:
+import 'node_modules/react-big-calendar/lib/css/react-big-calendar.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'

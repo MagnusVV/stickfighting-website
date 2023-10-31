@@ -1,10 +1,17 @@
 import styles from './EventCalendar.module.css'
-import 'node_modules/react-big-calendar/lib/css/react-big-calendar.css'
 
 // Importing react-big-calendar-package and time-zone-localiser -MV
-import { Calendar, momentLocalizer, CalendarProps } from 'react-big-calendar'
+import {
+  Calendar,
+  momentLocalizer,
+  CalendarProps,
+  ViewProps,
+} from 'react-big-calendar'
 import moment from 'moment'
 import 'moment-timezone'
+
+//Testing events in React big calendar -MV:
+import { events } from '../../lib/events'
 
 // Sets default time-zone -MV
 moment.tz.setDefault('Europe/Stockholm')
@@ -16,7 +23,9 @@ const EventCalendar = (props: Omit<CalendarProps, 'localizer'>) => {
     <div className={styles.calendarFrame}>
       <Calendar
         localizer={localizer}
-        // events={trainingEventsList}
+        events={events}
+        // FIXME: "views" doesn't work yet, but should. Needs to be fixed.
+        views={['month', 'week', 'day', 'agenda']}
         startAccessor="start"
         endAccessor="end"
       />

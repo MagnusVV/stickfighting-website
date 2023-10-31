@@ -6,6 +6,7 @@ import { Database } from '@/lib/codeBlockSupabase'
 import { fetchObj, InstructorParams, InstructorCollection } from '@/lib/types'
 import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
+
 // React-big-calendar -MV:
 import EventCalendar from '../EventCalendar/EventCalendar'
 
