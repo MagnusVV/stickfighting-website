@@ -75,13 +75,6 @@ const AdminNews = () => {
     setNewNews('')
   }
 
-  const handleEdit = () => {
-    // setEditNews(true)
-    // setNewsId(article.id)
-  }
-
-  console.log(editNews)
-
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
