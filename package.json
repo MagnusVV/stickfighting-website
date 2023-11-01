@@ -11,6 +11,9 @@
   "dependencies": {
     "@supabase/auth-helpers-nextjs": "^0.8.1",
     "@supabase/supabase-js": "^2.38.1",
+    "@tiptap/pm": "^2.1.12",
+    "@tiptap/react": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
     "@types/react-big-calendar": "^1.8.3",
     "next": "13.5.4",
     "react": "^18",
