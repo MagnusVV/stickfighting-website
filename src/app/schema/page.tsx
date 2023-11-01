@@ -1,4 +1,4 @@
-import EventCalendar from '@/components/EventCalendar/EventCalendar'
+import CalendarWrapper from '@/components/CalendarWrapper/CalendarWrapper'
 import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 
@@ -7,6 +7,7 @@ const page = () => {
     <main className={styles.main}>
       <NavBar />
       <h1>SCHEMA</h1>
+      <CalendarWrapper />
     </main>
   )
 }
