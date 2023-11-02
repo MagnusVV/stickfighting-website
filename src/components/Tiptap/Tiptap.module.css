@@ -1,58 +1,57 @@
-/* Basic editor styles */
-/* 
-.tiptap {
-  margin-top: 0.75em;
+/* Basic editor styles
+.tiptap.ProseMirror {
+  min-height: 200px;
+  width: 100%;
+  background-color: darkgray;
+  color: #0d0d0d;
 }
-  ul,
-  ol {
-    padding: 0 1rem;
-  }
 
+.tiptap ul {
+  padding: 0 1rem;
+  list-style: white;
+}
+.tiptap ol {
+  padding: 0 1rem;
+  list-style: white;
+}
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+.tiptap h1,
+.tiptap h2,
+.tiptap h3,
+.tiptap h4,
+.tiptap h5,
+.tiptap h6 {
   line-height: 1.1;
 }
 
-code {
+.tiptap code {
   background-color: rgba(#616161, 0.1);
   color: #616161;
 }
 
-pre {
+.tiptap pre {
   background: #0d0d0d;
   color: #fff;
   font-family: 'JetBrainsMono', monospace;
   padding: 0.75rem 1rem;
   border-radius: 0.5rem;
-
-  code {
-    color: inherit;
-    padding: 0;
-    background: none;
-    font-size: 0.8rem;
-  }
 }
 
-img {
+.tiptap img {
   max-width: 100%;
   height: auto;
 }
 
-blockquote {
+.tiptap blockquote {
   padding-left: 1rem;
   border-left: 2px solid rgba(#0d0d0d, 0.1);
 }
 
-hr {
+.tiptap hr {
   border: none;
   border-top: 2px solid rgba(#0d0d0d, 0.1);
   margin: 2rem 0;
-} */
+}
 
 .menuContainer {
   display: flex;
@@ -60,8 +59,4 @@ hr {
   min-width: 200px;
   height: auto;
   border-bottom: 1px solid white;
-}
-
-.contenContainer {
-  border: 1px solid grey;
-}
+} */

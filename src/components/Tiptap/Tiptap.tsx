@@ -1,6 +1,6 @@
 'use client'
-import styles from './Tiptap.module.css'
 
+import '../../app/globals.css'
 import ListItem from '@tiptap/extension-list-item'
 import { EditorProvider, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -14,7 +14,7 @@ const MenuBar = () => {
   }
 
   return (
-    <div className={styles.menuContainer}>
+    <div className="tiptapMenuBar">
       <button
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
