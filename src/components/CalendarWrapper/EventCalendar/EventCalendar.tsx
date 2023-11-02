@@ -3,7 +3,7 @@ import styles from './EventCalendar.module.css'
 // Importing react-big-calendar-package and time-zone-localiser -MV
 import { Calendar, momentLocalizer, CalendarProps } from 'react-big-calendar'
 import moment from 'moment-timezone'
-// For changing of calendar to swedish -MV:
+// For changing of calendar to Swedish -MV:
 import 'moment/locale/sv'
 
 //Testing events in React big calendar -MV:
