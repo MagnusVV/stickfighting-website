@@ -117,11 +117,12 @@ a {
 
 /* Basic editor styles */
 .tiptap.ProseMirror {
-  min-height: 200px;
-  width: 300px;
+  min-height: 300px;
+  width: 500px;
   background-color: darkgray;
   color: #0d0d0d;
   padding: 5px;
+  border-radius: 5px;
 }
 
 .tiptap ul {
