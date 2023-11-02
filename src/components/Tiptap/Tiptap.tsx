@@ -99,7 +99,7 @@ const extensions = [
 ]
 
 const TipTap = () => {
-  const [text, setText] = useState<string>('Hello World')
+  const [text, setText] = useState<string>('Helloo World')
 
   const content = text
   return (
