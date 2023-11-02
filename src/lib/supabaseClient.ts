@@ -18,7 +18,7 @@ const useSupabaseClient = () => {
     }
 
     fetchUserID()
-  }, [supabase.auth])
+  }, [])
 
   return { supabase, userId }
 }

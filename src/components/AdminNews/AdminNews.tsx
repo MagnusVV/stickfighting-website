@@ -35,7 +35,7 @@ const AdminNews = () => {
     }
 
     fetchUserID()
-  }, [])
+  }, [supabase.auth])
 
   //fetch news
   useEffect(() => {
@@ -52,7 +52,7 @@ const AdminNews = () => {
       }
     }
     fetchNews()
-  }, [])
+  }, [supabase])
 
   //create a new news
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {

@@ -42,7 +42,7 @@ const EditNews: React.FC<newsProps> = ({
     }
 
     fetchUserID()
-  }, [])
+  }, [supabase.auth])
 
   //add the update to supabase
   const submitNews = async (e: React.FormEvent<HTMLFormElement>) => {
