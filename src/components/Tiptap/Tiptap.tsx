@@ -98,7 +98,7 @@ const extensions = [
   }),
 ]
 
-export default () => {
+const TipTap = () => {
   const [text, setText] = useState<string>('Hello World')
 
   const content = text
@@ -110,3 +110,5 @@ export default () => {
     ></EditorProvider>
   )
 }
+
+export default TipTap
