@@ -7,10 +7,10 @@ import useSupabaseClient from '../../../lib/supabaseClient'
 interface InstructorsProps {
   instructors: InstructorCollection
 }
-const { supabase, userId } = useSupabaseClient()
 
 const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   // Get supabase connection and user id from import. -MV
+  const { supabase, userId } = useSupabaseClient()
 
   // This state updates with every single key-input in the forms -MV
   const [instructorValues, setInstructorValues] = useState(instructors)
