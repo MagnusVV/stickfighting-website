@@ -1,9 +1,9 @@
 import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
-import supabasServer from '../../lib/supabaseServer'
+import useSupabasServer from '../../lib/supabaseServer'
 
 const page = async () => {
-  const { supabase } = supabasServer()
+  const { supabase } = useSupabasServer()
 
   const { data: aboutPage, error } = await supabase
     .from('about_page')

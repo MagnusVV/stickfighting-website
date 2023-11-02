@@ -2,10 +2,10 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState, useEffect } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 
- // Supabase connection -MV
+// Supabase connection -MV
 const supabase = createClientComponentClient<Database>()
 
-const supabaseClient = () => {
+const useSupabaseClient = () => {
   const [userId, setUserId] = useState<string>('')
 
   useEffect(() => {
@@ -23,4 +23,4 @@ const supabaseClient = () => {
   return { supabase, userId }
 }
 
-export default supabaseClient
+export default useSupabaseClient

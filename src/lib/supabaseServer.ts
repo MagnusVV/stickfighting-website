@@ -2,7 +2,7 @@ import { Database } from '@/lib/codeBlockSupabase'
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
 import { cookies } from 'next/headers'
 
-const supabaseServer = () => {
+const useSupabaseServer = () => {
   const cookiesStore = cookies()
   const supabase = createServerComponentClient<Database>({
     cookies: () => cookiesStore,
@@ -10,4 +10,4 @@ const supabaseServer = () => {
   return { supabase }
 }
 
-export default supabaseServer
+export default useSupabaseServer

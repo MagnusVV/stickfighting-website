@@ -2,7 +2,7 @@
 import { useState } from 'react'
 import styles from './Instructors.module.css'
 import { InstructorCollection } from '@/lib/types'
-import supabaseClient from '../../../lib/supabaseClient'
+import useSupabaseClient from '../../../lib/supabaseClient'
 
 interface InstructorsProps {
   instructors: InstructorCollection
@@ -10,7 +10,7 @@ interface InstructorsProps {
 
 const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   // Get supabase connection and user id from import. -MV
-  const { supabase, userId } = supabaseClient()
+  const { supabase, userId } = useSupabaseClient()
 
   // This state updates with every single key-input in the forms -MV
   const [instructorValues, setInstructorValues] = useState(instructors)
