@@ -2,7 +2,7 @@ import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '../../lib/supabaseServer'
 
-const page = async () => {
+const Page = async () => {
   const { supabase } = useSupabaseServer()
 
   const { data: aboutPage, error } = await supabase
@@ -51,4 +51,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default Page
