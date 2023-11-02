@@ -2,9 +2,9 @@ import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabasServer from '../../lib/supabaseServer'
 
-const page = async () => {
-  const { supabase } = useSupabasServer()
+const { supabase } = useSupabasServer()
 
+const page = async () => {
   const { data: aboutPage, error } = await supabase
     .from('about_page')
     .select(`about_association (*), instructors (*), our_philosophy (*)`)
