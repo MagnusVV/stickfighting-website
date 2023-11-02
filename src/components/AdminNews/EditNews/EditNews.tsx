@@ -1,7 +1,7 @@
 'use client'
 import { SetStateAction, useEffect, useState } from 'react'
 import styles from './EditNews.module.css'
-import { newsFetch } from '../AdminNews/AdminNews'
+import { newsFetch } from '../AdminNews'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 
@@ -60,7 +60,7 @@ const EditNews: React.FC<newsProps> = ({
       return console.log(error)
     }
 
-    alert('Nyheter updaterade')
+    alert('Nyheter uppdaterade')
     setEditNews(false)
   }
 

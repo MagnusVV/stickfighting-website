@@ -35,6 +35,7 @@ export interface Database {
           {
             foreignKeyName: 'about_association_profile_id_fkey'
             columns: ['profile_id']
+            isOneToOne: false
             referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
@@ -63,19 +64,51 @@ export interface Database {
           {
             foreignKeyName: 'about_page_about_id_fkey'
             columns: ['about_id']
+            isOneToOne: false
             referencedRelation: 'about_association'
             referencedColumns: ['id']
           },
           {
             foreignKeyName: 'about_page_intructor_id_fkey'
             columns: ['intructor_id']
+            isOneToOne: false
             referencedRelation: 'instructors'
             referencedColumns: ['id']
           },
           {
             foreignKeyName: 'about_page_philosophy_id_fkey'
             columns: ['philosophy_id']
+            isOneToOne: false
             referencedRelation: 'our_philosophy'
+            referencedColumns: ['id']
+          },
+        ]
+      }
+      editor_test: {
+        Row: {
+          body_text: Json | null
+          created_at: string
+          id: number
+          profile_id: string | null
+        }
+        Insert: {
+          body_text?: Json | null
+          created_at?: string
+          id?: number
+          profile_id?: string | null
+        }
+        Update: {
+          body_text?: Json | null
+          created_at?: string
+          id?: number
+          profile_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: 'editor_test_profile_id_fkey'
+            columns: ['profile_id']
+            isOneToOne: false
+            referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
         ]
@@ -118,18 +151,21 @@ export interface Database {
           {
             foreignKeyName: 'events_instructor_id_fkey'
             columns: ['instructor_id']
+            isOneToOne: false
             referencedRelation: 'instructors'
             referencedColumns: ['id']
           },
           {
             foreignKeyName: 'events_locale_id_fkey'
             columns: ['locale_id']
+            isOneToOne: false
             referencedRelation: 'locale'
             referencedColumns: ['id']
           },
           {
             foreignKeyName: 'events_profile_id_fkey'
             columns: ['profile_id']
+            isOneToOne: false
             referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
@@ -161,6 +197,7 @@ export interface Database {
           {
             foreignKeyName: 'instructors_profile_id_fkey'
             columns: ['profile_id']
+            isOneToOne: false
             referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
@@ -213,6 +250,7 @@ export interface Database {
           {
             foreignKeyName: 'news_profile_id_fkey'
             columns: ['profile_id']
+            isOneToOne: false
             referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
@@ -244,6 +282,7 @@ export interface Database {
           {
             foreignKeyName: 'our_philosophy_profile_id_fkey'
             columns: ['profile_id']
+            isOneToOne: false
             referencedRelation: 'profiles'
             referencedColumns: ['id']
           },
@@ -278,6 +317,7 @@ export interface Database {
           {
             foreignKeyName: 'profiles_id_fkey'
             columns: ['id']
+            isOneToOne: true
             referencedRelation: 'users'
             referencedColumns: ['id']
           },
