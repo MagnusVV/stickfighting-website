@@ -60,7 +60,7 @@ const EditNews: React.FC<newsProps> = ({
       return console.log(error)
     }
 
-    alert('Nyheter uppdaterade')
+    alert('Nyhet uppdaterad')
     setEditNews(false)
   }
 
