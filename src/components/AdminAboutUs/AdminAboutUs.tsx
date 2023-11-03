@@ -8,7 +8,7 @@ import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
 
 // React-big-calendar -MV:
-import EventCalendar from '../CalendarWrapper/EventCalendar/EventCalendar'
+import EventCalendar from '../Calendar/CalendarWrapper/EventCalendar/EventCalendar'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()

@@ -7,7 +7,7 @@ import moment from 'moment-timezone'
 import 'moment/locale/sv'
 
 //Testing events in React big calendar -MV:
-import { events } from '../../../lib/events'
+import { events } from '../../../../lib/events' //TODO: Replace events with fetched events.
 
 // Sets default time-zone -MV
 moment.tz.setDefault('Europe/Stockholm')

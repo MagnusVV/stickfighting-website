@@ -1,4 +1,4 @@
-import CalendarWrapper from '@/components/CalendarWrapper/CalendarWrapper'
+import CalendarWrapper from '@/components/Calendar/CalendarWrapper/CalendarWrapper'
 import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 
