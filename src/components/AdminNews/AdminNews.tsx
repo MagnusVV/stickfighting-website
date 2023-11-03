@@ -3,7 +3,7 @@ import { useState, useEffect, ReactNode, SetStateAction } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
-import EditNews from '../EditNews/EditNews'
+import EditNews from './EditNews/EditNews'
 
 export interface newsFetch {
   id: number
@@ -35,7 +35,7 @@ const AdminNews = () => {
     }
 
     fetchUserID()
-  }, [])
+  }, [supabase.auth])
 
   //fetch news
   useEffect(() => {
@@ -52,7 +52,7 @@ const AdminNews = () => {
       }
     }
     fetchNews()
-  }, [])
+  }, [supabase])
 
   //create a new news
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {
