@@ -1,34 +1,19 @@
 'use client'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { useEffect, useState } from 'react'
-import { Database } from '@/lib/codeBlockSupabase'
+import { useState } from 'react'
 import styles from './Instructors.module.css'
 import { InstructorCollection } from '@/lib/types'
+import useSupabaseClient from '../../../lib/supabaseClient'
 
 interface InstructorsProps {
   instructors: InstructorCollection
 }
 
 const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
-  const [userId, setUserId] = useState<string>('')
+  // Get supabase connection and user id from import. -MV
+  const { supabase, userId } = useSupabaseClient()
 
   // This state updates with every single key-input in the forms -MV
   const [instructorValues, setInstructorValues] = useState(instructors)
-
-  // Supabase connection -MV
-  const supabase = createClientComponentClient<Database>()
-
-  useEffect(() => {
-    // Fetch active session -MV
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      // Set session as state -MV
-      setUserId(user?.user.id as string)
-    }
-
-    fetchUserID()
-  }, [supabase.auth])
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -54,7 +39,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
     <div className={styles.wrapper}>
       <h2>Våra instruktörer</h2>
       {instructors.map(instructor => {
-        // Since you shouldn´t mutate states, we save the changes here before updating the state -MV
+        // Since you shouldn't mutate states, we save the changes here before updating the state -MV
         const updatedInstructorValues = [...instructorValues]
         // Finds the specifc part of "instructorValues" state that will be updated -MV
         const valueToUpdate = updatedInstructorValues.find(

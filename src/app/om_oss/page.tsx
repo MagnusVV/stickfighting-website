@@ -1,14 +1,9 @@
 import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
-import { Database } from '@/lib/codeBlockSupabase'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import useSupabaseServer from '../../lib/supabaseServer'
 
-const page = async () => {
-  const cookiesStore = cookies()
-  const supabase = createServerComponentClient<Database>({
-    cookies: () => cookiesStore,
-  })
+const Page = async () => {
+  const { supabase } = useSupabaseServer()
 
   const { data: aboutPage, error } = await supabase
     .from('about_page')
@@ -56,4 +51,4 @@ const page = async () => {
   )
 }
 
-export default page
+export default Page
