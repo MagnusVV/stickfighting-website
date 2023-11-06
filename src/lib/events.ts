@@ -1,19 +1,26 @@
 import moment from 'moment'
+import { FormattedEvent } from './types'
 
-export const events = [
+export const events: FormattedEvent[] = [
   {
-    start: moment('2023-10-28T10:00:00').toDate(),
-    end: moment('2023-10-28T11:00:00').toDate(),
+    id: 1,
+    start: moment('2023-11-05T10:00:00').toDate(),
+    end: moment('2023-11-05T11:00:00').toDate(),
     title: 'Träning',
+    cancelled: false,
   },
   {
-    start: moment('2023-10-28T12:00:00').toDate(),
-    end: moment('2023-10-29T07:00:00').toDate(),
+    id: 2,
+    start: moment('2023-11-17T12:00:00').toDate(),
+    end: moment('2023-11-20T07:00:00').toDate(),
     title: 'Övernattning',
+    cancelled: false,
   },
   {
-    start: moment('2023-10-31T09:00:00').toDate(),
-    end: moment('2023-10-31T11:00:00').toDate(),
-    title: 'Idag',
+    id: 3,
+    start: moment('2023-11-29T09:00:00').toDate(),
+    end: moment('2023-11-30T11:00:00').toDate(),
+    title: 'Sist',
+    cancelled: null,
   },
 ]
