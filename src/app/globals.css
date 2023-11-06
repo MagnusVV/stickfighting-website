@@ -182,4 +182,8 @@ a {
   border-bottom: 1px solid white;
 }
 
+.isActive {
+  background-color: black;
+}
+
 /* TipTap CSS STYLE -----------------------------> */
