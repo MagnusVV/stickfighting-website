@@ -2,9 +2,11 @@
 
 import '../../app/globals.css'
 import ListItem from '@tiptap/extension-list-item'
-import { EditorProvider, useCurrentEditor } from '@tiptap/react'
+import { EditorProvider, JSONContent, useCurrentEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+import useSupabaseClient from '@/lib/supabaseClient'
+import { Json } from '@/lib/codeBlockSupabase'
 
 const MenuBar = () => {
   const { editor } = useCurrentEditor()
@@ -89,25 +91,102 @@ const extensions = [
   StarterKit.configure({
     bulletList: {
       keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      keepAttributes: false,
     },
     orderedList: {
       keepMarks: true,
-      keepAttributes: false, // TODO : Making this as `false` becase marks are not preserved when I try to preserve attrs, awaiting a bit of help
+      keepAttributes: false,
     },
   }),
 ]
 
+// interface testType {
+//   body_text: Json
+// }
+
 const TipTap = () => {
-  const [text, setText] = useState<string>('Helloo World')
+  const [text, setText] = useState<Json>()
+  const [fetchData, setFetchData] = useState<string>('')
+
+  const readableText = JSON.stringify(text)
+
+  //fetch the content
+  // useEffect(() => {
+  //   const fetchTestData = async () => {
+  //     const { data, error } = await supabase
+  //       .from('editor_test')
+  //       .select('body_text')
+
+  //     if (error) {
+  //       return console.log(error)
+  //     }
+
+  //     if (data) {
+  //       setFetchData(JSON.stringify(data[0]?.body_text))
+  //     }
+
+  //     console.log(fetchData)
+  //   }
+
+  //   fetchTestData()
+  // }, [])
+
+  //attempt at inputing correct jsonData
+  // const jsonData = {
+  //   type: 'doc',
+  //   content: text,
+  // }
+
+  //fetch supabse cli connection, and the session id
+  const { supabase, userId } = useSupabaseClient()
+
+  const edidorUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    // //convert string to json
+    // let txt = `${text}`
+
+    // //convert from single quote to double quote for JSON to work
+    // txt = txt.replaceAll("'", '"')
+    //parse the object
+    // const jsonText = JSON.stringify(text)
+
+    //update it to supabase
+    const { error } = await supabase
+      .from('editor_test')
+      .upsert({ id: 1, body_text: { text }, profile_id: userId })
+      .select()
+
+    if (error) {
+      console.log(error)
+      return error
+    }
+
+    alert('update successful')
+  }
 
   const content = text
   return (
-    <EditorProvider
-      slotBefore={<MenuBar />}
-      extensions={extensions}
-      content={content}
-    ></EditorProvider>
+    <>
+      <form action="submit" onSubmit={edidorUpdate}>
+        <EditorProvider
+          slotBefore={<MenuBar />}
+          extensions={extensions}
+          content={content}
+          onUpdate={({ editor }) => {
+            const jsonObj = editor.getJSON()
+            //json.content[0].content[0]
+            // setText(json.content[0]?.content)
+            // console.log('TEXT: ' + text)
+
+            const jsonArr = jsonObj.content
+            jsonArr?.map(test => {
+              setText(test)
+            })
+          }}
+        ></EditorProvider>
+        <button type="submit">insert</button>
+      </form>
+    </>
   )
 }
 
