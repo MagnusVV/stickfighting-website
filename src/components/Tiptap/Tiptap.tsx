@@ -125,13 +125,12 @@ const TipTap = () => {
     fetchTestData()
   }, [])
 
-  console.log(fetchData)
+  // console.log(fetchData)
 
   //fetch supabse cli connection, and the session id
   const { supabase, userId } = useSupabaseClient()
 
-  const edidorUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
+  const edidorUpdate = async () => {
     // //convert string to json
     // let txt = `${text}`
 
@@ -156,22 +155,20 @@ const TipTap = () => {
   const content = text
   return (
     <>
-      <form action="submit" onSubmit={edidorUpdate}>
-        <EditorProvider
-          slotBefore={<MenuBar />}
-          extensions={extensions}
-          content={content}
-          onUpdate={({ editor }) => {
-            const jsonObj = editor.getJSON()
+      <EditorProvider
+        slotBefore={<MenuBar />}
+        extensions={extensions}
+        content={content}
+        onUpdate={({ editor }) => {
+          const jsonObj = editor.getJSON()
 
-            const jsonArr = jsonObj.content
-            jsonArr?.map(test => {
-              setText(test)
-            })
-          }}
-        ></EditorProvider>
-        <button type="submit">insert</button>
-      </form>
+          const jsonArr = jsonObj.content
+          jsonArr?.map(test => {
+            setText(test)
+          })
+        }}
+      ></EditorProvider>
+      <button onClick={edidorUpdate}>insert</button>
     </>
   )
 }
