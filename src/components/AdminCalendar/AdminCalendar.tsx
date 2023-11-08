@@ -13,6 +13,21 @@ const AdminCalendar: React.FC = () => {
 
   const [events, setEvents] = useState<FormattedEvent[]>([])
 
+  // The callback, eventId, from ViewEvents and SingleEvent is then passed to Eventhandler -MV --->
+  const [selectedEvents, setSelectedEvents] = useState<number[]>([])
+
+  const handleEventClick = (eventId: number) => {
+    setSelectedEvents(prevState => {
+      if (prevState.includes(eventId)) {
+        return prevState.filter(id => id !== eventId)
+      } else {
+        return [...prevState, eventId]
+      }
+    })
+  }
+
+  // <--- --- --- --- --- --- --- --- --- --- --- --- ---|
+
   useEffect(() => {
     const fetchEvents = async () => {
       // const cookie = await supabase.auth.getSession()
@@ -50,9 +65,12 @@ const AdminCalendar: React.FC = () => {
     <>
       <h1>Schema-handler-component</h1>
       <h2>Calendar events</h2>
-      <ViewEvents events={events} />
+      <ViewEvents events={events} onEventClick={handleEventClick} />
       <h2>Handle Calendar Events</h2>
-      <EventHandler />
+      <EventHandler
+        selectedEvents={selectedEvents}
+        onEventClick={handleEventClick}
+      />
     </>
   )
 }

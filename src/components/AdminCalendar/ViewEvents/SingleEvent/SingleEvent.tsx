@@ -2,24 +2,28 @@ import { useState } from 'react'
 import styles from './../../AdminCalendar.module.css'
 import { FormattedEvent } from '@/lib/types'
 
-const SingleEvent = ({ event }: { event: FormattedEvent }) => {
-  const [isChecked, setIsChecked] = useState<string>('notChecked')
+interface SingleEventProps {
+  event: FormattedEvent
+  onEventClick: (eventId: number) => void
+}
+
+const SingleEvent: React.FC<SingleEventProps> = ({ event, onEventClick }) => {
+  const [isChecked, setIsChecked] = useState<boolean>(false)
 
   const handleClick = () => {
-    isChecked === 'notChecked'
-      ? setIsChecked('checked')
-      : setIsChecked('notChecked')
+    setIsChecked(prevState => !prevState)
+    onEventClick(event.id) // Passed down to fetch the callback "eventId". It originates from AdminCalendar.tsx -MV
   }
 
   // Styling of single elements -MV
   const conditionalClassName = (event: FormattedEvent) => {
     let conditionalClass = ''
 
-    if (isChecked !== 'checked' && !event.cancelled) {
+    if (!isChecked && !event.cancelled) {
       conditionalClass = `${styles.eventListItem}`
-    } else if (isChecked === 'checked') {
+    } else if (isChecked) {
       conditionalClass = `${styles.eventListItem} ${styles.checked}`
-    } else if (isChecked !== 'checked' && event.cancelled) {
+    } else if (!isChecked && event.cancelled) {
       conditionalClass = `${styles.eventListItem} ${styles.cancelled}`
     }
     return conditionalClass
