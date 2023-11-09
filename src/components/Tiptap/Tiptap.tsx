@@ -141,7 +141,7 @@ const TipTap = () => {
     //update it to supabase
     const { error } = await supabase
       .from('editor_test')
-      .upsert({ id: 1, body_text: { text }, profile_id: userId })
+      .upsert({ id: 1, body_text: text, profile_id: userId })
       .select()
 
     if (error) {
@@ -161,11 +161,11 @@ const TipTap = () => {
         content={content}
         onUpdate={({ editor }) => {
           const jsonObj = editor.getJSON()
-
-          const jsonArr = jsonObj.content
-          jsonArr?.map(test => {
-            setText(test)
-          })
+          setText(jsonObj)
+          // const jsonArr = jsonObj.content
+          // jsonArr?.map(test => {
+          //   setText(test)
+          // })
         }}
       ></EditorProvider>
       <button onClick={edidorUpdate}>insert</button>

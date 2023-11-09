@@ -1,14 +1,27 @@
+'use client'
 import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useMemo } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
 import { marks } from '@tiptap/pm/schema-basic'
+import { generateHTML } from '@tiptap/core'
+import Document from '@tiptap/extension-document'
+import Paragraph from '@tiptap/extension-paragraph'
+import Text from '@tiptap/extension-text'
+import { JSONContent } from '@tiptap/react'
+import Bold from '@tiptap/extension-bold'
+
+const mySchema = {
+  content: 'text*',
+}
+
+let output = ''
 
 const ReadOnlyTipTap = () => {
   const [editable, setEditable] = useState(false)
   const [testText, setTestText] = useState<string>('')
-  const [jsonData, setJsonData] = useState<Json>()
+  const [jsonData, setJsonData] = useState<JSONContent>()
   const { supabase, userId } = useSupabaseClient()
 
   const fetchContent = async () => {
@@ -18,44 +31,80 @@ const ReadOnlyTipTap = () => {
       .eq('id', 1)
 
     if (error) {
-      return error
+      console.log(error)
+      return
     }
 
-    if (data) {
+    if (data && data.length > 0) {
       console.log(data)
+      // const content = JSON.parse(data)
+      editor?.commands.setContent(data[0].body_text)
+      // if (jsonData && jsonData.lenght > 0) {
+      //   output = useMemo(() => {
+      //     return generateHTML(jsonData, [
+      //       Document,
+      //       Paragraph,
+      //       Text,
+      //       Bold,
+      //       // other extensions …
+      //     ])
+      //   }, [jsonData])
+
+      //   console.log(output)
+      // }
+      // console.log(data)
+      // const content = data[0].body_text
+      // const renderer = new Renderer()
+      // const html = renderer.render(content)
+      // setJsonData(html)
+      // console.log(html)
+      // const contentData = data[0].body_text
+      // const schema = new Schema({
+      //   nodes: {
+      //     doc: { content: 'block+' },
+      //     paragraph: { content: 'text*' },
+      //     text: { inline: true },
+      //   },
+      // })
+      // const content = Content.create(contentData, schema)
+      // editor.commands.setContent(content)
+      // setJsonData(contentData)
       //   setJsonData(data[0])
       //TODO: Remove TS-ignore (just can't be fucking bothered right now)
       //@ts-ignore
-      editor.commands.setContent({
-        type: 'doc',
-        content: [
-          {
-            type: 'paragraph',
-            content: [
-              {
-                //@ts-ignore //FIXME: remove TS-ignore
-                type: `${data[0]?.body_text.text.content[0].type}`,
-                //@ts-ignore //FIXME: remove TS-ignore
-                text: `${data[0]?.body_text.text.content[0].text}`,
-                //@ts-ignore
-                //make the marks parameter optional incease it is empty
-                ...(data[0]?.body_text.text.content[0]?.marks && {
-                  marks: [
-                    {
-                      //@ts-ignore //FIXME: remove TS-ignore
-                      type: `${data[0]?.body_text.text.content[0]?.marks[0].type}`,
-                    },
-                  ],
-                }),
-              },
-            ],
-          },
-        ],
-      })
+      // editor.commands.setContent({
+      //   type: 'doc',
+      //   content: [
+      //     {
+      //       type: 'paragraph',
+      //       content: [
+      //         {
+      //           //@ts-ignore //FIXME: remove TS-ignore
+      //           type: `${data?.body_text?.content?.map(type => {
+      //             return type.type
+      //           })}`,
+      //           //@ts-ignore //FIXME: remove TS-ignore
+      //           text: `${data?.body_text?.content?.map(text => {
+      //             return text.text
+      //           })}`,
+      //           //@ts-ignore
+      //           //make the marks parameter optional incase it is empty
+      //           ...(data?.body_text?.content?.marks && {
+      //             marks: [
+      //               {
+      //                 //@ts-ignore //FIXME: remove TS-ignore
+      //                 type: `${data?.body_text?.text.content?.marks.type}`,
+      //               },
+      //             ],
+      //           }),
+      //         },
+      //       ],
+      //     },
+      //   ],
+      // })
     }
-
-    console.log(jsonData)
   }
+
   const editor = useEditor({
     editable,
     content: '',
@@ -87,6 +136,7 @@ const ReadOnlyTipTap = () => {
       </div>
       <EditorContent editor={editor} />
       <button onClick={fetchContent}>Fetch Content</button>
+      <code> {output}</code>
     </>
   )
 }
