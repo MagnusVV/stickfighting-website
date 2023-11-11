@@ -9,7 +9,7 @@ import EventHandler from './EventHandler/EventHandler'
 
 const AdminCalendar: React.FC = () => {
   // Get supabase connection and user id from import. -MV
-  const { supabase, userId } = useSupabaseClient()
+  const { supabase } = useSupabaseClient()
 
   const [events, setEvents] = useState<FormattedEvent[]>([])
 
@@ -30,15 +30,12 @@ const AdminCalendar: React.FC = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      // const cookie = await supabase.auth.getSession()
-      // const user = cookie.data.session
-      // const userId = user?.user.id as string
-
       const { data: fetchedEvents, error } = await supabase
         .from('events')
         .select(
           `id, cancelled, event_date, event_start_time, event_end_time, instructors (name),locale (name)`,
         )
+        .order('event_date', { ascending: true })
 
       if (error) {
         console.log(error)

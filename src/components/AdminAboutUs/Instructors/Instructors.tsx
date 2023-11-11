@@ -33,6 +33,10 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
     if (error) {
       console.log(error)
     }
+
+    if (!error) {
+      alert('Information uppdaterad!')
+    }
   }
 
   return (
@@ -41,6 +45,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
       {instructors.map(instructor => {
         // Since you shouldn't mutate states, we save the changes here before updating the state -MV
         const updatedInstructorValues = [...instructorValues]
+
         // Finds the specifc part of "instructorValues" state that will be updated -MV
         const valueToUpdate = updatedInstructorValues.find(
           value => value.id === instructor.id,

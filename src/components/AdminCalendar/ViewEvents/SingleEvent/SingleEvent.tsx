@@ -1,11 +1,6 @@
 import { useState } from 'react'
 import styles from './../../AdminCalendar.module.css'
-import { FormattedEvent } from '@/lib/types'
-
-interface SingleEventProps {
-  event: FormattedEvent
-  onEventClick: (eventId: number) => void
-}
+import { FormattedEvent, SingleEventProps } from '@/lib/types'
 
 const SingleEvent: React.FC<SingleEventProps> = ({ event, onEventClick }) => {
   const [isChecked, setIsChecked] = useState<boolean>(false)

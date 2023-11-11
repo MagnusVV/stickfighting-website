@@ -9,8 +9,10 @@ export interface InstructorParams {
   body_text: string
 }
 
+// Unnecessary array type, but was good for trying out Typescript -MV
 export type InstructorCollection = InstructorParams[]
 
+// CALENDAR PAGE TYPE & SUB-TYPES --- --->
 // Fetched event format -MV
 export interface Event {
   id: number
@@ -30,3 +32,32 @@ export interface FormattedEvent {
   title: string
   cancelled: boolean | null
 }
+// <--- --- --- --- --- --- --- --- --- ---|
+
+// ADMIN CALENDAR TYPES & SUB-TYPES --- --->
+export interface SingleEventProps {
+  event: FormattedEvent
+  onEventClick: (eventId: number) => void
+}
+
+export interface ViewEventsProps {
+  events: FormattedEvent[]
+  onEventClick: (eventId: number) => void
+}
+
+export interface EventHandlerProps {
+  selectedEvents: number[]
+  onEventClick: (eventId: number) => void
+}
+
+// Fetched events -MV
+export interface FetchedEvent {
+  id: number
+  locale_id: number
+  instructor_id: number | null
+  cancelled: boolean
+  event_date: string
+  event_start_time: string
+  event_end_time: string
+}
+// <--- --- --- --- --- --- --- --- --- ---|
