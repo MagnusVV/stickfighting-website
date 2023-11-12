@@ -60,4 +60,10 @@ export interface FetchedEvent {
   event_start_time: string
   event_end_time: string
 }
+
+export interface EditedEvent extends Omit<FetchedEvent, 'cancelled'> {}
+
+export interface NewEvent extends Omit<FetchedEvent, 'id'> {
+  profile_id: string
+}
 // <--- --- --- --- --- --- --- --- --- ---|
