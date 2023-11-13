@@ -6,6 +6,7 @@ import AdminAboutUs from '@/components/AdminAboutUs/AdminAboutUs'
 import AdminHome from '@/components/AdminHome/AdminHome'
 import adminStyles from './admin.module.css'
 import AdminCalendar from '@/components/AdminCalendar/AdminCalendar'
+import Tiptap from '@/components/Tiptap/Tiptap'
 
 const AdminPage = () => {
   return (
@@ -16,6 +17,7 @@ const AdminPage = () => {
       <AdminHome />
       <AdminCalendar />
       <LogoutBtn />
+      {/* <Tiptap /> */}
     </main>
   )
 }
