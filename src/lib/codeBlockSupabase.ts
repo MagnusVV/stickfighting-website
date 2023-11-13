@@ -71,14 +71,12 @@ export interface Database {
           {
             foreignKeyName: 'about_page_intructor_id_fkey'
             columns: ['intructor_id']
-            isOneToOne: false
             referencedRelation: 'instructors'
             referencedColumns: ['id']
           },
           {
             foreignKeyName: 'about_page_philosophy_id_fkey'
             columns: ['philosophy_id']
-            isOneToOne: false
             referencedRelation: 'our_philosophy'
             referencedColumns: ['id']
           },

@@ -5,6 +5,7 @@ import NavBar from '@/components/NavBar/NavBar'
 import AdminAboutUs from '@/components/AdminAboutUs/AdminAboutUs'
 import AdminHome from '@/components/AdminHome/AdminHome'
 import adminStyles from './admin.module.css'
+import Tiptap from '@/components/Tiptap/Tiptap'
 
 const AdminPage = () => {
   return (
@@ -14,6 +15,7 @@ const AdminPage = () => {
       <AdminAboutUs />
       <AdminHome />
       <LogoutBtn />
+      {/* <Tiptap /> */}
     </main>
   )
 }
