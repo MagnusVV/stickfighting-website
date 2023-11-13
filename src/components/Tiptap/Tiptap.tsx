@@ -12,7 +12,7 @@ interface MenuBarProps {
   editor: Editor | null
 }
 
-const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
+export const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
   // const { editor } = useCurrentEditor()
 
   if (!editor) {
@@ -157,8 +157,8 @@ const TipTap = () => {
     <>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      <button onClick={edidorUpdate}>update</button>
-      <button onClick={fetchTestData}>fetchData</button>
+      {/* <button onClick={edidorUpdate}>update</button>
+      <button onClick={fetchTestData}>fetchData</button> */}
     </>
   )
 }

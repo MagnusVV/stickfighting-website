@@ -11,21 +11,21 @@ export interface Database {
     Tables: {
       about_association: {
         Row: {
-          body_text: string | null
+          body_text: Json | null
           created_at: string
           id: number
           profile_id: string | null
           title: string | null
         }
         Insert: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           profile_id?: string | null
           title?: string | null
         }
         Update: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           profile_id?: string | null
@@ -33,12 +33,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'about_association_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "about_association_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       about_page: {
@@ -62,24 +62,26 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'about_page_about_id_fkey'
-            columns: ['about_id']
+            foreignKeyName: "about_page_about_id_fkey"
+            columns: ["about_id"]
             isOneToOne: false
-            referencedRelation: 'about_association'
-            referencedColumns: ['id']
+            referencedRelation: "about_association"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'about_page_intructor_id_fkey'
-            columns: ['intructor_id']
-            referencedRelation: 'instructors'
-            referencedColumns: ['id']
+            foreignKeyName: "about_page_intructor_id_fkey"
+            columns: ["intructor_id"]
+            isOneToOne: false
+            referencedRelation: "instructors"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'about_page_philosophy_id_fkey'
-            columns: ['philosophy_id']
-            referencedRelation: 'our_philosophy'
-            referencedColumns: ['id']
-          },
+            foreignKeyName: "about_page_philosophy_id_fkey"
+            columns: ["philosophy_id"]
+            isOneToOne: false
+            referencedRelation: "our_philosophy"
+            referencedColumns: ["id"]
+          }
         ]
       }
       editor_test: {
@@ -103,12 +105,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'editor_test_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "editor_test_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       events: {
@@ -147,26 +149,26 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'events_instructor_id_fkey'
-            columns: ['instructor_id']
+            foreignKeyName: "events_instructor_id_fkey"
+            columns: ["instructor_id"]
             isOneToOne: false
-            referencedRelation: 'instructors'
-            referencedColumns: ['id']
+            referencedRelation: "instructors"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'events_locale_id_fkey'
-            columns: ['locale_id']
+            foreignKeyName: "events_locale_id_fkey"
+            columns: ["locale_id"]
             isOneToOne: false
-            referencedRelation: 'locale'
-            referencedColumns: ['id']
+            referencedRelation: "locale"
+            referencedColumns: ["id"]
           },
           {
-            foreignKeyName: 'events_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "events_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       instructors: {
@@ -193,12 +195,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'instructors_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "instructors_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       locale: {
@@ -246,12 +248,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'news_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "news_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       our_philosophy: {
@@ -278,12 +280,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'our_philosophy_profile_id_fkey'
-            columns: ['profile_id']
+            foreignKeyName: "our_philosophy_profile_id_fkey"
+            columns: ["profile_id"]
             isOneToOne: false
-            referencedRelation: 'profiles'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "profiles"
+            referencedColumns: ["id"]
+          }
         ]
       }
       profiles: {
@@ -313,12 +315,12 @@ export interface Database {
         }
         Relationships: [
           {
-            foreignKeyName: 'profiles_id_fkey'
-            columns: ['id']
+            foreignKeyName: "profiles_id_fkey"
+            columns: ["id"]
             isOneToOne: true
-            referencedRelation: 'users'
-            referencedColumns: ['id']
-          },
+            referencedRelation: "users"
+            referencedColumns: ["id"]
+          }
         ]
       }
     }
