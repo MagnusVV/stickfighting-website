@@ -56,7 +56,7 @@ const ReadOnlyTipTap = () => {
         <label htmlFor="editable">editable</label>
       </div>
       <EditorContent editor={editor} />
-      <button onClick={fetchContent}>Fetch Content</button>
+      <button onClick={fetchContent}>fetch Content</button>
     </>
   )
 }
