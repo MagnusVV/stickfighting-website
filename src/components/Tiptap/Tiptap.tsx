@@ -2,14 +2,27 @@
 
 import '../../app/globals.css'
 import ListItem from '@tiptap/extension-list-item'
-import { EditorProvider, JSONContent, useCurrentEditor } from '@tiptap/react'
+import {
+  EditorProvider,
+  JSONContent,
+  useCurrentEditor,
+  EditorContent,
+  useEditor,
+  FloatingMenu,
+  Editor,
+} from '@tiptap/react'
+
 import StarterKit from '@tiptap/starter-kit'
 import React, { ReactNode, useEffect, useState } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
 
-const MenuBar = () => {
-  const { editor } = useCurrentEditor()
+interface MenuBarProps {
+  editor: Editor | null
+}
+
+const MenuBar: React.FC<MenuBarProps> = ({ editor }) => {
+  // const { editor } = useCurrentEditor()
 
   if (!editor) {
     return null
@@ -101,43 +114,57 @@ const extensions = [
 ]
 
 const TipTap = () => {
-  const [text, setText] = useState<Json>()
+  const [text, setText] = useState<any>()
   const [fetchData, setFetchData] = useState<Json>()
-
-  const readableText = JSON.stringify(text)
-
-  //fetch the content
-  useEffect(() => {
-    const fetchTestData = async () => {
-      const { data, error } = await supabase
-        .from('editor_test')
-        .select('body_text')
-
-      if (error) {
-        return console.log(error)
-      }
-
-      if (data) {
-        setFetchData(data)
-      }
-    }
-
-    fetchTestData()
-  }, [])
-
-  // console.log(fetchData)
+  const [test, setTest] = useState<Json>()
+  let newContent: any
 
   //fetch supabse cli connection, and the session id
   const { supabase, userId } = useSupabaseClient()
 
+  //fetch the content
+
+  const fetchTestData = async () => {
+    const { data, error } = await supabase
+      .from('editor_test')
+      .select('body_text')
+      .eq('id', 1)
+
+    if (error) {
+      console.log(error)
+      return
+    }
+
+    if (data && data.length > 0) {
+      console.log(data[0]?.body_text)
+
+      // const tiptapData = data[0]?.body_text
+      // console.log(typeof tiptapData)
+
+      // newContent = data[0]?.body_text
+      // console.log('newContent ' + newContent)
+      //@ts-ignore
+      // const htmlContent = editor.getHTML(data[0]?.body_text)
+      // setText(data[0]?.body_text)
+      editor?.commands.setContent(data[0].body_text)
+      // console.log(typeof text)
+    }
+  }
+
+  // let content: any
+
+  //Update the text state
+  // useEffect(() => {
+  //   // console.log(text)
+  //   content = `${text}`
+  //   console.log('content ' + content)
+  // }, [text])
+
+  // useEffect(() => {
+  //   editor?.commands.setContent(text)
+  // }, [editor])
+
   const edidorUpdate = async () => {
-    // //convert string to json
-    // let txt = `${text}`
-
-    // //convert from single quote to double quote for JSON to work
-    // txt = txt.replaceAll("'", '"')
-    //parse the object
-
     //update it to supabase
     const { error } = await supabase
       .from('editor_test')
@@ -152,23 +179,32 @@ const TipTap = () => {
     alert('update successful')
   }
 
-  const content = text
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    onUpdate: ({ editor }) => {
+      const jsonObj = editor.getJSON()
+      setText(jsonObj)
+    },
+  })
+
   return (
     <>
-      <EditorProvider
+      {/* <EditorProvider
         slotBefore={<MenuBar />}
         extensions={extensions}
-        content={content}
+        content={editor}
         onUpdate={({ editor }) => {
           const jsonObj = editor.getJSON()
           setText(jsonObj)
-          // const jsonArr = jsonObj.content
-          // jsonArr?.map(test => {
-          //   setText(test)
-          // })
         }}
-      ></EditorProvider>
-      <button onClick={edidorUpdate}>insert</button>
+      ></EditorProvider> */}
+      <MenuBar editor={editor} />
+      <EditorContent editor={editor} />
+      <button onClick={edidorUpdate}>update</button>
+      <button onClick={fetchTestData}>fetchData</button>
+      {/* Detta funkar för att hämta datan, men inte för att uppdatera */}
+      {/* <EditorContent editor={editor} /> */}
     </>
   )
 }

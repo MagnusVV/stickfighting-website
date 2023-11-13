@@ -15,7 +15,7 @@ const AdminPage = () => {
       <AdminAboutUs />
       <AdminHome />
       <LogoutBtn />
-      <Tiptap />
+      {/* <Tiptap /> */}
     </main>
   )
 }

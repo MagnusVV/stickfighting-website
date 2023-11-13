@@ -3,12 +3,10 @@ import { EditorContent, useEditor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import React, { useEffect, useState } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
-import { JSONContent } from '@tiptap/react'
 
 const ReadOnlyTipTap = () => {
   const [editable, setEditable] = useState(false)
   const [testText, setTestText] = useState<string>('')
-  const [jsonData, setJsonData] = useState<JSONContent>()
   const { supabase, userId } = useSupabaseClient()
 
   const fetchContent = async () => {
@@ -23,7 +21,7 @@ const ReadOnlyTipTap = () => {
     }
 
     if (data && data.length > 0) {
-      console.log(data)
+      console.log(data[0]?.body_text)
       editor?.commands.setContent(data[0].body_text)
     }
   }
