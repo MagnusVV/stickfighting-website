@@ -258,21 +258,21 @@ export interface Database {
       }
       our_philosophy: {
         Row: {
-          body_text: string | null
+          body_text: Json | null
           created_at: string
           id: number
           profile_id: string | null
           title: string | null
         }
         Insert: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           profile_id?: string | null
           title?: string | null
         }
         Update: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           profile_id?: string | null

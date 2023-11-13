@@ -4,52 +4,72 @@ import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 import styles from './OurPhilosophy.module.css'
 import { fetchObj } from '@/lib/types'
+import useSupabaseClient from '@/lib/supabaseClient'
+import { MenuBar } from '@/components/Tiptap/Tiptap'
+import { EditorContent, useEditor, Editor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import { JSONContent } from '@tiptap/react'
 
 interface OurPhilosophyProps {
   philosophy: fetchObj
   setPhilosophy: React.Dispatch<React.SetStateAction<fetchObj | undefined>>
 }
 
-const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
-  philosophy,
-  setPhilosophy,
-}) => {
-  const [userId, setUserId] = useState<string>('')
+//old component
+// const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
+//   philosophy,
+//   setPhilosophy,
+// }) => {
 
-  //connect to supabase
-  const supabase = createClientComponentClient<Database>()
+const OurPhilosophy = () => {
+  const { supabase, userId } = useSupabaseClient()
+  const [philosophy, setPhilosophy] = useState<JSONContent>()
 
-  useEffect(() => {
-    //fetch the active session
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      //set the session as a state
-      setUserId(user?.user.id as string)
+  const fetchPhilosophy = async () => {
+    const { data, error } = await supabase
+      .from('our_philosophy')
+      .select('body_text')
+      .eq('id', 2)
+
+    if (error) {
+      console.log(error)
+      return
     }
 
-    fetchUserID()
-  }, [supabase.auth])
+    if (data && data.length > 0) {
+      //@ts-ignore //FIXME: throwing an error when building
+      editor?.commands.setContent(data[0].body_text)
+    }
+  }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-
+  const updatePhilosophy = async () => {
     //make update call to supabase
     const { data, error } = await supabase
       .from('our_philosophy')
       //update with the text from the form
-      .update({ body_text: philosophy.body_text })
+      .update({ body_text: philosophy })
       .match({ id: 2, profile_id: userId })
 
     if (error) {
       console.log(error)
+
+      alert('Filosofi uppdaterad')
     }
   }
+
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    onUpdate: ({ editor }) => {
+      const jsonPhilosophy = editor.getJSON()
+      setPhilosophy(jsonPhilosophy)
+    },
+  })
 
   return (
     <div className={styles.wrapper}>
       <h2>Vår filosofi</h2>
-      <form onSubmit={handleSubmit} className={styles.form}>
+      {/* <form onSubmit={handleSubmit} className={styles.form}>
         <textarea
           name="about-us-text"
           cols={30}
@@ -59,7 +79,11 @@ const OurPhilosophy: React.FC<OurPhilosophyProps> = ({
           value={philosophy.body_text}
         ></textarea>
         <button type="submit">Uppdatera om oss</button>
-      </form>
+      </form> */}
+      <MenuBar editor={editor} />
+      <EditorContent editor={editor} />
+      <button onClick={fetchPhilosophy}>fetch philosophy</button>
+      <button onClick={updatePhilosophy}>Update philosophy</button>
     </div>
   )
 }
