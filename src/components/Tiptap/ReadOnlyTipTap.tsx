@@ -22,7 +22,8 @@ const ReadOnlyTipTap = () => {
 
     if (data && data.length > 0) {
       console.log(data[0]?.body_text)
-      editor?.commands.setContent(String(data[0].body_text))
+      //@ts-ignore //FIXME: throwing an error when building
+      editor?.commands.setContent(data[0].body_text)
     }
   }
 
