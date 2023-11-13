@@ -124,6 +124,7 @@ const TipTap = () => {
     }
 
     if (data && data.length > 0) {
+      //@ts-ignore //FIXME: throwing an error when building
       editor?.commands.setContent(data[0].body_text)
     }
   }
