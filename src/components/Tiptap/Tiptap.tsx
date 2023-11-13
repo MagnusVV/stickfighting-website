@@ -1,16 +1,7 @@
 'use client'
 
 import '../../app/globals.css'
-import ListItem from '@tiptap/extension-list-item'
-import {
-  EditorProvider,
-  JSONContent,
-  useCurrentEditor,
-  EditorContent,
-  useEditor,
-  FloatingMenu,
-  Editor,
-} from '@tiptap/react'
+import { EditorContent, useEditor, Editor } from '@tiptap/react'
 
 import StarterKit from '@tiptap/starter-kit'
 import React, { ReactNode, useEffect, useState } from 'react'
@@ -115,9 +106,6 @@ const extensions = [
 
 const TipTap = () => {
   const [text, setText] = useState<any>()
-  const [fetchData, setFetchData] = useState<Json>()
-  const [test, setTest] = useState<Json>()
-  let newContent: any
 
   //fetch supabse cli connection, and the session id
   const { supabase, userId } = useSupabaseClient()
@@ -136,33 +124,9 @@ const TipTap = () => {
     }
 
     if (data && data.length > 0) {
-      console.log(data[0]?.body_text)
-
-      // const tiptapData = data[0]?.body_text
-      // console.log(typeof tiptapData)
-
-      // newContent = data[0]?.body_text
-      // console.log('newContent ' + newContent)
-      //@ts-ignore
-      // const htmlContent = editor.getHTML(data[0]?.body_text)
-      // setText(data[0]?.body_text)
       editor?.commands.setContent(data[0].body_text)
-      // console.log(typeof text)
     }
   }
-
-  // let content: any
-
-  //Update the text state
-  // useEffect(() => {
-  //   // console.log(text)
-  //   content = `${text}`
-  //   console.log('content ' + content)
-  // }, [text])
-
-  // useEffect(() => {
-  //   editor?.commands.setContent(text)
-  // }, [editor])
 
   const edidorUpdate = async () => {
     //update it to supabase
@@ -190,21 +154,10 @@ const TipTap = () => {
 
   return (
     <>
-      {/* <EditorProvider
-        slotBefore={<MenuBar />}
-        extensions={extensions}
-        content={editor}
-        onUpdate={({ editor }) => {
-          const jsonObj = editor.getJSON()
-          setText(jsonObj)
-        }}
-      ></EditorProvider> */}
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       <button onClick={edidorUpdate}>update</button>
       <button onClick={fetchTestData}>fetchData</button>
-      {/* Detta funkar för att hämta datan, men inte för att uppdatera */}
-      {/* <EditorContent editor={editor} /> */}
     </>
   )
 }
