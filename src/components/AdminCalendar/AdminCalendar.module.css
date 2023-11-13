@@ -1,0 +1,35 @@
+/* For viewing and selecting event list items */
+.eventContainer {
+  background-color: white;
+  color: black;
+  height: 30vh;
+  padding: 1rem;
+  overflow-y: scroll;
+}
+
+.eventList {
+  list-style-type: none;
+  cursor: pointer;
+}
+
+.eventListItem {
+  margin-bottom: 1rem;
+}
+
+.eventListItem:hover,
+/* When item is clicked/tapped */
+.checked {
+  background-color: coral;
+  color: white;
+}
+
+/*If event is canceelled*/
+.cancelled {
+  background-color: black;
+  color: white;
+}
+
+.checked:hover,
+.cancelled:hover {
+  background-color: brown;
+}

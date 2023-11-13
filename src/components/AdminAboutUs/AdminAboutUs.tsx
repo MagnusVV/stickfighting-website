@@ -1,14 +1,11 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
+import { useEffect, useState } from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
-import { fetchObj, InstructorParams, InstructorCollection } from '@/lib/types'
+import { fetchObj, InstructorCollection } from '@/lib/types'
+import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
 import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
-
-// React-big-calendar -MV:
-import EventCalendar from '../Calendar/CalendarWrapper/EventCalendar/EventCalendar'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
@@ -52,8 +49,6 @@ const AdminAboutUs = () => {
       <AboutUs about={about} setAbout={setAbout} />
       <Instructors instructors={instructors} />
       <OurPhilosophy philosophy={philosophy} setPhilosophy={setPhilosophy} />
-      <h1>Schema-handler</h1>
-      {/* <EventCalendar /> */}
     </>
   )
 }

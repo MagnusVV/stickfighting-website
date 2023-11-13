@@ -24,3 +24,7 @@ const useSupabaseClient = () => {
 }
 
 export default useSupabaseClient
+
+// const cookie = await supabase.auth.getSession()
+// const user = cookie.data.session
+// const userId = user?.user.id as string

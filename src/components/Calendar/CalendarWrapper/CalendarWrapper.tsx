@@ -14,11 +14,7 @@ const CalendarWrapper = () => {
 
   useEffect(() => {
     const fetchEvents = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      const userId = user?.user.id as string
-
-      const { data: events, error } = await supabase
+      const { data: fetchedEvents, error } = await supabase
         .from('events')
         .select(
           `id, cancelled, event_date, event_start_time, event_end_time, instructors (name),locale (name)`,
@@ -29,7 +25,7 @@ const CalendarWrapper = () => {
       }
 
       // Builds array of event objects that R B Calendar can understand -MV
-      const formattedEvents = (events ?? []).map(item => {
+      const formattedEvents = (fetchedEvents ?? []).map(item => {
         return {
           id: item.id,
           start: moment(`${item.event_date}T${item.event_start_time}`).toDate(),
