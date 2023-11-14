@@ -223,7 +223,7 @@ export interface Database {
       }
       news: {
         Row: {
-          body_text: string | null
+          body_text: Json | null
           created_at: string
           id: number
           ingress: string | null
@@ -231,7 +231,7 @@ export interface Database {
           title: string | null
         }
         Insert: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           ingress?: string | null
@@ -239,7 +239,7 @@ export interface Database {
           title?: string | null
         }
         Update: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           ingress?: string | null

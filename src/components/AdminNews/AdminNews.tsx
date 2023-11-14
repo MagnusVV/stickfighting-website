@@ -1,9 +1,12 @@
 'use client'
 import { useState, useEffect, ReactNode, SetStateAction } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Database } from '@/lib/codeBlockSupabase'
 import styles from './AdminNews.module.css'
 import EditNews from './EditNews/EditNews'
+import { MenuBar } from '@/components/Tiptap/Tiptap'
+import { EditorContent, useEditor, Editor } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import { JSONContent } from '@tiptap/react'
+import useSupabaseClient from '@/lib/supabaseClient'
 
 export interface newsFetch {
   id: number
@@ -17,25 +20,13 @@ export type newsParams = newsFetch[]
 
 const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
-  const [newNews, setNewNews] = useState<string>('')
+  const [newNews, setNewNews] = useState<JSONContent | string>()
   const [ingress, setIngress] = useState<string>('')
-  const [sessionId, setSessionId] = useState<string>('')
   const [newsArticles, setNewsArticles] = useState<newsParams>([])
   const [editNews, setEditNews] = useState<boolean>(false)
   const [newsId, setNewsId] = useState<number>(0)
-  const supabase = createClientComponentClient<Database>()
 
-  //fetch the active session
-  useEffect(() => {
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      //set the session as a state
-      setSessionId(user?.user.id as string)
-    }
-
-    fetchUserID()
-  }, [supabase.auth])
+  const { supabase, userId } = useSupabaseClient()
 
   //fetch news
   useEffect(() => {
@@ -61,7 +52,7 @@ const AdminNews = () => {
       title: newsTitle,
       ingress: ingress,
       body_text: newNews,
-      profile_id: sessionId,
+      profile_id: userId,
     })
 
     if (error) {
@@ -75,20 +66,29 @@ const AdminNews = () => {
     setNewNews('')
   }
 
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    onUpdate: ({ editor }) => {
+      const jsonNews = editor.getJSON()
+      setNewNews(jsonNews)
+    },
+  })
+
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
-      {editNews && (
+      {/* {editNews && (
         <EditNews
           newsId={newsId}
           newsArticle={newsArticles}
           setEditNews={setEditNews}
         />
-      )}
+      )} */}
       <div>
         <h3>redigera nyheter</h3>
         <div className={styles.newscarousel}>
-          {newsArticles.map(article => {
+          {/* {newsArticles.map(article => {
             return (
               <div
                 className={styles.article}
@@ -98,7 +98,6 @@ const AdminNews = () => {
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
                 <p>{article.body_text}</p>
-                {/* shorten the date message to only include the readable date info */}
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
                   onClick={() => {
@@ -109,7 +108,7 @@ const AdminNews = () => {
                 </button>
               </div>
             )
-          })}
+          })} */}
         </div>
       </div>
       <div>
@@ -127,14 +126,16 @@ const AdminNews = () => {
             onChange={e => setIngress(e.target.value)}
             value={ingress}
           />
-          <textarea
+          {/* <textarea
             name="about-us-text"
             cols={30}
             rows={10}
             placeholder="en ny spännande nyhet"
             onChange={e => setNewNews(e.target.value)}
             value={newNews}
-          ></textarea>
+          ></textarea> */}
+          <MenuBar editor={editor} />
+          <EditorContent editor={editor} />
           <button type="submit">Lägg till nyhet</button>
         </form>
       </div>
