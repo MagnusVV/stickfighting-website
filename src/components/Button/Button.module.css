@@ -1,0 +1,7 @@
+/* .labelButton is primarily used to let the label hide input fields with default English text -MV */
+.labelButton {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+}
