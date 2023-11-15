@@ -6,7 +6,7 @@
 }
 
 .newscarousel {
-  height: 200px;
+  min-height: 200px;
   width: 100%;
   background-color: cornflowerblue;
   display: flex;
@@ -15,7 +15,7 @@
 
 .article {
   height: auto;
-  width: 300px;
+  min-width: 300px;
   border: 2px solid red;
 }
 

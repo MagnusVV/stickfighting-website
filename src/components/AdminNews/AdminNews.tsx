@@ -1,18 +1,18 @@
 'use client'
-import { useState, useEffect, ReactNode, SetStateAction } from 'react'
+import { useState, useEffect } from 'react'
 import styles from './AdminNews.module.css'
 import EditNews from './EditNews/EditNews'
 import { MenuBar } from '@/components/Tiptap/Tiptap'
-import { EditorContent, useEditor, Editor } from '@tiptap/react'
+import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import { JSONContent } from '@tiptap/react'
 import useSupabaseClient from '@/lib/supabaseClient'
+import { Json } from '@/lib/codeBlockSupabase'
 
 export interface newsFetch {
   id: number
   title: string
   ingress: string
-  body_text: string
+  body_text: Json
   created_at: string
   profile_id: string
 }
@@ -22,9 +22,11 @@ const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
   const [newNews, setNewNews] = useState<JSONContent | string>()
   const [ingress, setIngress] = useState<string>('')
-  const [newsArticles, setNewsArticles] = useState<newsParams>([])
+  //FIXME: Change the any type
+  const [newsArticles, setNewsArticles] = useState<any[]>([])
   const [editNews, setEditNews] = useState<boolean>(false)
   const [newsId, setNewsId] = useState<number>(0)
+  const [jsonText, setJsonText] = useState<any[]>([])
 
   const { supabase, userId } = useSupabaseClient()
 
@@ -35,15 +37,16 @@ const AdminNews = () => {
 
       if (error) {
         console.log(error)
+        return
       }
 
-      if (data) {
-        // console.log(data)
-        setNewsArticles(data as newsParams)
+      if (data && data.length > 0) {
+        console.log('news ', data)
+        setNewsArticles(data)
       }
     }
     fetchNews()
-  }, [supabase])
+  }, [])
 
   //create a new news
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -75,20 +78,30 @@ const AdminNews = () => {
     },
   })
 
+  // Create custom component to be able to update editor and set the content in the map function.
+  //  If I try this in the map function it breaks the rules of hooks.
+  const ArticleEditor = ({ content }: any) => {
+    const editor = useEditor({
+      content: content,
+      extensions: [StarterKit],
+    })
+    return <EditorContent editor={editor} />
+  }
+
   return (
     <div className={styles.wrapper}>
       <h1>Nyheter</h1>
-      {/* {editNews && (
+      {editNews && (
         <EditNews
           newsId={newsId}
           newsArticle={newsArticles}
           setEditNews={setEditNews}
         />
-      )} */}
+      )}
       <div>
         <h3>redigera nyheter</h3>
         <div className={styles.newscarousel}>
-          {/* {newsArticles.map(article => {
+          {newsArticles.map(article => {
             return (
               <div
                 className={styles.article}
@@ -97,7 +110,8 @@ const AdminNews = () => {
               >
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
-                <p>{article.body_text}</p>
+                <ArticleEditor content={article.body_text} />
+                <p>{article.body_text.toString()}</p>
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
                   onClick={() => {
@@ -108,7 +122,7 @@ const AdminNews = () => {
                 </button>
               </div>
             )
-          })} */}
+          })}
         </div>
       </div>
       <div>

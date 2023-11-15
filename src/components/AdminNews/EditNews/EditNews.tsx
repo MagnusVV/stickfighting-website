@@ -4,10 +4,11 @@ import styles from './EditNews.module.css'
 import { newsFetch } from '../AdminNews'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
+import { JSONContent } from '@tiptap/react'
 
 interface newsProps {
   newsId: number
-  newsArticle: newsFetch[]
+  newsArticle: JSONContent[]
   setEditNews: (editNews: boolean) => void
 }
 
