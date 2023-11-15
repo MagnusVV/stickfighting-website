@@ -40,7 +40,6 @@ const AdminNews = () => {
       }
 
       if (data && data.length > 0) {
-        console.log('news ', data)
         setNewsArticles(data)
       }
     }
@@ -110,8 +109,8 @@ const AdminNews = () => {
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
                 {/* return the component to update editor content properly */}
+                {/* TODO: Make them non editable */}
                 <ArticleEditor content={article.body_text} />
-                <p>{article.body_text.toString()}</p>
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
                   onClick={() => {

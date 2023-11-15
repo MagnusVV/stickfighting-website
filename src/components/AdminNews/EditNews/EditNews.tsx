@@ -1,10 +1,11 @@
 'use client'
 import { SetStateAction, useEffect, useState } from 'react'
 import styles from './EditNews.module.css'
-import { newsFetch } from '../AdminNews'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Database } from '@/lib/codeBlockSupabase'
-import { JSONContent } from '@tiptap/react'
+import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import useSupabaseClient from '@/lib/supabaseClient'
+import { MenuBar } from '@/components/Tiptap/Tiptap'
+import StarterKit from '@tiptap/starter-kit'
+import { Json } from '@/lib/codeBlockSupabase'
 
 interface newsProps {
   newsId: number
@@ -19,10 +20,10 @@ const EditNews: React.FC<newsProps> = ({
 }) => {
   const [title, setTitle] = useState<string>('')
   const [ingress, setIngress] = useState<string>('')
-  const [bodyText, setBodyText] = useState<string>('')
-  const [sessionId, setSessionId] = useState<string>('')
+  const [bodyText, setBodyText] = useState<Json>()
+  const [ready, setReady] = useState<boolean>(false)
 
-  const supabase = createClientComponentClient<Database>()
+  const { supabase, userId } = useSupabaseClient()
   //Find the newsArticle with the id that matches the state I receive from the parent
   const importedNews = newsArticle.find(article => article.id === newsId)
 
@@ -30,20 +31,32 @@ const EditNews: React.FC<newsProps> = ({
     //set the states
     setTitle(importedNews?.title as string)
     setIngress(importedNews?.ingress as string)
-    setBodyText(importedNews?.body_text as string)
+    // setBodyText(importedNews?.body_text as string)
   }, [importedNews])
 
-  //fetch the active session
+  //TODO: Sometimes it takes a second for the content to load from supabase.
+  //SOLUION: add loading state to indicate for user something is happening...
   useEffect(() => {
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      //set the session as a state
-      setSessionId(user?.user.id as string)
-    }
+    if (ready === true) {
+      const fetchSingleNews = async () => {
+        const { data, error } = await supabase.from('news').select('*')
 
-    fetchUserID()
-  }, [supabase.auth])
+        if (error) {
+          console.log(error)
+          return
+        }
+
+        if (data && data.length > 0) {
+          // console.log('news ', data)
+          const singleNews = data.find(news => news.id === newsId)
+          console.log('singleNews ', singleNews?.body_text)
+          editor?.commands.setContent(singleNews?.body_text)
+        }
+        console.log(ready)
+      }
+      fetchSingleNews()
+    }
+  }, [ready])
 
   //add the update to supabase
   const submitNews = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -55,7 +68,7 @@ const EditNews: React.FC<newsProps> = ({
         ingress: ingress,
         body_text: bodyText,
       })
-      .match({ id: newsId, profile_id: sessionId })
+      .match({ id: newsId, profile_id: userId })
 
     if (error) {
       return console.log(error)
@@ -64,6 +77,17 @@ const EditNews: React.FC<newsProps> = ({
     alert('Nyhet uppdaterad')
     setEditNews(false)
   }
+
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    // onUpdate: ({ editor }) => {
+    //   setReady(true)
+    // },
+    onCreate: () => {
+      setReady(true)
+    },
+  })
 
   //TODO: fix warning message about uncontrollable input
   return (
@@ -95,7 +119,8 @@ const EditNews: React.FC<newsProps> = ({
           placeholder={ingress}
         />
         <label htmlFor="body_text">Text</label>
-        <textarea
+        <MenuBar editor={editor} />
+        {/* <textarea
           id="body_text"
           name="body_text"
           cols={30}
@@ -103,7 +128,8 @@ const EditNews: React.FC<newsProps> = ({
           onChange={e => setBodyText(e.target.value)}
           value={bodyText}
           placeholder={bodyText}
-        ></textarea>
+        ></textarea> */}
+        <EditorContent editor={editor} />
         <button type="submit">Updatera</button>
       </form>
     </div>
