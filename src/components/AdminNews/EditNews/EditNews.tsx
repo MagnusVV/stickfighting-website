@@ -31,7 +31,6 @@ const EditNews: React.FC<newsProps> = ({
     //set the states
     setTitle(importedNews?.title as string)
     setIngress(importedNews?.ingress as string)
-    // setBodyText(importedNews?.body_text as string)
   }, [importedNews])
 
   //TODO: Sometimes it takes a second for the content to load from supabase.
@@ -89,7 +88,6 @@ const EditNews: React.FC<newsProps> = ({
     },
   })
 
-  //TODO: fix warning message about uncontrollable input
   return (
     <div className={styles.wrapper}>
       <button onClick={() => setEditNews(false)}>CLOSE</button>
@@ -120,15 +118,6 @@ const EditNews: React.FC<newsProps> = ({
         />
         <label htmlFor="body_text">Text</label>
         <MenuBar editor={editor} />
-        {/* <textarea
-          id="body_text"
-          name="body_text"
-          cols={30}
-          rows={10}
-          onChange={e => setBodyText(e.target.value)}
-          value={bodyText}
-          placeholder={bodyText}
-        ></textarea> */}
         <EditorContent editor={editor} />
         <button type="submit">Updatera</button>
       </form>
