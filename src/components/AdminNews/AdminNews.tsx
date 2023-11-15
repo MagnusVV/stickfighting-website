@@ -26,7 +26,6 @@ const AdminNews = () => {
   const [newsArticles, setNewsArticles] = useState<any[]>([])
   const [editNews, setEditNews] = useState<boolean>(false)
   const [newsId, setNewsId] = useState<number>(0)
-  const [jsonText, setJsonText] = useState<any[]>([])
 
   const { supabase, userId } = useSupabaseClient()
 
@@ -110,6 +109,7 @@ const AdminNews = () => {
               >
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
+                {/* return the component to update editor content properly */}
                 <ArticleEditor content={article.body_text} />
                 <p>{article.body_text.toString()}</p>
                 <p>{article.created_at.slice(0, 10)}</p>
@@ -140,14 +140,6 @@ const AdminNews = () => {
             onChange={e => setIngress(e.target.value)}
             value={ingress}
           />
-          {/* <textarea
-            name="about-us-text"
-            cols={30}
-            rows={10}
-            placeholder="en ny spännande nyhet"
-            onChange={e => setNewNews(e.target.value)}
-            value={newNews}
-          ></textarea> */}
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
           <button type="submit">Lägg till nyhet</button>
