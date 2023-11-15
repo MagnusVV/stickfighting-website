@@ -20,7 +20,7 @@ const EditNews: React.FC<newsProps> = ({
 }) => {
   const [title, setTitle] = useState<string>('')
   const [ingress, setIngress] = useState<string>('')
-  const [bodyText, setBodyText] = useState<Json>()
+  const [bodyText, setBodyText] = useState<JSONContent>()
   const [ready, setReady] = useState<boolean>(false)
 
   const { supabase, userId } = useSupabaseClient()
@@ -52,7 +52,6 @@ const EditNews: React.FC<newsProps> = ({
           console.log('singleNews ', singleNews?.body_text)
           editor?.commands.setContent(singleNews?.body_text)
         }
-        console.log(ready)
       }
       fetchSingleNews()
     }
@@ -81,11 +80,12 @@ const EditNews: React.FC<newsProps> = ({
   const editor = useEditor({
     content: '',
     extensions: [StarterKit],
-    // onUpdate: ({ editor }) => {
-    //   setReady(true)
-    // },
     onCreate: () => {
       setReady(true)
+    },
+    onUpdate: ({ editor }) => {
+      const updateJson = editor.getJSON()
+      setBodyText(updateJson)
     },
   })
 
