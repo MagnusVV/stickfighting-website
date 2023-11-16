@@ -39,6 +39,7 @@ const Gallery = () => {
           <Image
             key={index}
             src={url}
+            quality={75}
             alt="Träningsträff"
             width={500}
             height={300}
