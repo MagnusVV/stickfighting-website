@@ -173,21 +173,21 @@ export interface Database {
       }
       instructors: {
         Row: {
-          body_text: string | null
+          body_text: Json | null
           created_at: string
           id: number
           name: string | null
           profile_id: string | null
         }
         Insert: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           name?: string | null
           profile_id?: string | null
         }
         Update: {
-          body_text?: string | null
+          body_text?: Json | null
           created_at?: string
           id?: number
           name?: string | null
