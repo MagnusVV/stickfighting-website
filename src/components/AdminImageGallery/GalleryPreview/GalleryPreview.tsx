@@ -5,6 +5,7 @@ import useSupabaseClient from '@/lib/supabaseClient'
 import { useEffect, useState, useMemo } from 'react'
 
 const GalleryPreview = () => {
+  // Controls maximum number of images in the gallery -MV
   const maxImages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
   const { supabase } = useSupabaseClient()
   const [images, setImages] = useState<{ [key: number]: string | null }>({})
@@ -26,7 +27,7 @@ const GalleryPreview = () => {
             file => file.name === `image_${imageSuffix.toString()}`,
           )
           if (imageFile) {
-            const imageUrl = `${process.env.NEXT_PUBLIC_SUPABASE_URL}/storage/v1/object/public/gallery/galleryimages/${imageFile.name}`
+            const imageUrl = `${supabaseUrl}/storage/v1/object/public/gallery/galleryimages/${imageFile.name}`
             fetchedImages[imageSuffix] = imageUrl
           }
         }

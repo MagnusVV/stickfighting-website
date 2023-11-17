@@ -48,7 +48,7 @@ const SingleImageHandler = ({
       return
     }
 
-    checkImageExists(`image_${suffix.toString()}`)
+    await checkImageExists(`image_${suffix.toString()}`)
 
     const { data, error } = await supabase.storage
       .from('gallery')
