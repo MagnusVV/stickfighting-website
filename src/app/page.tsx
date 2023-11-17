@@ -19,9 +19,9 @@ export default async function Home() {
       <h1>HOME</h1>
       {news?.map(singleNews => (
         <div key={singleNews.id}>
-          <h2>{singleNews.title}</h2>
+          {/* <h2>{singleNews.title}</h2>
           <h3>{singleNews.ingress}</h3>
-          <p>{singleNews.body_text}</p>
+          <p>{singleNews.body_text}</p> */}
         </div>
       ))}
     </main>
