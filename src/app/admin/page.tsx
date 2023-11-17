@@ -14,9 +14,9 @@ const AdminPage = () => {
     <main className={`${styles.main} ${adminStyles.wrapper}`}>
       <NavBar />
       <h1>Welcome Admin</h1>
-      {/* <AdminHome /> */}
+      <AdminHome />
       <AdminCalendar />
-      {/* <AdminAboutUs /> */}
+      <AdminAboutUs />
       <AdminImageGallery />
       <LogoutBtn />
       {/* <Tiptap /> */}
