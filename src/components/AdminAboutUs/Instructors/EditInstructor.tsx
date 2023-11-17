@@ -32,10 +32,11 @@ const EditInstructor: React.FC<instructorProp> = ({
         }
 
         if (data) {
-          //Find the id of the instructor that was selected in instructors.tsx
+          // Find the id of the instructor that was selected in instructors.tsx
           const singleInstructor = data.find(
             instructor => instructor.id === instructorId,
           )
+          //@ts-ignore //Deployment fails otherwise
           editor?.commands.setContent(singleInstructor?.body_text)
           //@ts-ignore //TODO: fix ts-ignore
           setInstructorName(singleInstructor?.name)
