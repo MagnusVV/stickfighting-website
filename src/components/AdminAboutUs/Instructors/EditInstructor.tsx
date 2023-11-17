@@ -17,6 +17,7 @@ const EditInstructor: React.FC<instructorProp> = ({
 }) => {
   const [instructorReady, setInstructorReady] = useState<boolean>(false)
   const [instructorInfo, setInstructorInfo] = useState<JSONContent | Json>()
+  const [instructorName, setInstructorName] = useState<string>()
   const { supabase, userId } = useSupabaseClient()
 
   // fetch data
@@ -32,11 +33,14 @@ const EditInstructor: React.FC<instructorProp> = ({
 
         if (data) {
           console.log(data)
+          //Find the id of the instructor that was selected in instructors.tsx
           const singleInstructor = data.find(
             instructor => instructor.id === instructorId,
           )
           console.log('singleInstructor ', singleInstructor)
           editor?.commands.setContent(singleInstructor?.body_text)
+          //@ts-ignore //TODO: fix ts-ignore
+          setInstructorName(singleInstructor?.name)
         }
       }
       fetchSingleInstructor()
@@ -90,6 +94,13 @@ const EditInstructor: React.FC<instructorProp> = ({
       </button>
       <h1>EditInstructor</h1>
       <form className={Styles.form} onSubmit={submitInstructor}>
+        <input
+          id="title"
+          name="title"
+          type="text"
+          onChange={e => setInstructorName(e.target.value)}
+          value={instructorName}
+        />
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
         <button type="submit">Updatera Instruktör</button>
