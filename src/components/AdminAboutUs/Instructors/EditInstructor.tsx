@@ -32,12 +32,10 @@ const EditInstructor: React.FC<instructorProp> = ({
         }
 
         if (data) {
-          console.log(data)
           //Find the id of the instructor that was selected in instructors.tsx
           const singleInstructor = data.find(
             instructor => instructor.id === instructorId,
           )
-          console.log('singleInstructor ', singleInstructor)
           editor?.commands.setContent(singleInstructor?.body_text)
           //@ts-ignore //TODO: fix ts-ignore
           setInstructorName(singleInstructor?.name)
@@ -80,8 +78,6 @@ const EditInstructor: React.FC<instructorProp> = ({
       setInstructorInfo(updateInstructorJson)
     },
   })
-
-  console.log('updateInstructorInfo', instructorInfo)
 
   return (
     <div className={Styles.wrapper}>
