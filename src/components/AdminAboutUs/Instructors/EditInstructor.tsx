@@ -15,8 +15,9 @@ const EditInstructor: React.FC<instructorProp> = ({
   instructorId,
   setEditInstructor,
 }) => {
-  const { supabase, userId } = useSupabaseClient()
   const [instructorReady, setInstructorReady] = useState<boolean>(false)
+  const [instructorInfo, setInstructorInfo] = useState<JSONContent | Json>()
+  const { supabase, userId } = useSupabaseClient()
 
   // fetch data
   useEffect(() => {
@@ -40,9 +41,29 @@ const EditInstructor: React.FC<instructorProp> = ({
       }
       fetchSingleInstructor()
     } else {
-      console.log('editor aint ready fam')
+      console.log('editor has not mounted properly yet')
     }
   }, [instructorReady])
+
+  //Update instructor
+  const submitInstructor = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const { error } = await supabase
+      .from('instructors')
+      .update({
+        // title: title,
+        // ingress: ingress,
+        body_text: instructorInfo,
+      })
+      .match({ id: instructorId, profile_id: userId })
+
+    if (error) {
+      return console.log(error)
+    }
+
+    alert('Nyhet uppdaterad')
+    setEditInstructor(false)
+  }
 
   const editor = useEditor({
     content: '',
@@ -50,11 +71,14 @@ const EditInstructor: React.FC<instructorProp> = ({
     onCreate: () => {
       setInstructorReady(true)
     },
-    // onUpdate: ({ editor }) => {
-    //   const updateJson = editor.getJSON()
-    //   setBodyText(updateJson)
-    // },
+    onUpdate: ({ editor }) => {
+      const updateInstructorJson = editor.getJSON()
+      setInstructorInfo(updateInstructorJson)
+    },
   })
+
+  console.log('updateInstructorInfo', instructorInfo)
+
   return (
     <div className={Styles.wrapper}>
       <button
@@ -64,11 +88,12 @@ const EditInstructor: React.FC<instructorProp> = ({
       >
         Close
       </button>
-      <form className={Styles.form}>
+      <h1>EditInstructor</h1>
+      <form className={Styles.form} onSubmit={submitInstructor}>
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
+        <button type="submit">Updatera Instruktör</button>
       </form>
-      <h1>EditInstructor</h1>
     </div>
   )
 }
