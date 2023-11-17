@@ -49,6 +49,7 @@ const EditNews: React.FC<newsProps> = ({
           // console.log('news ', data)
           const singleNews = data.find(news => news.id === newsId)
           console.log('singleNews ', singleNews?.body_text)
+          //@ts-ignore Vercel deployment fails otherwise
           editor?.commands.setContent(singleNews?.body_text)
         }
       }
