@@ -30,7 +30,6 @@ const NavBar: React.FC = () => {
     <nav className={styles.nav}>
       <Link href="/">Start</Link>
       <Link href="/schema">Schema</Link>
-      <Link href="/nyhet">Nyhet</Link>
       <Link href="/om_oss">Om oss</Link>
       <Link href="/galleri">Bildgalleri</Link>
       {/* Conditional rendering of admin-link */}

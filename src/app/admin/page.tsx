@@ -7,15 +7,17 @@ import AdminHome from '@/components/AdminHome/AdminHome'
 import adminStyles from './admin.module.css'
 import AdminCalendar from '@/components/AdminCalendar/AdminCalendar'
 import Tiptap from '@/components/Tiptap/Tiptap'
+import AdminImageGallery from '@/components/AdminImageGallery/AdminImageGallery'
 
 const AdminPage = () => {
   return (
     <main className={`${styles.main} ${adminStyles.wrapper}`}>
       <NavBar />
       <h1>Welcome Admin</h1>
-      <AdminAboutUs />
-      <AdminHome />
+      {/* <AdminHome /> */}
       <AdminCalendar />
+      {/* <AdminAboutUs /> */}
+      <AdminImageGallery />
       <LogoutBtn />
       {/* <Tiptap /> */}
     </main>

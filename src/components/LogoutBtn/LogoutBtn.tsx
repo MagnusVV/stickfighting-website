@@ -1,5 +1,4 @@
 'use client'
-import React from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
 
@@ -18,7 +17,7 @@ const LogoutBtn = () => {
   }
   return (
     <>
-      <button onClick={handleClick}>Logout</button>
+      <button onClick={handleClick}>Logga ut</button>
     </>
   )
 }
