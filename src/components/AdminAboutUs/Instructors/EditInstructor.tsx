@@ -55,7 +55,7 @@ const EditInstructor: React.FC<instructorProp> = ({
     const { error } = await supabase
       .from('instructors')
       .update({
-        // title: title,
+        name: instructorName,
         // ingress: ingress,
         body_text: instructorInfo,
       })
@@ -93,13 +93,18 @@ const EditInstructor: React.FC<instructorProp> = ({
         Close
       </button>
       <h1>EditInstructor</h1>
-      <form className={Styles.form} onSubmit={submitInstructor}>
+      <form
+        className={Styles.form}
+        onSubmit={submitInstructor}
+        id="editInstructor"
+        name="editInstructor"
+      >
         <input
-          id="title"
-          name="title"
+          id="name"
+          name="name"
           type="text"
           onChange={e => setInstructorName(e.target.value)}
-          value={instructorName}
+          defaultValue={instructorName}
         />
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
