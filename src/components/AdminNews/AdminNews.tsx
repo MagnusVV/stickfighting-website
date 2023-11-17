@@ -1,15 +1,18 @@
 'use client'
-import { useState, useEffect, ReactNode, SetStateAction } from 'react'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Database } from '@/lib/codeBlockSupabase'
+import { useState, useEffect } from 'react'
 import styles from './AdminNews.module.css'
 import EditNews from './EditNews/EditNews'
+import { MenuBar } from '@/components/Tiptap/Tiptap'
+import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import useSupabaseClient from '@/lib/supabaseClient'
+import { Json } from '@/lib/codeBlockSupabase'
 
 export interface newsFetch {
   id: number
   title: string
   ingress: string
-  body_text: string
+  body_text: Json
   created_at: string
   profile_id: string
 }
@@ -17,25 +20,14 @@ export type newsParams = newsFetch[]
 
 const AdminNews = () => {
   const [newsTitle, setNewsTitle] = useState<string>('')
-  const [newNews, setNewNews] = useState<string>('')
+  const [newNews, setNewNews] = useState<JSONContent | string>()
   const [ingress, setIngress] = useState<string>('')
-  const [sessionId, setSessionId] = useState<string>('')
-  const [newsArticles, setNewsArticles] = useState<newsParams>([])
+  //FIXME: Change the any type
+  const [newsArticles, setNewsArticles] = useState<any[]>([])
   const [editNews, setEditNews] = useState<boolean>(false)
   const [newsId, setNewsId] = useState<number>(0)
-  const supabase = createClientComponentClient<Database>()
 
-  //fetch the active session
-  useEffect(() => {
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      //set the session as a state
-      setSessionId(user?.user.id as string)
-    }
-
-    fetchUserID()
-  }, [supabase.auth])
+  const { supabase, userId } = useSupabaseClient()
 
   //fetch news
   useEffect(() => {
@@ -44,15 +36,15 @@ const AdminNews = () => {
 
       if (error) {
         console.log(error)
+        return
       }
 
-      if (data) {
-        // console.log(data)
-        setNewsArticles(data as newsParams)
+      if (data && data.length > 0) {
+        setNewsArticles(data)
       }
     }
     fetchNews()
-  }, [supabase])
+  }, [])
 
   //create a new news
   const handleInsert = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -61,7 +53,7 @@ const AdminNews = () => {
       title: newsTitle,
       ingress: ingress,
       body_text: newNews,
-      profile_id: sessionId,
+      profile_id: userId,
     })
 
     if (error) {
@@ -73,6 +65,25 @@ const AdminNews = () => {
     setNewsTitle('')
     setIngress('')
     setNewNews('')
+  }
+
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    onUpdate: ({ editor }) => {
+      const jsonNews = editor.getJSON()
+      setNewNews(jsonNews)
+    },
+  })
+
+  // Create custom component to be able to update editor and set the content in the map function.
+  //  If I try this in the map function it breaks the rules of hooks.
+  const ArticleEditor = ({ content }: any) => {
+    const editor = useEditor({
+      content: content,
+      extensions: [StarterKit],
+    })
+    return <EditorContent editor={editor} />
   }
 
   return (
@@ -97,8 +108,9 @@ const AdminNews = () => {
               >
                 <h3>{article.title}</h3>
                 <h4>{article.ingress}</h4>
-                <p>{article.body_text}</p>
-                {/* shorten the date message to only include the readable date info */}
+                {/* return the component to update editor content properly */}
+                {/* TODO: Make them non editable */}
+                <ArticleEditor content={article.body_text} />
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
                   onClick={() => {
@@ -127,14 +139,8 @@ const AdminNews = () => {
             onChange={e => setIngress(e.target.value)}
             value={ingress}
           />
-          <textarea
-            name="about-us-text"
-            cols={30}
-            rows={10}
-            placeholder="en ny spännande nyhet"
-            onChange={e => setNewNews(e.target.value)}
-            value={newNews}
-          ></textarea>
+          <MenuBar editor={editor} />
+          <EditorContent editor={editor} />
           <button type="submit">Lägg till nyhet</button>
         </form>
       </div>

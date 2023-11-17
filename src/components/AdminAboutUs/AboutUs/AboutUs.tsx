@@ -4,6 +4,10 @@ import styles from './AboutUs.module.css'
 import { fetchObj } from '@/lib/types'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
+import TipTap, { MenuBar } from '@/components/Tiptap/Tiptap'
+import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import StarterKit from '@tiptap/starter-kit'
+import useSupabaseClient from '@/lib/supabaseClient'
 
 interface AboutUsProps {
   about: fetchObj
@@ -11,31 +15,36 @@ interface AboutUsProps {
 }
 
 const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
-  const [adminId, setAdminId] = useState<string>('')
+  const [aboutjson, setAboutJson] = useState<JSONContent>()
   //connect to supabase
-  const supabase = createClientComponentClient<Database>()
+  // const supabase = createClientComponentClient<Database>()
+  const { supabase, userId } = useSupabaseClient()
 
-  //fetch the auth session from supabase
-  useEffect(() => {
-    //fetch the active session
-    const fetchUserID = async () => {
-      const cookie = await supabase.auth.getSession()
-      const user = cookie.data.session
-      //set the session as a state
-      setAdminId(user?.user.id as string)
+  const fetchAbout = async () => {
+    const { data, error } = await supabase
+      .from('about_association')
+      .select('body_text')
+      .eq('id', 1)
+
+    if (error) {
+      console.log(error)
+      return
     }
 
-    fetchUserID()
-  }, [supabase.auth])
+    if (data && data.length > 0) {
+      console.log('about ' + data[0]?.body_text)
 
-  const updateAbout = async (e: React.FormEvent<HTMLFormElement>) => {
-    //prevent the form from reloading when you update
-    e.preventDefault()
+      //@ts-ignore //FIXME: throwing an error when building
+      editor?.commands.setContent(data[0].body_text)
+    }
+  }
+
+  const updateAbout = async () => {
     const { error } = await supabase
       .from('about_association')
-      .update({ body_text: about.body_text })
+      .update({ body_text: aboutjson })
       //select the id from the table and the profile id
-      .match({ id: 1, profile_id: adminId })
+      .match({ id: 1, profile_id: userId })
 
     if (error) {
       console.log(error)
@@ -44,10 +53,19 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
     alert('om oss uppdaterad')
   }
 
+  const editor = useEditor({
+    content: '',
+    extensions: [StarterKit],
+    onUpdate: ({ editor }) => {
+      const json = editor.getJSON()
+      setAboutJson(json)
+    },
+  })
+
   return (
     <div className={styles.wrapper}>
       <h2>Om oss</h2>
-      <form className={styles.form} onSubmit={updateAbout}>
+      {/* <form className={styles.form} onSubmit={updateAbout}>
         <textarea
           className="about-update-form"
           name="about-us-text"
@@ -58,7 +76,12 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
           value={about.body_text}
         ></textarea>
         <button type="submit">updatera om oss text</button>
-      </form>
+      </form> */}
+      {/* <TipTap /> */}
+      <MenuBar editor={editor} />
+      <EditorContent editor={editor} />
+      <button onClick={fetchAbout}>fetch data</button>
+      <button onClick={updateAbout}>Updatera</button>
     </div>
   )
 }

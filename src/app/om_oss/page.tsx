@@ -21,8 +21,8 @@ const Page = async () => {
       <div>
         {aboutPage && (
           <>
-            <h2>{aboutPage[0].about_association?.title}</h2>
-            <p>{aboutPage[0].about_association?.body_text}</p>
+            {/* <h2>{aboutPage[0].about_association?.title}</h2>
+            <p>{aboutPage[0].about_association?.body_text}</p> */}
           </>
         )}
       </div>
@@ -33,7 +33,7 @@ const Page = async () => {
           {aboutPage?.map(instructor => (
             <div key={instructor.instructors?.id}>
               <h3>{instructor.instructors?.name}</h3>
-              <p>{instructor.instructors?.body_text}</p>
+              {/* <p>{instructor.instructors?.body_text}</p> */}
             </div>
           ))}
         </div>
@@ -42,8 +42,8 @@ const Page = async () => {
       <div>
         {aboutPage && (
           <>
-            <h2>{aboutPage[0].our_philosophy?.title}</h2>
-            <p>{aboutPage[0].our_philosophy?.body_text}</p>
+            {/* <h2>{aboutPage[0].our_philosophy?.title}</h2>
+            <p>{aboutPage[0].our_philosophy?.body_text}</p> */}
           </>
         )}
       </div>

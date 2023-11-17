@@ -1,3 +1,6 @@
+import { JSONContent } from '@tiptap/react'
+import { Json } from './codeBlockSupabase'
+
 export interface fetchObj {
   title?: string
   body_text: string
@@ -6,7 +9,7 @@ export interface fetchObj {
 export interface InstructorParams {
   id: number
   name: string
-  body_text: string
+  body_text: JSONContent | Json
 }
 
 // Unnecessary array type, but was good for trying out Typescript -MV
