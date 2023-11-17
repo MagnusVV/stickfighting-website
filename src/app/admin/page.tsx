@@ -16,7 +16,7 @@ const AdminPage = () => {
       <h1>Welcome Admin</h1>
       <AdminHome />
       <AdminCalendar />
-      {/* <AdminAboutUs /> */}
+      <AdminAboutUs />
       <AdminImageGallery />
       <LogoutBtn />
       {/* <Tiptap /> */}
