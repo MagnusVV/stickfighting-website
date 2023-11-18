@@ -6,7 +6,6 @@ import { useState } from 'react'
 const VideoHandler: React.FC = () => {
   const { supabase } = useSupabaseClient()
   const [video, setVideo] = useState<File | null>(null)
-  const [waitingForUpload, setWaitingForUpload] = useState<boolean>(false)
 
   const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL
 
@@ -18,7 +17,7 @@ const VideoHandler: React.FC = () => {
     e.preventDefault()
 
     if (!video) {
-      alert('Ingen bild vald!')
+      alert('Ingen fil vald!')
       return
     }
 
@@ -26,13 +25,14 @@ const VideoHandler: React.FC = () => {
 
     const { data, error } = await supabase.storage
       .from('video')
-      .upload(`welcome/welcome_video`, video, {
+      .upload('welcome/welcome_video', video, {
         upsert: false,
       })
     if (error) {
       console.log(error)
     } else {
       alert('Video uppladdad!')
+      setVideo(null)
     }
   }
   // <--- --- --- --- --- --- --- --- --- ---|
@@ -64,33 +64,33 @@ const VideoHandler: React.FC = () => {
     }
   }
 
+  // <--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---|
+
   return (
     <>
       <div>
         <form
           //   className={styles.changeImageForm}
-          id={`video_upload`}
+          id="video_upload"
           onSubmit={e => {
             uploadVideo(e, video)
           }}
         >
-          <label className={labelButton} htmlFor={`video_upload_picker`}>
-            Byt Video?{' '}
+          <label className={labelButton} htmlFor="video_upload_picker">
+            Byt välkomstvideo{' '}
             <input
               type="file"
-              name="VideoImage"
-              id={`video_upload_picker`}
-              accept="image/png, image/jpeg"
+              name="Video"
+              id="video_upload_picker"
+              accept="video/*"
               // Hides it to conceal English text -MV
               style={{ display: 'none' }}
-              onChange={() => {
-                waitingForUpload
-                  ? setWaitingForUpload(true)
-                  : setWaitingForUpload(false)
+              onChange={e => {
+                setVideo(e.target.files ? e.target.files[0] : null)
               }}
             />
           </label>
-          <Button text="Byt välkomstvideo" type="submit" />
+          {video !== null && <Button text="Ladda upp" type="submit" />}
         </form>
       </div>
     </>
