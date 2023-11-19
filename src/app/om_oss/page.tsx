@@ -6,6 +6,7 @@ import { generateHTML } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import parser from 'html-react-parser'
 import AboutUsSection from '@/components/aboutUsSection/AboutusSection'
+import OurPhilosophy from '@/components/OurPhilosophy/OurPhilosophy'
 
 const Page = async () => {
   const { supabase } = useSupabaseServer()
@@ -44,7 +45,9 @@ const Page = async () => {
         </div>
       </div>
       {/* "Vår filosofi" section */}
-      <section></section>
+      <section className={styles.philosophySection}>
+        <OurPhilosophy />
+      </section>
       <div></div>
     </main>
   )

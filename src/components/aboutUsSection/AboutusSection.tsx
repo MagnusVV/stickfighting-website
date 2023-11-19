@@ -26,23 +26,18 @@ const AboutUsSection = () => {
       }
 
       if (about) {
-        // console.log('about ', about)
         setAboutObj(about)
 
         //set the data
         const json = about.find(obj => obj.body_text)
-        // console.log('json ', json?.body_text)
 
         setAboutJson(json?.body_text)
-        // console.log('aboutJson ', aboutJson)
 
         setIsReady(true)
       }
     }
     fetchAbout()
   }, [])
-
-  console.log('aboutJson ', aboutJson)
 
   useEffect(() => {
     if (aboutJson !== undefined) {
