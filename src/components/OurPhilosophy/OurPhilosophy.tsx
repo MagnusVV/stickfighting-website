@@ -28,7 +28,6 @@ const OurPhilosophy = () => {
       if (philosophy) {
         // console.log(philosophy)
         setPhilosophy(philosophy)
-        console.log('philosophy ', philosophy)
 
         //set the body text
         const jsonInfo = philosophy.find(obj => obj.body_text)

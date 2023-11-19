@@ -7,6 +7,7 @@ import StarterKit from '@tiptap/starter-kit'
 import parser from 'html-react-parser'
 import AboutUsSection from '@/components/aboutUsSection/AboutusSection'
 import OurPhilosophy from '@/components/OurPhilosophy/OurPhilosophy'
+import InstructorSection from '@/components/InstructorSection/InstructorSection'
 
 const Page = async () => {
   const { supabase } = useSupabaseServer()
@@ -29,23 +30,16 @@ const Page = async () => {
       <NavBar />
       <h1>OM OSS</h1>
       {/* "Om föreningen" section */}
-      <section className={styles.aboutSection}>
+      <section className={styles.section}>
         <AboutUsSection />
       </section>
       {/* "Våra instruktörer" section */}
-      <div>
+      <section className={styles.section}>
         <h2>Våra instruktörer</h2>
-        <div>
-          {aboutPage?.map(instructor => (
-            <div key={instructor.instructors?.id}>
-              <h3>{instructor.instructors?.name}</h3>
-              {/* <p>{instructor.instructors?.body_text}</p> */}
-            </div>
-          ))}
-        </div>
-      </div>
+        <InstructorSection />
+      </section>
       {/* "Vår filosofi" section */}
-      <section className={styles.philosophySection}>
+      <section className={styles.section}>
         <OurPhilosophy />
       </section>
       <div></div>

@@ -7,17 +7,8 @@
   align-items: center;
 }
 
-.aboutSection {
-  width: 100%;
-  min-height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  background-color: black;
-}
-
-.philosophySection {
+.section {
+  border-top: 2px solid hotpink;
   width: 100%;
   min-height: 500px;
   display: flex;
