@@ -16,7 +16,7 @@ const AdminHome = () => {
       <AdminHomeVideo />
       <AdminNews />
       {/* <ReadOnlyTipTap />
-      <TipTap />  */}
+      <TipTap /> */}
     </div>
   )
 }

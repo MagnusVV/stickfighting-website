@@ -24,16 +24,15 @@ export default async function Home() {
   }
 
   return (
-    <main className={styles.main}>
-      <NavBar />
+    <>
       <WelcomeVideo />
-      <h1>HOME</h1>
-      <section className={styles.newsSection}>
-        <h2>Nyheter</h2>
-        <div>
+      <main className={styles.main}>
+        <NavBar />
+        <section className={styles.newsSection}>
+          <h1>Nyheter</h1>
           <HomeNews />
-        </div>
-      </section>
-    </main>
+        </section>
+      </main>
+    </>
   )
 }
