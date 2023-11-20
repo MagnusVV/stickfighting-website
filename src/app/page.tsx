@@ -29,10 +29,8 @@ export default async function Home() {
       <main className={styles.main}>
         <NavBar />
         <section className={styles.newsSection}>
-          <h2>Nyheter</h2>
-          <div>
-            <HomeNews />
-          </div>
+          <h1>Nyheter</h1>
+          <HomeNews />
         </section>
       </main>
     </>
