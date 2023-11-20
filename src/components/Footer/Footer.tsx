@@ -20,14 +20,13 @@ const Footer = () => {
         </a>
       </div>
 
-      <div className={styles.logoContainer}>
+      <div className={`${styles.logoContainer} ${styles.rotateImage}`}>
         <Image
           src="/biting-rattan-logo.png"
           alt="biting rattan logo"
           // width="0"
           // height="0"
           // sizes="100vw"
-          // style={{ width: '100%', height: 'auto' }}
           fill
         />
       </div>
