@@ -6,8 +6,9 @@
 
 .newsWrapper {
   display: flex;
+  align-items: center;
   gap: 10px;
-  height: 100%;
+  height: 32vh;
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
@@ -38,7 +39,7 @@
 .individualNews:hover {
   cursor: pointer;
   filter: drop-shadow(0 0 1rem #6c0e11);
-  transform: scale(1.1);
+  transform: scale(1.05);
   overflow: visible;
 }
 
