@@ -7,6 +7,17 @@
   min-height: 100vh;
 }
 
+/* The welcome video:  */
+.videoContainer {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.videoContainer > video {
+  width: 100%;
+}
+
 /* News Section --------------------------------------> */
 
 .newsSection {

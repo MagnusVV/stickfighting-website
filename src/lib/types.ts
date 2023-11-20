@@ -1,5 +1,6 @@
 import { JSONContent } from '@tiptap/react'
 import { Json } from './codeBlockSupabase'
+import { CSSProperties } from 'react'
 
 export interface fetchObj {
   title?: string
@@ -34,6 +35,8 @@ export interface FormattedEvent {
   end: Date
   title: string
   cancelled: boolean | null
+  locale?: { name: string }
+  instructors?: { name: string }
 }
 // <--- --- --- --- --- --- --- --- --- ---|
 
@@ -69,4 +72,5 @@ export interface EditedEvent extends Omit<FetchedEvent, 'cancelled'> {}
 export interface NewEvent extends Omit<FetchedEvent, 'id'> {
   profile_id: string
 }
+
 // <--- --- --- --- --- --- --- --- --- ---|

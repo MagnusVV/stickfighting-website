@@ -1,0 +1,61 @@
+/* Specific styling for React big calendar */
+
+.rbc-toolbar {
+  background-color: #6c0e11 !important;
+}
+
+.rbc-btn-group > button {
+  color: white !important;
+  &.rbc-active {
+    color: #1d1d1d !important;
+  }
+}
+
+.rbc-btn-group > button:hover {
+  color: #1d1d1d !important;
+}
+
+.rbc-day-bg {
+  background-color: #1d1d1d;
+  &.rbc-off-range-bg {
+    background-color: #162025;
+  }
+  &.rbc-today {
+    background-color: #6c0e11;
+  }
+}
+
+.rbc-event-content {
+  white-space: unset !important;
+  font-weight: 300;
+}
+
+/* Media query breakpoints:
+@media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
+@media only screen and (min-width: 360px) {
+  .rbc-event-content {
+    font-size: xx-small;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .rbc-event-content {
+    font-size: x-small;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .rbc-event-content {
+    font-size: small;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .rbc-event-content {
+    font-size: medium;
+  }
+}
