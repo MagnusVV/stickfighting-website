@@ -31,6 +31,30 @@
 }
 
 /* News Section -------------------------------------->  */
+
+/* About_US ------------------------------------------> */
+
+.wrapper {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.section {
+  border-top: 2px solid hotpink;
+  width: 100%;
+  min-height: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* About_US ------------------------------------------> */
 .description {
   display: inherit;
   justify-content: inherit;

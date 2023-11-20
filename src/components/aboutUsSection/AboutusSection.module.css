@@ -4,11 +4,8 @@
   gap: 20px;
 }
 
-.instructorsContainer {
+.content {
   display: flex;
   flex-direction: column;
   gap: 10px;
-}
-.container {
-  border: 1px solid cornflowerblue;
 }

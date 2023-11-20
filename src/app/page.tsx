@@ -15,7 +15,7 @@ export default async function Home() {
 
     return (
       <div className={styles.videoContainer}>
-        <video /* autoPlay */ muted loop className={styles.video}>
+        <video autoPlay muted loop className={styles.video}>
           <source src={publicUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>

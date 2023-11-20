@@ -4,6 +4,12 @@
   margin: 0;
 }
 
+/* Media query breakpoints: */
+/* @media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
 html,
 body {
   max-width: 100vw;
