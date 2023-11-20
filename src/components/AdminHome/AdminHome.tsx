@@ -14,8 +14,8 @@ const AdminHome = () => {
     <div className={styles.wrapper}>
       <h1>AdminHome</h1>
       <AdminHomeVideo />
-      {/* <AdminNews />
-      <ReadOnlyTipTap />
+      <AdminNews />
+      {/* <ReadOnlyTipTap />
       <TipTap /> */}
     </div>
   )

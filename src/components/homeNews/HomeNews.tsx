@@ -23,13 +23,11 @@ const HomeNews = () => {
       }
 
       if (news) {
-        console.log('news ', news)
         setText(news)
       }
     }
     newsFetch()
   }, [])
-  console.log('text ', text)
 
   const bodyText = text.map(body => {
     return body.body_text
@@ -38,19 +36,17 @@ const HomeNews = () => {
   return (
     <>
       {ready ? (
-        <div>
-          <div className={styles.newsWrapper}>
-            {text.map((t, index) => {
-              const output = generateHTML(t.body_text, [StarterKit])
-              return (
-                <div className={styles.individualNews} key={index}>
-                  <p>{t.title}</p>
-                  <p>{t.ingress}</p>
-                  {parser(output)}
-                </div>
-              )
-            })}
-          </div>
+        <div className={styles.newsWrapper}>
+          {text.map((t, index) => {
+            const output = generateHTML(t.body_text, [StarterKit])
+            return (
+              <div className={styles.individualNews} key={index}>
+                <h3>{t.title}</h3>
+                <h4>{t.ingress}</h4>
+                {parser(output)}
+              </div>
+            )
+          })}
         </div>
       ) : (
         <p>loading</p>

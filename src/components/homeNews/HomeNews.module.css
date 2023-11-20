@@ -1,6 +1,14 @@
+/* Media query breakpoints:
+@media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
 .newsWrapper {
   display: flex;
   gap: 10px;
+  height: 100%;
+  overflow: hidden;
 }
 
 .p {
@@ -8,5 +16,31 @@
 }
 
 .individualNews {
-  border: 2px solid hotpink;
+  background-color: black;
+  height: 30vh;
+  width: 40%;
+  border: 0.25px white solid;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+@media only screen and (min-width: 360px) {
+  .individualNews {
+    padding: 1rem;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .individualNews {
+    padding: 1.25rem;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .individualNews {
+    padding: 1.5rem;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .individualNews {
+    padding: 1.75rem;
+  }
 }
