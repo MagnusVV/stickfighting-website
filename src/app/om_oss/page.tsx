@@ -28,7 +28,6 @@ const Page = async () => {
   return (
     <main className={styles.main}>
       <NavBar />
-      <h1>OM OSS</h1>
       {/* "Om föreningen" section */}
       <section className={styles.section}>
         <AboutUsSection />
