@@ -1,11 +1,12 @@
 'use client'
 import { useState, useEffect } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
+import { Json } from '@/lib/codeBlockSupabase'
+import parser from 'html-react-parser'
+import styles from './OurPhilosophy.module.css'
 // Tiptap imports
 import { JSONContent, generateHTML } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import parser from 'html-react-parser'
-import { Json } from '@/lib/codeBlockSupabase'
 
 const OurPhilosophy = () => {
   const [philosophy, setPhilosophy] = useState<JSONContent>()
@@ -48,10 +49,10 @@ const OurPhilosophy = () => {
   }, [philosophyInfo])
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {/* @ts-ignore FIXME: remove ts-ignore */}
       <h2>{philosophyTitle}</h2>
-      {parser(philosophyString)}
+      <div className={styles.container}>{parser(philosophyString)}</div>
     </div>
   )
 }

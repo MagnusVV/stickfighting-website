@@ -1,4 +1,4 @@
-import styles from './page.module.css'
+import styles from '../page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '../../lib/supabaseServer'
 // Tiptap imports
@@ -28,7 +28,6 @@ const Page = async () => {
   return (
     <main className={styles.main}>
       <NavBar />
-      <h1>OM OSS</h1>
       {/* "Om föreningen" section */}
       <section className={styles.section}>
         <AboutUsSection />
