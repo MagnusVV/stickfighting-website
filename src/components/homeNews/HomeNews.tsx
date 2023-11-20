@@ -41,6 +41,7 @@ const HomeNews = () => {
             const output = generateHTML(t.body_text, [StarterKit])
             return (
               <div className={styles.individualNews} key={index}>
+                <p>{t.created_at.slice(0, 10)}</p>
                 <h3>{t.title}</h3>
                 <h4>{t.ingress}</h4>
                 {parser(output)}
