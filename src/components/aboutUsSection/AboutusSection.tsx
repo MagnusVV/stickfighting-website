@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
+import styles from './AboutusSection.module.css'
 // Tiptap imports
 import { JSONContent, generateHTML } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
@@ -50,11 +51,13 @@ const AboutUsSection = () => {
   return (
     <>
       {isReady ? (
-        <div>
+        <div className={styles.wrapper}>
           <h2>Om Föreningen</h2>
-          {/* @ts-ignore FIXME: remove ts ignore */}
-          <h3>{aboutObj.title}</h3>
-          {parser(infoText)}
+          <div className={styles.container}>
+            {/* @ts-ignore FIXME: remove ts ignore */}
+            <h3>{aboutObj.title}</h3>
+            {parser(infoText)}
+          </div>
         </div>
       ) : (
         <p>Loading</p>
