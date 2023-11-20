@@ -7,6 +7,19 @@
   min-height: 100vh;
 }
 
+/* News Section --------------------------------------> */
+
+.newsSection {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+}
+
+/* News Section -------------------------------------->  */
 .description {
   display: inherit;
   justify-content: inherit;
