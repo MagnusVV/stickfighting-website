@@ -7,27 +7,27 @@
   min-height: 100vh;
 }
 
-/* The welcome video:  */
+/* The welcome video on start page --------------------> */
 .videoContainer {
   width: 100%;
-  position: absolute;
+  position: relative;
   top: 0;
 }
 
 .videoContainer > video {
   width: 100%;
 }
+/* <---------------------------------------------------> */
 
 /* News Section --------------------------------------> */
 
 .newsSection {
   width: 100%;
-  min-height: 500px;
+  min-height: 30vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  background-color: black;
 }
 
 /* News Section -------------------------------------->  */

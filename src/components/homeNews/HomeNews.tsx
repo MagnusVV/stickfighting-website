@@ -23,13 +23,11 @@ const HomeNews = () => {
       }
 
       if (news) {
-        console.log('news ', news)
         setText(news)
       }
     }
     newsFetch()
   }, [])
-  console.log('text ', text)
 
   const bodyText = text.map(body => {
     return body.body_text
