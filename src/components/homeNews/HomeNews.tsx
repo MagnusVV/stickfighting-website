@@ -1,5 +1,4 @@
 'use client'
-
 import { generateHTML } from '@tiptap/core'
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from './HomeNews.module.css'
