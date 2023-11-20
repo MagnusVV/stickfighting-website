@@ -6,7 +6,6 @@ const page = () => {
   return (
     <main className={styles.main}>
       <NavBar />
-      <h1>SCHEMA</h1>
       <CalendarWrapper />
     </main>
   )

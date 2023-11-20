@@ -4,8 +4,10 @@ import 'node_modules/react-big-calendar/lib/css/react-big-calendar.css'
 
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
+import { Work_Sans } from 'next/font/google'
 
 const inter = Inter({ subsets: ['latin'] })
+const work_sans = Work_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'stickfighting.se',
@@ -19,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={work_sans.className}>{children}</body>
     </html>
   )
 }

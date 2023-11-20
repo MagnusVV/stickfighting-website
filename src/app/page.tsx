@@ -1,21 +1,32 @@
-import Image from 'next/image'
 import styles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
-import { Database } from '@/lib/codeBlockSupabase'
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs'
-import { cookies } from 'next/headers'
+import useSupabaseServer from '@/lib/supabaseServer'
 
 export default async function Home() {
-  const cookiesStore = cookies()
-  const supabase = createServerComponentClient<Database>({
-    cookies: () => cookiesStore,
-  })
+  const { supabase } = useSupabaseServer()
 
   const { data: news } = await supabase.from('news').select()
+
+  // TODO: Move this to own componenet? -MV
+  const WelcomeVideo = () => {
+    const {
+      data: { publicUrl },
+    } = supabase.storage.from('video').getPublicUrl('welcome/welcome_video')
+
+    return (
+      <div className={styles.videoContainer}>
+        <video /* autoPlay */ muted loop className={styles.video}>
+          <source src={publicUrl} type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    )
+  }
 
   return (
     <main className={styles.main}>
       <NavBar />
+      <WelcomeVideo />
       <h1>HOME</h1>
       {news?.map(singleNews => (
         <div key={singleNews.id}>

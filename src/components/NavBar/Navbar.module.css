@@ -1,6 +1,37 @@
 .nav {
+  position: absolute;
   display: flex;
-  gap: 1rem;
-  width: 100%;
-  background-color: #6c0e11;
+  justify-content: space-between;
+  top: 5vh;
+  z-index: 1;
+  display: flex;
+  width: 85vw;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: white;
+  mix-blend-mode: difference;
+}
+
+@media only screen and (min-width: 360px) {
+  .nav {
+    font-size: 0.75rem;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .nav {
+    font-size: 1rem;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .nav {
+    font-size: 1.25rem;
+  }
+}
+
+@media only screen and (min-width: 1366px) {
+  .nav {
+    font-size: 1.5rem;
+  }
 }
