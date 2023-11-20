@@ -1,0 +1,12 @@
+.newsWrapper {
+  display: flex;
+  gap: 10px;
+}
+
+.p {
+  color: black;
+}
+
+.individualNews {
+  border: 2px solid hotpink;
+}

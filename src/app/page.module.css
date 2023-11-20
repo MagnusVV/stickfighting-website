@@ -18,6 +18,30 @@
   width: 100%;
 }
 
+/* The welcome video:  */
+.videoContainer {
+  width: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.videoContainer > video {
+  width: 100%;
+}
+
+/* News Section --------------------------------------> */
+
+.newsSection {
+  width: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  background-color: black;
+}
+
+/* News Section -------------------------------------->  */
 .description {
   display: inherit;
   justify-content: inherit;
