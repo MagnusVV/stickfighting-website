@@ -22,6 +22,5 @@
 @media only screen and (max-width: 1122px) {
   .wrapper {
     flex-direction: column;
-    background-color: aqua;
   }
 }
