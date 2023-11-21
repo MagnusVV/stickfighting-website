@@ -1,6 +1,15 @@
+@media only screen and (min-width: 360px) {
+}
+@media only screen and (min-width: 768px) {
+}
+@media only screen and (min-width: 1024px) {
+}
+@media only screen and (min-width: 1366px) {
+}
+
 .footerWrapper {
   width: 100%;
-  padding: 0rem 1rem 0.5rem 1rem;
+
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(2, 1fr);
@@ -46,6 +55,12 @@
   font-size: large;
 }
 
+@media only screen and (min-width: 360px) {
+  .footerWrapper {
+    padding: 2rem 1rem 0.5rem 1rem;
+  }
+}
+
 @media only screen and (max-width: 768px) {
   .footerWrapper {
     display: flex;
@@ -64,5 +79,11 @@
 
   .logoContainer {
     margin: unset;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .footerWrapper {
+    padding: 4rem 4rem 0.5rem 4rem;
   }
 }
