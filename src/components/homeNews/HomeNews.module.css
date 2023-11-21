@@ -21,9 +21,10 @@
 
 .individualNews {
   background-color: black;
+  position: relative;
   height: 30vh;
   flex: 0 0 auto;
-  border: 0.25px #6c0e11 solid;
+  border: 0.25px var(--rust-red) solid;
   overflow: hidden;
   text-overflow: ellipsis;
   transition: all 0.2s ease-in-out;
@@ -37,7 +38,6 @@
 }
 
 .individualNews:hover {
-  cursor: pointer;
   filter: drop-shadow(0 0 1rem #6c0e11);
   transform: scale(1.05);
   overflow: visible;

@@ -45,7 +45,7 @@ const HomeNews = () => {
                 <h3>{t.title}</h3>
                 <h4>{t.ingress}</h4>
                 {parser(output)}
-                <PortalModal key={index} />
+                <PortalModal />
               </div>
             )
           })}
