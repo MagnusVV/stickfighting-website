@@ -75,7 +75,7 @@ const OurPhilosophy = () => {
       <EditorContent editor={editor} />
       <button onClick={fetchPhilosophy}>fetch philosophy</button>
       <Button
-        text="Updatera"
+        text="Uppdatera"
         styling={genericButton}
         onClickEvent={updatePhilosophy}
       />

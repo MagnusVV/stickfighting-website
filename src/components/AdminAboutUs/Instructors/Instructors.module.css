@@ -17,3 +17,11 @@
   height: 1.5rem;
   margin-bottom: 0.5rem;
 }
+
+/* Had to make custom breakpoint for the editors to bw responsive */
+@media only screen and (max-width: 1122px) {
+  .wrapper {
+    flex-direction: column;
+    background-color: aqua;
+  }
+}

@@ -93,7 +93,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
               <MenuBar editor={menuEditor} />
               <InstructorEditor content={instructor.body_text} />
               <Button
-                text="Updatera"
+                text="Uppdatera"
                 styling={genericButton}
                 onClickEvent={() => {
                   setEditInstructor(true), setInstructorId(instructor.id)

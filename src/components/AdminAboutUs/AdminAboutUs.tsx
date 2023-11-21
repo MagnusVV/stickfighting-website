@@ -45,7 +45,7 @@ const AdminAboutUs = () => {
   return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
   ) : (
-    <div>
+    <div className={styles.wrapper}>
       <h2>AdminAboutUsComponent</h2>
       <div className={styles.wrapper}>
         <AboutUs about={about} setAbout={setAbout} />

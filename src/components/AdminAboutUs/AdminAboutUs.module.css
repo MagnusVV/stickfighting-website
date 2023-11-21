@@ -1,7 +1,9 @@
 .wrapper {
-  border: 1px solid var(--rust-red);
+  margin-top: 2rem;
+  /* border: 1px solid var(--rust-red); */
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr); */
