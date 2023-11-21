@@ -37,7 +37,6 @@ export default async function Home() {
           <HomeNews />
         </section>
       </main>
-      <Footer />
     </>
   )
 }

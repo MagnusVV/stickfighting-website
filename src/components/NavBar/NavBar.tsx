@@ -29,33 +29,37 @@ const NavBar: React.FC = () => {
   // <--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---|
 
   return (
-    <nav className={styles.nav}>
-      <button
-        onClick={() => {
-          setMenuOpen(!menuOpen)
-        }}
-      >
-        <FaBars size="1.5rem" />
-      </button>
-      {menuOpen && (
-        <div className={styles.hamburgerMenu}>
+    <>
+      <nav className={styles.nav}>
+        <button
+          onClick={() => {
+            setMenuOpen(!menuOpen)
+          }}
+        >
+          <FaBars size="1.5rem" style={{ color: 'black' }} />
+        </button>
+        {menuOpen && (
+          <div className={styles.hamburgerMenu}>
+            <Link href="/">Start</Link>
+            <Link href="/schema">Schema</Link>
+            <Link href="/om_oss">Om oss</Link>
+            <Link href="/galleri">Bildgalleri</Link>
+            {/* Conditional rendering of admin-link */}
+            {userSession && <Link href="/admin">Admin</Link>}
+          </div>
+        )}{' '}
+      </nav>
+      <nav className={styles.navBlend}>
+        <div className={styles.menu}>
           <Link href="/">Start</Link>
           <Link href="/schema">Schema</Link>
           <Link href="/om_oss">Om oss</Link>
           <Link href="/galleri">Bildgalleri</Link>
           {/* Conditional rendering of admin-link */}
           {userSession && <Link href="/admin">Admin</Link>}
-        </div>
-      )}
-      <div className={styles.menu}>
-        <Link href="/">Start</Link>
-        <Link href="/schema">Schema</Link>
-        <Link href="/om_oss">Om oss</Link>
-        <Link href="/galleri">Bildgalleri</Link>
-        {/* Conditional rendering of admin-link */}
-        {userSession && <Link href="/admin">Admin</Link>}
-      </div>
-    </nav>
+        </div>{' '}
+      </nav>
+    </>
   )
 }
 

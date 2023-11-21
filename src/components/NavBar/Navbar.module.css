@@ -1,11 +1,27 @@
-.nav {
+.nav,
+.navBlend {
   position: absolute;
   top: 5vh;
   z-index: 1;
   width: 85vw;
   font-weight: 300;
   color: white;
+  transition: all 0.3s;
+}
+
+.navBlend {
   mix-blend-mode: difference;
+}
+
+.hamburgerMenu {
+  width: fit-content;
+  padding: 0.5rem;
+  background-color: black;
+}
+
+.hamburgerMenu a {
+  margin: 0.5rem;
+  color: white;
 }
 
 .nav button {
@@ -19,11 +35,13 @@
     font-size: 1rem;
   }
   .menu {
+    font-size: 1rem;
     display: none;
   }
 
   .hamburgerMenu {
     display: flex;
+    flex-direction: column;
   }
 }
 
@@ -43,19 +61,19 @@
 }
 
 @media only screen and (min-width: 768px) {
-  .nav {
+  .menu {
     font-size: 1.25rem;
   }
 }
 
 @media only screen and (min-width: 1024px) {
-  .nav {
+  .menu {
     font-size: 1.5rem;
   }
 }
 
 @media only screen and (min-width: 1366px) {
-  .nav {
+  .menu {
     font-size: 1.75rem;
   }
 }
