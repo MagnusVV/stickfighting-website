@@ -9,6 +9,8 @@ import { MenuBar } from '@/components/Tiptap/Tiptap'
 import { EditorContent, useEditor, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { JSONContent } from '@tiptap/react'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface OurPhilosophyProps {
   philosophy: fetchObj
@@ -69,21 +71,14 @@ const OurPhilosophy = () => {
   return (
     <div className={styles.wrapper}>
       <h2>Vår filosofi</h2>
-      {/* <form onSubmit={handleSubmit} className={styles.form}>
-        <textarea
-          name="about-us-text"
-          cols={30}
-          rows={10}
-          placeholder="lorem ipsum"
-          onChange={e => setPhilosophy({ body_text: e.target.value })}
-          value={philosophy.body_text}
-        ></textarea>
-        <button type="submit">Uppdatera om oss</button>
-      </form> */}
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       <button onClick={fetchPhilosophy}>fetch philosophy</button>
-      <button onClick={updatePhilosophy}>Update philosophy</button>
+      <Button
+        text="Uppdatera"
+        styling={genericButton}
+        onClickEvent={updatePhilosophy}
+      />
     </div>
   )
 }

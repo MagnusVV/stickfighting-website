@@ -8,6 +8,8 @@ import TipTap, { MenuBar } from '@/components/Tiptap/Tiptap'
 import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface AboutUsProps {
   about: fetchObj
@@ -65,23 +67,14 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
   return (
     <div className={styles.wrapper}>
       <h2>Om oss</h2>
-      {/* <form className={styles.form} onSubmit={updateAbout}>
-        <textarea
-          className="about-update-form"
-          name="about-us-text"
-          cols={30}
-          rows={10}
-          placeholder="lorem ipsum"
-          onChange={e => setAbout({ body_text: e.target.value })}
-          value={about.body_text}
-        ></textarea>
-        <button type="submit">updatera om oss text</button>
-      </form> */}
-      {/* <TipTap /> */}
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       <button onClick={fetchAbout}>fetch data</button>
-      <button onClick={updateAbout}>Updatera</button>
+      <Button
+        text="Uppdatera"
+        styling={genericButton}
+        onClickEvent={updateAbout}
+      />
     </div>
   )
 }

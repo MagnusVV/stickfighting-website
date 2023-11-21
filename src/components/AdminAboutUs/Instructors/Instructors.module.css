@@ -1,8 +1,10 @@
 .wrapper {
-  border: 2px solid rebeccapurple;
   padding: 10px;
   min-width: 300px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .form {
@@ -11,6 +13,23 @@
   flex-direction: column;
 }
 
-.textarea {
-  margin-bottom: 1rem;
+.input {
+  height: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Had to make custom breakpoint for the editors to bw responsive */
+/* @media only screen and (max-width: 1122px) {
+  .wrapper {
+    flex-direction: column;
+  }
+} */
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1455px) {
+  .wrapper {
+    flex-direction: row;
+  }
 }

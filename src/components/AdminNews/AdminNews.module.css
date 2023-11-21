@@ -1,5 +1,5 @@
 .wrapper {
-  padding: 10px;
+  /* padding: 10px; */
   min-width: 500px;
   min-height: 300px;
   overflow: auto;
@@ -20,20 +20,16 @@
   border: 2px solid var(--rust-red);
 }
 
-.editBtn {
-  border: 1px solid var(--rust-red);
-  border-radius: 5px;
-  height: 30px;
-  width: 70px;
-  background-color: var(--matte-black-bg);
-  color: white;
-  margin-top: 0.5rem;
-}
-
 .editBtn:hover {
   cursor: pointer;
   background-color: white;
   color: black;
+}
+
+.addNewsSection {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .form {
@@ -45,4 +41,5 @@
 }
 .input {
   height: 1.5rem;
+  width: 300px;
 }

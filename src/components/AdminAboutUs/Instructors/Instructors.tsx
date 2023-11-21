@@ -8,6 +8,8 @@ import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
 import EditInstructor from './EditInstructor'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface InstructorsProps {
   instructors: InstructorCollection
@@ -66,38 +68,41 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   })
 
   return (
-    <div className={styles.wrapper}>
-      {editInstructor && (
-        <EditInstructor
-          instructorId={instructorId}
-          setEditInstructor={setEditInstructor}
-        />
-      )}
-      {instructorsFetch.map((instructor: any, index: number) => {
-        const valueToUpdate = instructorsFetch.find(
-          (value: { id: number; name: string }) => value.id === instructor.id,
-        )
-        return (
-          <div key={index}>
-            <input
-              className={styles.input}
-              name={`instructor_${instructor.name}_name`}
-              placeholder="lorem ipsum"
-              defaultValue={valueToUpdate?.name}
-              readOnly
-            ></input>
-            <MenuBar editor={menuEditor} />
-            <InstructorEditor content={instructor.body_text} />
-            <button
-              onClick={() => {
-                setEditInstructor(true), setInstructorId(instructor.id)
-              }}
-            >
-              Updatera
-            </button>
-          </div>
-        )
-      })}
+    <div>
+      <h2>Instruktörer</h2>
+      <div className={styles.wrapper}>
+        {editInstructor && (
+          <EditInstructor
+            instructorId={instructorId}
+            setEditInstructor={setEditInstructor}
+          />
+        )}
+        {instructorsFetch.map((instructor: any, index: number) => {
+          const valueToUpdate = instructorsFetch.find(
+            (value: { id: number; name: string }) => value.id === instructor.id,
+          )
+          return (
+            <div key={index}>
+              <input
+                className={styles.input}
+                name={`instructor_${instructor.name}_name`}
+                placeholder="lorem ipsum"
+                defaultValue={valueToUpdate?.name}
+                readOnly
+              ></input>
+              <MenuBar editor={menuEditor} />
+              <InstructorEditor content={instructor.body_text} />
+              <Button
+                text="Uppdatera"
+                styling={genericButton}
+                onClickEvent={() => {
+                  setEditInstructor(true), setInstructorId(instructor.id)
+                }}
+              />
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }

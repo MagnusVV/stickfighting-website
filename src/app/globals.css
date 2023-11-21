@@ -73,6 +73,15 @@ a {
     font-size: small;
     margin-bottom: 0.5rem;
   }
+
+  .tiptap.ProseMirror {
+    width: 300px;
+  }
+
+  .tiptapMenuBar {
+    flex-wrap: wrap;
+    font-size: 0.5rem;
+  }
 }
 @media only screen and (min-width: 768px) {
   p {
@@ -89,6 +98,14 @@ a {
   }
   h4 {
     font-size: medium;
+  }
+
+  .tiptap.ProseMirror {
+    width: 600px;
+  }
+
+  .tiptapMenuBar {
+    font-size: 1rem;
   }
 }
 @media only screen and (min-width: 1024px) {
@@ -113,6 +130,15 @@ a {
     font-size: large;
     margin-bottom: 0.5rem;
   }
+
+  .tiptap.ProseMirror {
+    width: 700px;
+  }
+
+  .tiptapMenuBar {
+    flex-wrap: nowrap;
+    font-size: 1.3rem;
+  }
 }
 @media only screen and (min-width: 1366px) {
 }
@@ -130,7 +156,6 @@ a {
 /* Basic editor styles */
 .tiptap.ProseMirror {
   min-height: 300px;
-  width: 500px;
   background-color: rgba(255, 255, 255, 0.954);
   color: #0d0d0d;
   padding: 5px;
@@ -189,13 +214,18 @@ a {
 .tiptapMenuBar {
   display: flex;
   gap: 5px;
-  min-width: 200px;
+  width: 200px;
   height: auto;
-  border-bottom: 1px solid white;
+  margin-bottom: 0.5rem;
 }
 
-.isActive {
-  background-color: black;
+.tiptapMenuBar button {
+  font-size: 1rem;
+}
+
+.is-active {
+  background-color: grey;
+  color: white;
 }
 
 /* TipTap CSS STYLE -----------------------------> */

@@ -39,7 +39,7 @@ const GalleryPreview = () => {
 
   return (
     <>
-      <h2>GalleryPreview</h2>
+      <h2>Bildgalleri</h2>
       <ul className={styles.galleryList}>
         {maxImages.map((imageSuffix: number) => (
           <li key={imageSuffix}>
