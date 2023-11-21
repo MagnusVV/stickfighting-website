@@ -113,6 +113,7 @@ const AdminNews = () => {
                 <ArticleEditor content={article.body_text} />
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
+                  className={styles.editBtn}
                   onClick={() => {
                     setNewsId(article.id), setEditNews(true)
                   }}

@@ -4,6 +4,12 @@
   margin: 0;
 }
 
+/* VARIABLES */
+:root {
+  --matte-black-bg: #1d1d1d;
+  --rust-red: #6c0e11;
+  --dark-moss: #162025;
+}
 /* Media query breakpoints:
 @media only screen and (min-width: 360px)
 @media only screen and (min-width: 768px)
