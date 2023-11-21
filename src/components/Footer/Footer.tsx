@@ -21,14 +21,7 @@ const Footer = () => {
       </div>
 
       <div className={`${styles.logoContainer} ${styles.rotateImage}`}>
-        <Image
-          src="/biting-rattan-logo.png"
-          alt="biting rattan logo"
-          // width="0"
-          // height="0"
-          // sizes="100vw"
-          fill
-        />
+        <Image src="/biting-rattan-logo.png" alt="biting rattan logo" fill />
       </div>
 
       <div className={styles.copyRightContainer}>

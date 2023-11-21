@@ -1,19 +1,44 @@
 .nav {
   position: absolute;
-  display: flex;
-  justify-content: space-between;
   top: 5vh;
   z-index: 1;
-  display: flex;
   width: 85vw;
   font-weight: 300;
   color: white;
   mix-blend-mode: difference;
 }
 
+.nav button {
+  border: none;
+  color: unset !important;
+  background-color: unset !important;
+}
+
 @media only screen and (min-width: 360px) {
   .nav {
     font-size: 1rem;
+  }
+  .menu {
+    display: none;
+  }
+
+  .hamburgerMenu {
+    display: flex;
+  }
+}
+
+@media only screen and (min-width: 564px) {
+  .menu {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .nav button {
+    display: none;
+  }
+
+  .hamburgerMenu {
+    display: none;
   }
 }
 

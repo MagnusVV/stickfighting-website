@@ -9,6 +9,7 @@
   --matte-black-bg: #1d1d1d;
   --rust-red: #6c0e11;
   --dark-moss: #162025;
+  --calendar-current-day-bg: #5d2751;
 }
 /* Media query breakpoints:
 @media only screen and (min-width: 360px)

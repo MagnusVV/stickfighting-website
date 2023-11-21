@@ -21,7 +21,7 @@
     background-color: #162025;
   }
   &.rbc-today {
-    background-color: #6c0e11;
+    background-color: var(--calendar-current-day-bg);
   }
 }
 
