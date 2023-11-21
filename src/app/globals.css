@@ -21,15 +21,19 @@ body {
   max-width: 100vw;
   overflow-x: hidden;
   background: linear-gradient(to bottom, black, #162025);
-  /* background-color: black; */
   color: white;
 }
 
 h1,
-h2,
-h3,
-h4 {
+h3 {
   font-weight: 500;
+}
+h4 {
+  font-weight: 400;
+}
+
+h2 {
+  font-weight: 200;
 }
 
 strong {
@@ -46,9 +50,6 @@ a {
 }
 
 @media only screen and (min-width: 360px) {
-  .individualNews {
-    padding: 0.25rem;
-  }
   p {
     font-size: smaller;
   }
@@ -62,7 +63,7 @@ a {
     font-size: larger;
   }
   h2 {
-    font-size: large;
+    font-size: 18px;
   }
   h3 {
     font-size: medium;
@@ -73,9 +74,6 @@ a {
   }
 }
 @media only screen and (min-width: 768px) {
-  .individualNews {
-    padding: 0.5rem;
-  }
   p {
     font-size: small;
   }
@@ -83,7 +81,7 @@ a {
     font-size: x-large;
   }
   h2 {
-    font-size: larger;
+    font-size: 24px;
   }
   h3 {
     font-size: large;
@@ -93,9 +91,6 @@ a {
   }
 }
 @media only screen and (min-width: 1024px) {
-  .individualNews {
-    padding: 0.75rem;
-  }
   p {
     font-size: medium;
   }
@@ -108,7 +103,7 @@ a {
     font-size: xx-large;
   }
   h2 {
-    font-size: x-large;
+    font-size: 36px;
   }
   h3 {
     font-size: larger;
@@ -119,9 +114,6 @@ a {
   }
 }
 @media only screen and (min-width: 1366px) {
-  .individualNews {
-    padding: 1rem;
-  }
 }
 
 /* TipTap CSS STYLE -----------------------------> */

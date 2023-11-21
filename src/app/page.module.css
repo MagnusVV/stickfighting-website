@@ -9,7 +9,6 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  min-height: 100vh;
 }
 
 /* The welcome video on start page --------------------> */
@@ -23,6 +22,10 @@
   width: 100%;
 }
 /* <---------------------------------------------------> */
+
+.velcomeText {
+  font-weight: 200;
+}
 
 /* News Section --------------------------------------> */
 
@@ -69,21 +72,35 @@
 
 @media only screen and (min-width: 360px) {
   .main {
-    padding: 6rem 2rem 2rem 2rem;
+    padding: 6rem 0rem 2rem 0rem;
+    min-height: 75vh;
+  }
+  .velcomeText {
+    font-size: 21px;
   }
 }
 @media only screen and (min-width: 768px) {
   .main {
-    padding: 6rem 4rem 4rem 4rem;
+    padding: 6rem 0rem 4rem 0rem;
+  }
+  .velcomeText {
+    font-size: 36px;
   }
 }
 @media only screen and (min-width: 1024px) {
   .main {
-    padding: 8rem 6rem 6rem 6rem;
+    padding: 8rem 0rem 6rem 0rem;
+    min-height: 100vh;
+  }
+  .velcomeText {
+    font-size: 48px;
   }
 }
 
 @media only screen and (min-width: 1366px) {
+  .velcomeText {
+    font-size: 54px;
+  }
 }
 
 /* <-------------------------------------------------->*/
