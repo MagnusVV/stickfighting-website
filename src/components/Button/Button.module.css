@@ -1,28 +1,35 @@
+/* Media query breakpoints:
+@media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
 /* .labelButton is primarily used to let the label hide input fields with default English text -MV */
 .labelButton {
-  border: 1px solid #ccc;
+  border: 1px solid white;
   display: inline-block;
   padding: 6px 12px;
+  font-family: inherit;
   cursor: pointer;
 }
 
-.button {
+.genericButton {
   display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
+  font-family: inherit;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   border: 2px solid var(--rust-red);
   color: white;
-  background-color: black;
-  border-radius: 4px;
-  &.button:hover {
+  background-color: var(--matte-black-bg);
+  border-radius: 0.25rem;
+  &.genericButton:hover {
     background-color: white;
     color: black;
   }
 }
 
+/* Covers an entire "single news" */
 .openNewsModalButton {
   width: 100%;
   height: 100%;
@@ -30,4 +37,33 @@
   border: none;
   color: unset !important;
   background-color: unset !important;
+}
+
+@media only screen and (min-width: 360px) {
+  .genericButton {
+    font-size: x-small;
+    width: 5rem;
+    padding: 6px 8px;
+  }
+}
+@media only screen and (min-width: 768px) {
+  .genericButton {
+    font-size: smaller;
+    width: 6rem;
+    padding: 8px 12px;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .genericButton {
+    font-size: small;
+    width: 7rem;
+    padding: 10px 16px;
+  }
+}
+@media only screen and (min-width: 1366px) {
+  .genericButton {
+    font-size: medium;
+    width: 8rem;
+    padding: 12px 20px;
+  }
 }
