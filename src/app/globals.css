@@ -190,11 +190,16 @@ a {
   gap: 5px;
   min-width: 200px;
   height: auto;
-  border-bottom: 1px solid white;
+  margin-bottom: 0.5rem;
 }
 
-.isActive {
-  background-color: black;
+.tiptapMenuBar button {
+  font-size: 1rem;
+}
+
+.is-active {
+  background-color: grey;
+  color: white;
 }
 
 /* TipTap CSS STYLE -----------------------------> */

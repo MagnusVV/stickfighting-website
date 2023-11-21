@@ -6,6 +6,8 @@ import useSupabaseClient from '@/lib/supabaseClient'
 import { MenuBar } from '@/components/Tiptap/Tiptap'
 import StarterKit from '@tiptap/starter-kit'
 import { Json } from '@/lib/codeBlockSupabase'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface newsProps {
   newsId: number
@@ -91,7 +93,11 @@ const EditNews: React.FC<newsProps> = ({
 
   return (
     <div className={styles.wrapper}>
-      <button onClick={() => setEditNews(false)}>CLOSE</button>
+      <Button
+        styling={genericButton}
+        text="Stäng"
+        onClickEvent={() => setEditNews(false)}
+      />
       <h1>Redigera nyheter</h1>
       <form
         className={styles.form}

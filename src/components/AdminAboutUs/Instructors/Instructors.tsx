@@ -8,6 +8,8 @@ import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
 import EditInstructor from './EditInstructor'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface InstructorsProps {
   instructors: InstructorCollection
@@ -90,13 +92,13 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
               ></input>
               <MenuBar editor={menuEditor} />
               <InstructorEditor content={instructor.body_text} />
-              <button
-                onClick={() => {
+              <Button
+                text="Updatera"
+                styling={genericButton}
+                onClickEvent={() => {
                   setEditInstructor(true), setInstructorId(instructor.id)
                 }}
-              >
-                Updatera
-              </button>
+              />
             </div>
           )
         })}

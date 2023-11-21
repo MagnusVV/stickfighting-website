@@ -9,6 +9,8 @@ import { MenuBar } from '@/components/Tiptap/Tiptap'
 import { EditorContent, useEditor, Editor } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import { JSONContent } from '@tiptap/react'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface OurPhilosophyProps {
   philosophy: fetchObj
@@ -72,7 +74,11 @@ const OurPhilosophy = () => {
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
       <button onClick={fetchPhilosophy}>fetch philosophy</button>
-      <button onClick={updatePhilosophy}>Update philosophy</button>
+      <Button
+        text="Updatera"
+        styling={genericButton}
+        onClickEvent={updatePhilosophy}
+      />
     </div>
   )
 }
