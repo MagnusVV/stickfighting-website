@@ -4,9 +4,8 @@ import LogoutBtn from '@/components/LogoutBtn/LogoutBtn'
 import NavBar from '@/components/NavBar/NavBar'
 import AdminAboutUs from '@/components/AdminAboutUs/AdminAboutUs'
 import AdminHome from '@/components/AdminHome/AdminHome'
-import adminStyles from './admin.module.css'
+import adminStyles from './page.module.css'
 import AdminCalendar from '@/components/AdminCalendar/AdminCalendar'
-import Tiptap from '@/components/Tiptap/Tiptap'
 import AdminImageGallery from '@/components/AdminImageGallery/AdminImageGallery'
 
 const AdminPage = () => {
@@ -19,7 +18,6 @@ const AdminPage = () => {
       <AdminAboutUs />
       <AdminImageGallery />
       <LogoutBtn />
-      {/* <Tiptap /> */}
     </main>
   )
 }

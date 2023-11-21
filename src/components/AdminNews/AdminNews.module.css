@@ -3,6 +3,7 @@
   padding: 10px;
   min-width: 500px;
   min-height: 300px;
+  overflow: auto;
 }
 
 .newscarousel {
@@ -11,11 +12,12 @@
   background-color: cornflowerblue;
   display: flex;
   gap: 10px;
+  overflow: scroll;
 }
 
 .article {
   height: auto;
-  min-width: 300px;
+  width: auto;
   border: 2px solid red;
 }
 
