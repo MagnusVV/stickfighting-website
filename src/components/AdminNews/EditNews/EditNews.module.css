@@ -1,6 +1,4 @@
 .wrapper {
-  /* height: 650px; */
-  /* width: 650px; */
   height: 100vh;
   width: 100%;
   background-color: var(--matte-black-bg);
@@ -20,26 +18,21 @@
   flex-direction: column;
 }
 
-/* @media only screen and (min-width: 360px) {
-  .wrapper {
-    height: 100vh;
-    width: 100%;
-  }
-} */
-
 @media only screen and (min-width: 768px) {
   .wrapper {
-    height: 650px;
-    width: 650px;
+    height: 700px;
+    width: 700px;
     position: fixed;
-    top: 10%;
-    left: 30%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
     border-radius: 20px;
   }
 }
 
-@media only screen and (min-width: 1024px) {
+/* @media only screen and (min-width: 1024px) {
 }
 
 @media only screen and (min-width: 1366px) {
-}
+} */
