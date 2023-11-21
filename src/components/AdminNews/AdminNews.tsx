@@ -7,6 +7,8 @@ import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
+import Button from '../Button/Button'
+import { genericButton } from '../Button/assortedButtons'
 
 export interface newsFetch {
   id: number
@@ -112,20 +114,20 @@ const AdminNews = () => {
                 {/* TODO: Make them non editable */}
                 <ArticleEditor content={article.body_text} />
                 <p>{article.created_at.slice(0, 10)}</p>
-                <button
-                  className={styles.editBtn}
-                  onClick={() => {
+                <Button
+                  text="Redigera"
+                  type="button"
+                  styling={genericButton}
+                  onClickEvent={() => {
                     setNewsId(article.id), setEditNews(true)
                   }}
-                >
-                  Redigera
-                </button>
+                />
               </div>
             )
           })}
         </div>
       </div>
-      <div>
+      <div className={styles.addNewsSection}>
         <h3>Ny nyhet</h3>
         <form onSubmit={handleInsert} className={styles.form}>
           <input
@@ -144,7 +146,11 @@ const AdminNews = () => {
           />
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
-          <button type="submit">Lägg till nyhet</button>
+          <Button
+            text="Lägg till nyhet"
+            styling={genericButton}
+            type="submit"
+          />
         </form>
       </div>
     </div>

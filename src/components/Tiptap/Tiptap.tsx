@@ -1,4 +1,5 @@
 'use client'
+//TODO: Clean code
 
 import '../../app/globals.css'
 import { EditorContent, useEditor, Editor } from '@tiptap/react'

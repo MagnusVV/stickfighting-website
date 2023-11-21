@@ -7,6 +7,8 @@ import {
   EditedEvent,
   NewEvent,
 } from '@/lib/types'
+import styles from './EventHandler.module.css'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 const EventHandler: React.FC<EventHandlerProps> = ({
   selectedEvents, // Array with event.id:s from selected existing events, passed from AdminCalendar. Originates from SingleEvent.tsx -MV
@@ -209,33 +211,37 @@ const EventHandler: React.FC<EventHandlerProps> = ({
   }
 
   return (
-    <div>
+    <div className={styles.wrapper}>
       {/* --- Remove one or more chosen events --- -MV */}
 
-      <h3>Ta bort valda händelser</h3>
       {/* {selectedEvents.map(eventId => (
         <p key={eventId}>Selected Event ID: {eventId}</p>
       ))} */}
       <div>
-        <form id="remove" onSubmit={deleteSelectedEvents}>
-          <Button type="submit" text="Ta bort" />
+        <h3>Ta bort valda händelser</h3>
+        <form
+          className={styles.form}
+          id="remove"
+          onSubmit={deleteSelectedEvents}
+        >
+          <Button type="submit" text="Ta bort" styling={genericButton} />
         </form>
       </div>
 
       {/* --- Cancel one or more chosen events --- -MV */}
 
-      <h3>Ställ in/ångra ställ in valda händelser</h3>
       <div>
-        <form id="cancel" onSubmit={handleCancelEvent}>
-          <Button type="submit" text="Acceptera" />
+        <h3>Ställ in valda händelser</h3>
+        <form className={styles.form} id="cancel" onSubmit={handleCancelEvent}>
+          <Button type="submit" text="Acceptera" styling={genericButton} />
         </form>
       </div>
 
       {/* --- Edit a single chosen event --- -MV */}
 
-      <h3>Redigera vald händelse</h3>
       <div>
-        <form id="edit" onSubmit={editSelectedEvent}>
+        <h3>Redigera vald händelse</h3>
+        <form className={styles.form} id="edit" onSubmit={editSelectedEvent}>
           <label htmlFor="edit_datePicker">
             Datum:{' '}
             <input
@@ -323,15 +329,15 @@ const EventHandler: React.FC<EventHandlerProps> = ({
               })}
             </select>
           </label>
-          <Button type="submit" text="Uppdatera" />
+          <Button type="submit" text="Uppdatera" styling={genericButton} />
         </form>
       </div>
 
       {/* --- Add a single new event --- -MV */}
 
-      <h3>Lägg till ny händelse</h3>
       <div>
-        <form id="add" onSubmit={addNewEvent}>
+        <h3>Lägg till ny händelse</h3>
+        <form className={styles.form} id="add" onSubmit={addNewEvent}>
           <label htmlFor="add_datePicker">
             Datum:{' '}
             <input
@@ -380,7 +386,7 @@ const EventHandler: React.FC<EventHandlerProps> = ({
               ))}
             </select>
           </label>
-          <Button text="Lägg till" />
+          <Button text="Lägg till" styling={genericButton} />
         </form>
       </div>
     </div>
