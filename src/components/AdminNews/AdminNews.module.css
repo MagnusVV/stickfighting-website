@@ -1,26 +1,48 @@
 .wrapper {
-  border: 2px solid hotpink;
   padding: 10px;
   min-width: 500px;
   min-height: 300px;
+  overflow: auto;
 }
 
 .newscarousel {
   min-height: 200px;
   width: 100%;
-  background-color: cornflowerblue;
   display: flex;
   gap: 10px;
+  overflow: scroll;
 }
 
 .article {
   height: auto;
-  min-width: 300px;
-  border: 2px solid red;
+  width: auto;
+  background-color: var(--matte-black-bg);
+  border: 2px solid var(--rust-red);
+}
+
+.editBtn {
+  border: 1px solid var(--rust-red);
+  border-radius: 5px;
+  height: 30px;
+  width: 70px;
+  background-color: var(--matte-black-bg);
+  color: white;
+  margin-top: 0.5rem;
+}
+
+.editBtn:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
 }
 
 .form {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 31.25rem;
+  margin: 0 auto;
+}
+.input {
+  height: 1.5rem;
 }
