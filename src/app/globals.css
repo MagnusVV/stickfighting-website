@@ -125,19 +125,20 @@ a {
 }
 
 /* TipTap CSS STYLE -----------------------------> */
-.tiptap.ProseMirror {
+/* TODO: Remove unnessecery tiptap code */
+/* .tiptap.ProseMirror {
   min-height: 200px;
   width: 300px;
-  background-color: darkgray;
+  background-color: white;
   color: #0d0d0d;
   padding-left: 20px;
-}
+} */
 
 /* Basic editor styles */
 .tiptap.ProseMirror {
   min-height: 300px;
   width: 500px;
-  background-color: darkgray;
+  background-color: rgba(255, 255, 255, 0.954);
   color: #0d0d0d;
   padding: 5px;
   border-radius: 5px;
