@@ -1,8 +1,9 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 5px;
   max-width: 1000px;
+  align-items: center;
 }
 
 .form {
@@ -22,5 +23,6 @@
     flex-direction: row;
     /* flex-wrap: wrap; */
     gap: 1rem;
+    align-items: unset;
   }
 }

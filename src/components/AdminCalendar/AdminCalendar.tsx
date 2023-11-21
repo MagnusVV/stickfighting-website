@@ -59,7 +59,7 @@ const AdminCalendar: React.FC = () => {
   }, [])
 
   return (
-    <>
+    <div>
       <h2>Schema händelser</h2>
       <ViewEvents events={events} onEventClick={handleEventClick} />
       <h2>redigera händelse</h2>
@@ -67,7 +67,7 @@ const AdminCalendar: React.FC = () => {
         selectedEvents={selectedEvents}
         onEventClick={handleEventClick}
       />
-    </>
+    </div>
   )
 }
 

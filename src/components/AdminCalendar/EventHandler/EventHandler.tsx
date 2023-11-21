@@ -231,7 +231,7 @@ const EventHandler: React.FC<EventHandlerProps> = ({
       {/* --- Cancel one or more chosen events --- -MV */}
 
       <div>
-        <h3>Ställ in/ångra ställ in valda händelser</h3>
+        <h3>Ställ in valda händelser</h3>
         <form className={styles.form} id="cancel" onSubmit={handleCancelEvent}>
           <Button type="submit" text="Acceptera" styling={genericButton} />
         </form>
