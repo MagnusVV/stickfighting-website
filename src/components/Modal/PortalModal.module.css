@@ -1,4 +1,9 @@
-/* Along with  */
+/* Media query breakpoints:
+@media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
 .newsModal {
   position: absolute;
   width: 100%;
@@ -14,8 +19,29 @@
 
 .newsModalContent {
   position: fixed;
-  top: 10%;
+  filter: drop-shadow(0 0 1rem #6c0e11);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
+  background-color: black;
+}
+
+@media only screen and (min-width: 360px) {
+  .newsModalContent {
+    width: 65vw;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .newsModalContent {
+    width: 50vw;
+  }
+}
+.newsModalContent > p {
+  margin-bottom: 1rem;
 }

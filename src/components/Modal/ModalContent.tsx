@@ -4,12 +4,13 @@ import styles from './PortalModal.module.css'
 
 interface ModalContentProps {
   onClose: () => void
+  content: React.ReactNode
 }
 
-const ModalContent: React.FC<ModalContentProps> = ({ onClose }) => {
+const ModalContent: React.FC<ModalContentProps> = ({ onClose, content }) => {
   return (
     <div className={styles.newsModalContent}>
-      <div>Nyheten!</div>
+      {content}
       <Button styling={genericButton} text="Stäng" onClickEvent={onClose} />
     </div>
   )
