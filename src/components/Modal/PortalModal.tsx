@@ -6,7 +6,11 @@ import { openNewsModal } from '../Button/assortedButtons'
 import Button from '../Button/Button'
 import styles from './PortalModal.module.css'
 
-const PortalModal = () => {
+interface PortalModalProps {
+  content: React.ReactNode
+}
+
+const PortalModal: React.FC<PortalModalProps> = ({ content }) => {
   const [showModal, setShowModal] = useState<boolean>(false)
   return (
     <div className={styles.newsModal}>
@@ -18,7 +22,10 @@ const PortalModal = () => {
       />
       {showModal &&
         createPortal(
-          <ModalContent onClose={() => setShowModal(false)} />,
+          <ModalContent
+            content={content}
+            onClose={() => setShowModal(false)}
+          />,
           document.body,
         )}
     </div>

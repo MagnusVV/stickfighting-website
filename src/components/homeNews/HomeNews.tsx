@@ -8,11 +8,11 @@ import { JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import PortalModal from '../Modal/PortalModal'
 
-const HomeNews = () => {
+const HomeNews: React.FC = () => {
   const [text, setText] = useState<JSONContent[]>([])
   const { supabase } = useSupabaseClient()
   const [ready, setReady] = useState<boolean>(true)
-  const [textOutput, setTextOutput] = useState<string>()
+
   useEffect(() => {
     const newsFetch = async () => {
       const { data: news, error } = await supabase.from('news').select('*')
@@ -45,7 +45,16 @@ const HomeNews = () => {
                 <h3>{t.title}</h3>
                 <h4>{t.ingress}</h4>
                 {parser(output)}
-                <PortalModal />
+                <PortalModal
+                  content={
+                    <>
+                      <p>{t.created_at.slice(0, 10)}</p>
+                      <h3>{t.title}</h3>
+                      <h4>{t.ingress}</h4>
+                      {parser(output)}
+                    </>
+                  }
+                />
               </div>
             )
           })}
