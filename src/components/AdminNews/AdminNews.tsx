@@ -113,6 +113,7 @@ const AdminNews = () => {
                 <ArticleEditor content={article.body_text} />
                 <p>{article.created_at.slice(0, 10)}</p>
                 <button
+                  className={styles.editBtn}
                   onClick={() => {
                     setNewsId(article.id), setEditNews(true)
                   }}
@@ -128,12 +129,14 @@ const AdminNews = () => {
         <h3>Ny nyhet</h3>
         <form onSubmit={handleInsert} className={styles.form}>
           <input
+            className={styles.input}
             type="text"
             placeholder="titel"
             onChange={e => setNewsTitle(e.target.value)}
             value={newsTitle}
           />
           <input
+            className={styles.input}
             type="text"
             placeholder="ingress"
             onChange={e => setIngress(e.target.value)}
