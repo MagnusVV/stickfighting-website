@@ -1,6 +1,8 @@
 'use client'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useRouter } from 'next/navigation'
+import Button from '../Button/Button'
+import { genericButton } from '../Button/assortedButtons'
 
 const LogoutBtn = () => {
   const supabase = createClientComponentClient()
@@ -17,7 +19,11 @@ const LogoutBtn = () => {
   }
   return (
     <>
-      <button onClick={handleClick}>Logga ut</button>
+      <Button
+        text="Logga ut"
+        styling={genericButton}
+        onClickEvent={handleClick}
+      />
     </>
   )
 }
