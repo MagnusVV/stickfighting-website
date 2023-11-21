@@ -1,5 +1,4 @@
 'use client'
-
 import { generateHTML } from '@tiptap/core'
 import React, { useEffect, useMemo, useState } from 'react'
 import styles from './HomeNews.module.css'
@@ -7,6 +6,7 @@ import parser from 'html-react-parser'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
+import PortalModal from '../Modal/PortalModal'
 
 const HomeNews = () => {
   const [text, setText] = useState<JSONContent[]>([])
@@ -45,6 +45,7 @@ const HomeNews = () => {
                 <h3>{t.title}</h3>
                 <h4>{t.ingress}</h4>
                 {parser(output)}
+                <PortalModal />
               </div>
             )
           })}

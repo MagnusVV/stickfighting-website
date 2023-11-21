@@ -24,7 +24,6 @@ const InstructorSection = () => {
       }
 
       if (instructors) {
-        console.log('Instructors ', instructors)
         setinstructors(instructors)
       }
     }
