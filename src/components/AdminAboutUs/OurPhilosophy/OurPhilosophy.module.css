@@ -7,4 +7,5 @@
   padding: 10px;
   min-width: 300px;
   min-height: 300px;
+  grid-row: 1/2;
 }

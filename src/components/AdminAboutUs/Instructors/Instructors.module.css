@@ -3,8 +3,8 @@
   min-width: 300px;
   height: auto;
   display: flex;
-  flex-direction: column;
-  gap: 10px;
+  /* flex-direction: column; */
+  gap: 1rem;
 }
 
 .form {

@@ -45,11 +45,13 @@ const AdminAboutUs = () => {
   return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
   ) : (
-    <div className={styles.wrapper}>
-      <h1>AdminAboutUsComponent</h1>
-      <AboutUs about={about} setAbout={setAbout} />
-      <Instructors instructors={instructors} />
-      <OurPhilosophy />
+    <div>
+      <h2>AdminAboutUsComponent</h2>
+      <div className={styles.wrapper}>
+        <AboutUs about={about} setAbout={setAbout} />
+        <OurPhilosophy />
+        <Instructors instructors={instructors} />
+      </div>
     </div>
   )
 }

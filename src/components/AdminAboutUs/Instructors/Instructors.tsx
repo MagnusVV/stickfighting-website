@@ -66,39 +66,41 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
   })
 
   return (
-    <div className={styles.wrapper}>
+    <div>
       <h2>Instruktörer</h2>
-      {editInstructor && (
-        <EditInstructor
-          instructorId={instructorId}
-          setEditInstructor={setEditInstructor}
-        />
-      )}
-      {instructorsFetch.map((instructor: any, index: number) => {
-        const valueToUpdate = instructorsFetch.find(
-          (value: { id: number; name: string }) => value.id === instructor.id,
-        )
-        return (
-          <div key={index}>
-            <input
-              className={styles.input}
-              name={`instructor_${instructor.name}_name`}
-              placeholder="lorem ipsum"
-              defaultValue={valueToUpdate?.name}
-              readOnly
-            ></input>
-            <MenuBar editor={menuEditor} />
-            <InstructorEditor content={instructor.body_text} />
-            <button
-              onClick={() => {
-                setEditInstructor(true), setInstructorId(instructor.id)
-              }}
-            >
-              Updatera
-            </button>
-          </div>
-        )
-      })}
+      <div className={styles.wrapper}>
+        {editInstructor && (
+          <EditInstructor
+            instructorId={instructorId}
+            setEditInstructor={setEditInstructor}
+          />
+        )}
+        {instructorsFetch.map((instructor: any, index: number) => {
+          const valueToUpdate = instructorsFetch.find(
+            (value: { id: number; name: string }) => value.id === instructor.id,
+          )
+          return (
+            <div key={index}>
+              <input
+                className={styles.input}
+                name={`instructor_${instructor.name}_name`}
+                placeholder="lorem ipsum"
+                defaultValue={valueToUpdate?.name}
+                readOnly
+              ></input>
+              <MenuBar editor={menuEditor} />
+              <InstructorEditor content={instructor.body_text} />
+              <button
+                onClick={() => {
+                  setEditInstructor(true), setInstructorId(instructor.id)
+                }}
+              >
+                Updatera
+              </button>
+            </div>
+          )
+        })}
+      </div>
     </div>
   )
 }
