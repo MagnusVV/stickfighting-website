@@ -127,7 +127,7 @@ const AdminNews = () => {
           })}
         </div>
       </div>
-      <div>
+      <div className={styles.addNewsSection}>
         <h3>Ny nyhet</h3>
         <form onSubmit={handleInsert} className={styles.form}>
           <input
@@ -146,7 +146,11 @@ const AdminNews = () => {
           />
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
-          <button type="submit">Lägg till nyhet</button>
+          <Button
+            text="Lägg till nyhet"
+            styling={genericButton}
+            type="submit"
+          />
         </form>
       </div>
     </div>
