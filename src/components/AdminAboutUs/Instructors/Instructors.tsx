@@ -67,6 +67,7 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
 
   return (
     <div className={styles.wrapper}>
+      <h2>Instruktörer</h2>
       {editInstructor && (
         <EditInstructor
           instructorId={instructorId}

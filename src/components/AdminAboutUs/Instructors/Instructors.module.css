@@ -1,8 +1,10 @@
 .wrapper {
-  border: 2px solid rebeccapurple;
   padding: 10px;
   min-width: 300px;
   height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .form {
@@ -11,6 +13,6 @@
   flex-direction: column;
 }
 
-.textarea {
-  margin-bottom: 1rem;
+.input {
+  height: 1.5rem;
 }

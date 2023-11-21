@@ -6,6 +6,7 @@ import { fetchObj, InstructorCollection } from '@/lib/types'
 import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
 import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
+import styles from './AdminAboutUs.module.css'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
@@ -44,12 +45,12 @@ const AdminAboutUs = () => {
   return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
   ) : (
-    <>
+    <div className={styles.wrapper}>
       <h1>AdminAboutUsComponent</h1>
       <AboutUs about={about} setAbout={setAbout} />
       <Instructors instructors={instructors} />
       <OurPhilosophy />
-    </>
+    </div>
   )
 }
 

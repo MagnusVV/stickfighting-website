@@ -1,11 +1,9 @@
 .form {
-  border: 2px solid hotpink;
   background-color: aqua;
   display: flex;
   flex-direction: column;
 }
 .wrapper {
-  border: 2px solid lightseagreen;
   padding: 10px;
   min-width: 300px;
   min-height: 300px;

@@ -1,8 +1,7 @@
 .wrapper {
+  border: 1px solid var(--rust-red);
   display: flex;
   flex-direction: column;
-  border: 2px solid var(--rust-red);
-  width: 100%;
   height: auto;
-  gap: 2rem;
+  gap: 1rem;
 }
