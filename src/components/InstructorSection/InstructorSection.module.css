@@ -33,13 +33,6 @@
 }
 
 @media only screen and (min-width: 768px) {
-  /* .container:last-of-type {
-    align-items: flex-end;
-  } */
-  /* .container:last-of-type h3 {
-    justify-content: left;
-  } */
-
   .infoContainer p {
     width: 50%;
   }
@@ -47,8 +40,4 @@
   .container:last-of-type .infoContainer {
     align-items: flex-end;
   }
-
-  /* .container:last-of-type h3 {
-    color: blue;
-  } */
 }
