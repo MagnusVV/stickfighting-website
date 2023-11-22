@@ -60,13 +60,17 @@ const AdminCalendar: React.FC = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h2>Schema händelser</h2>
-      <ViewEvents events={events} onEventClick={handleEventClick} />
-      <h2>redigera händelse</h2>
-      <EventHandler
-        selectedEvents={selectedEvents}
-        onEventClick={handleEventClick}
-      />
+      <div>
+        <h2>Schema händelser</h2>
+        <ViewEvents events={events} onEventClick={handleEventClick} />
+      </div>
+      <div>
+        <h2>redigera händelse</h2>
+        <EventHandler
+          selectedEvents={selectedEvents}
+          onEventClick={handleEventClick}
+        />
+      </div>
     </div>
   )
 }
