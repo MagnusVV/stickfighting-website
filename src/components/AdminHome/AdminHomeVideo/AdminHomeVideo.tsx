@@ -4,7 +4,7 @@ import styles from './AdminHomeVideo.module.css'
 const AdminHomeVideo = () => {
   return (
     <div className={styles.wrapper}>
-      <h1>Videohantering</h1>
+      <h2>Videohantering</h2>
       <VideoHandler />
     </div>
   )

@@ -8,7 +8,7 @@
 .instructorsContainer {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
   width: 100%;
 }
 .container {
@@ -18,19 +18,26 @@
   justify-content: flex-start;
 }
 
+.container:last-of-type {
+  margin-top: 5rem;
+}
+
 .container h3 {
   margin-bottom: 10px;
 }
 
 .infoContainer {
-  max-width: 300px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 
 @media only screen and (min-width: 768px) {
-  .container:last-of-type {
-    align-items: flex-end;
+  .infoContainer p {
+    width: 50%;
   }
-  .container:last-of-type h3 {
-    justify-content: left;
+
+  .container:last-of-type .infoContainer {
+    align-items: flex-end;
   }
 }
