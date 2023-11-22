@@ -6,17 +6,21 @@
   width: 85vw;
   font-weight: 300;
   color: white;
-  transition: all 0.3s;
 }
 
 .navBlend {
   mix-blend-mode: difference;
 }
 
+.nav {
+  transition: all 0.3s;
+}
+
 .hamburgerMenu {
-  width: fit-content;
+  width: 50vw;
   padding: 0.5rem;
   background-color: black;
+  filter: drop-shadow(0 0 0.5rem #6c0e11);
 }
 
 .hamburgerMenu a {

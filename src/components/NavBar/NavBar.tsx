@@ -7,8 +7,13 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 import { FaBars } from 'react-icons/fa'
+import { NavBarProps } from '@/lib/types'
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<NavBarProps> = ({
+  hamburgerColor,
+}: {
+  hamburgerColor: string
+}) => {
   // TODO: Replace this part with Logged in-prop from the page.tsx this component is placed in? -MV --->
   const [userSession, setUserSession] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
@@ -36,7 +41,7 @@ const NavBar: React.FC = () => {
             setMenuOpen(!menuOpen)
           }}
         >
-          <FaBars size="1.5rem" style={{ color: 'black' }} />
+          <FaBars size="1.5rem" style={{ color: `${hamburgerColor}` }} />
         </button>
         {menuOpen && (
           <div className={styles.hamburgerMenu}>

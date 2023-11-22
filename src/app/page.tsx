@@ -16,7 +16,7 @@ export default async function Home() {
 
     return (
       <div className={styles.videoContainer}>
-        <video /* autoPlay */ muted loop className={styles.video}>
+        <video autoPlay muted loop className={styles.video}>
           <source src={publicUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -28,7 +28,7 @@ export default async function Home() {
     <>
       <WelcomeVideo />
       <main className={styles.main}>
-        <NavBar />
+        <NavBar hamburgerColor="black" />
         <div className={styles.velcomeText}>
           Välkommen till stickfighting.se
         </div>

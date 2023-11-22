@@ -74,3 +74,9 @@ export interface NewEvent extends Omit<FetchedEvent, 'id'> {
 }
 
 // <--- --- --- --- --- --- --- --- --- ---|
+// MISC TYPES FOR PROP STYLING ETC. --- --->
+// NavBar.tsx
+export interface NavBarProps {
+  hamburgerColor: string
+}
+// <--- --- --- --- --- --- --- --- --- ---|

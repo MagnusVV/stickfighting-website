@@ -6,7 +6,7 @@ import NavBar from '@/components/NavBar/NavBar'
 const page = () => {
   return (
     <main className={styles.main}>
-      <NavBar />
+      <NavBar hamburgerColor="white" />
       <h1>NYHET</h1>
     </main>
   )
