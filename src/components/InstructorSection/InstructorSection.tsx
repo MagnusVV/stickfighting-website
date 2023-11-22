@@ -48,8 +48,12 @@ const InstructorSection = () => {
               return (
                 <div className={styles.container} key={instructor.id}>
                   <div>
-                    <h3 className={styles.instructorName}>{instructor.name}</h3>
-                    <div className={styles.infoContainer}>{parser(output)}</div>
+                    <div className={styles.infoContainer}>
+                      <h3 className={styles.instructorName}>
+                        {instructor.name}
+                      </h3>
+                      {parser(output)}
+                    </div>
                   </div>
                 </div>
               )
