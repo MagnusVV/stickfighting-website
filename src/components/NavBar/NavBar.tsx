@@ -7,8 +7,13 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useEffect, useState } from 'react'
 import { Database } from '@/lib/codeBlockSupabase'
 import { FaBars } from 'react-icons/fa'
+import { NavBarProps } from '@/lib/types'
 
-const NavBar: React.FC = () => {
+const NavBar: React.FC<NavBarProps> = ({
+  hamburgerColor,
+}: {
+  hamburgerColor: string
+}) => {
   // TODO: Replace this part with Logged in-prop from the page.tsx this component is placed in? -MV --->
   const [userSession, setUserSession] = useState<boolean>(false)
   const [menuOpen, setMenuOpen] = useState<boolean>(false)
@@ -29,33 +34,37 @@ const NavBar: React.FC = () => {
   // <--- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---|
 
   return (
-    <nav className={styles.nav}>
-      <button
-        onClick={() => {
-          setMenuOpen(!menuOpen)
-        }}
-      >
-        <FaBars size="1.5rem" />
-      </button>
-      {menuOpen && (
-        <div className={styles.hamburgerMenu}>
+    <>
+      <nav className={styles.nav}>
+        <button
+          onClick={() => {
+            setMenuOpen(!menuOpen)
+          }}
+        >
+          <FaBars size="1.5rem" style={{ color: `${hamburgerColor}` }} />
+        </button>
+        {menuOpen && (
+          <div className={styles.hamburgerMenu}>
+            <Link href="/">Start</Link>
+            <Link href="/schema">Schema</Link>
+            <Link href="/om_oss">Om oss</Link>
+            <Link href="/galleri">Bildgalleri</Link>
+            {/* Conditional rendering of admin-link */}
+            {userSession && <Link href="/admin">Admin</Link>}
+          </div>
+        )}{' '}
+      </nav>
+      <nav className={styles.navBlend}>
+        <div className={styles.menu}>
           <Link href="/">Start</Link>
           <Link href="/schema">Schema</Link>
           <Link href="/om_oss">Om oss</Link>
           <Link href="/galleri">Bildgalleri</Link>
           {/* Conditional rendering of admin-link */}
           {userSession && <Link href="/admin">Admin</Link>}
-        </div>
-      )}
-      <div className={styles.menu}>
-        <Link href="/">Start</Link>
-        <Link href="/schema">Schema</Link>
-        <Link href="/om_oss">Om oss</Link>
-        <Link href="/galleri">Bildgalleri</Link>
-        {/* Conditional rendering of admin-link */}
-        {userSession && <Link href="/admin">Admin</Link>}
-      </div>
-    </nav>
+        </div>{' '}
+      </nav>
+    </>
   )
 }
 

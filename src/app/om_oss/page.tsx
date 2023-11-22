@@ -27,7 +27,7 @@ const Page = async () => {
 
   return (
     <main className={styles.main}>
-      <NavBar />
+      <NavBar hamburgerColor="white" />
       {/* "Om föreningen" section */}
       <section className={styles.section}>
         <AboutUsSection />
