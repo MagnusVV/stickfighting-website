@@ -1,4 +1,5 @@
 import styles from '../page.module.css'
+import aboutStyles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '../../lib/supabaseServer'
 // Tiptap imports

@@ -12,7 +12,6 @@ const supabase = createClientComponentClient<Database>()
 const AdminHome = () => {
   return (
     <div className={styles.wrapper}>
-      <h1>AdminHome</h1>
       <AdminHomeVideo />
       <AdminNews />
       {/* <ReadOnlyTipTap />
