@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={work_sans.className}>
-        <PageTitle /> {children} <Footer />
+        {children} <Footer />
       </body>
     </html>
   )
