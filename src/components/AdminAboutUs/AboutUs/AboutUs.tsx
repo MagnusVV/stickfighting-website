@@ -18,28 +18,36 @@ interface AboutUsProps {
 
 const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
   const [aboutjson, setAboutJson] = useState<JSONContent>()
+  const [count, setCount] = useState<number>(0)
+  const [ready, setReady] = useState<boolean>(false)
   //connect to supabase
   // const supabase = createClientComponentClient<Database>()
   const { supabase, userId } = useSupabaseClient()
 
-  const fetchAbout = async () => {
-    const { data, error } = await supabase
-      .from('about_association')
-      .select('body_text')
-      .eq('id', 1)
+  useEffect(() => {
+    const fetchAbout = async () => {
+      const { data, error } = await supabase
+        .from('about_association')
+        .select('body_text')
+        .eq('id', 1)
 
-    if (error) {
-      console.log(error)
-      return
+      if (error) {
+        console.log(error)
+        return
+      }
+
+      if (data && data.length > 0) {
+        console.log('about ' + data[0]?.body_text)
+
+        //@ts-ignore //FIXME: throwing an error when building
+        editor?.commands.setContent(data[0].body_text)
+        setReady(true)
+      }
     }
+    fetchAbout()
+  }, [userId])
 
-    if (data && data.length > 0) {
-      console.log('about ' + data[0]?.body_text)
-
-      //@ts-ignore //FIXME: throwing an error when building
-      editor?.commands.setContent(data[0].body_text)
-    }
-  }
+  console.log(count)
 
   const updateAbout = async () => {
     const { error } = await supabase
@@ -65,17 +73,23 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
   })
 
   return (
-    <div className={styles.wrapper}>
-      <h2>Om oss</h2>
-      <MenuBar editor={editor} />
-      <EditorContent editor={editor} />
-      <button onClick={fetchAbout}>fetch data</button>
-      <Button
-        text="Uppdatera"
-        styling={genericButton}
-        onClickEvent={updateAbout}
-      />
-    </div>
+    <>
+      {ready ? (
+        <div className={styles.wrapper}>
+          <h2>Om oss</h2>
+          <MenuBar editor={editor} />
+          <EditorContent editor={editor} />
+          {/* <button onClick={fetchAbout}>fetch data</button> */}
+          <Button
+            text="Uppdatera"
+            styling={genericButton}
+            onClickEvent={updateAbout}
+          />
+        </div>
+      ) : (
+        <p>Loading.....</p>
+      )}
+    </>
   )
 }
 
