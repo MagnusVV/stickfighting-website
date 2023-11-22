@@ -37,7 +37,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
       }
 
       if (data && data.length > 0) {
-        console.log('about ' + data[0]?.body_text)
+        // console.log('about ' + data[0]?.body_text)
 
         //@ts-ignore //FIXME: throwing an error when building
         editor?.commands.setContent(data[0].body_text)
@@ -47,7 +47,7 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
     fetchAbout()
   }, [userId])
 
-  console.log(count)
+  // console.log(count)
 
   const updateAbout = async () => {
     const { error } = await supabase

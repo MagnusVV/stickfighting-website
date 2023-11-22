@@ -1,14 +1,11 @@
 import styles from '../page.module.css'
-import aboutStyles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '../../lib/supabaseServer'
 // Tiptap imports
-import { generateHTML } from '@tiptap/react'
-import StarterKit from '@tiptap/starter-kit'
-import parser from 'html-react-parser'
 import AboutUsSection from '@/components/aboutUsSection/AboutusSection'
 import OurPhilosophy from '@/components/OurPhilosophy/OurPhilosophy'
 import InstructorSection from '@/components/InstructorSection/InstructorSection'
+import PageTitle from '@/components/PageTitle/PageTitle'
 
 const Page = async () => {
   const { supabase } = useSupabaseServer()
@@ -28,6 +25,7 @@ const Page = async () => {
 
   return (
     <main className={styles.main}>
+      <PageTitle pageTitle="Om oss" />
       <NavBar hamburgerColor="white" />
       {/* "Om föreningen" section */}
       <section className={styles.section}>

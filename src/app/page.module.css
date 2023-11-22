@@ -73,7 +73,7 @@
 
 @media only screen and (min-width: 360px) {
   .main {
-    padding: 6rem 0rem 2rem 0rem;
+    padding: 12rem 0rem 2rem 0rem;
     min-height: 75vh;
   }
   .velcomeText {
@@ -84,9 +84,10 @@
     padding: 2rem 1rem 0.5rem 1rem;
   }
 }
+
 @media only screen and (min-width: 768px) {
   .main {
-    padding: 6rem 0rem 4rem 0rem;
+    padding: 12rem 0rem 4rem 0rem;
   }
   .velcomeText {
     font-size: 36px;
@@ -94,7 +95,7 @@
 }
 @media only screen and (min-width: 1024px) {
   .main {
-    padding: 8rem 0rem 6rem 0rem;
+    padding: 16rem 0rem 6rem 0rem;
     min-height: 100vh;
   }
   .velcomeText {

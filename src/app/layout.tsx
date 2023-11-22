@@ -7,6 +7,7 @@ import { Inter } from 'next/font/google'
 import { Work_Sans } from 'next/font/google'
 
 import Footer from '@/components/Footer/Footer'
+import PageTitle from '@/components/PageTitle/PageTitle'
 
 const inter = Inter({ subsets: ['latin'] })
 const work_sans = Work_Sans({ subsets: ['latin'] })

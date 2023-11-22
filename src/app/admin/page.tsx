@@ -7,10 +7,12 @@ import AdminHome from '@/components/AdminHome/AdminHome'
 import adminStyles from './page.module.css'
 import AdminCalendar from '@/components/AdminCalendar/AdminCalendar'
 import AdminImageGallery from '@/components/AdminImageGallery/AdminImageGallery'
+import PageTitle from '@/components/PageTitle/PageTitle'
 
 const AdminPage = () => {
   return (
     <main className={`${styles.main} ${adminStyles.wrapper}`}>
+      <PageTitle pageTitle="Admin" />
       <NavBar hamburgerColor="white" />
       <h2>Administration</h2>
       <AdminHome />
