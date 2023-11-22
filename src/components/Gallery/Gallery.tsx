@@ -43,7 +43,7 @@ const Gallery = () => {
               quality={75}
               alt="Träningsträff"
               layout="fill"
-              objectFit="contain"
+              objectFit="cover"
             />
           </div>
         ) : null,
