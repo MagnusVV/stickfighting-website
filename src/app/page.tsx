@@ -2,7 +2,7 @@ import styles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '@/lib/supabaseServer'
 
-import HomeNews from '@/components/HomeNews/HomeNews'
+import HomeNews from '@/components/homeNews/HomeNews'
 
 export default async function Home() {
   const { supabase } = useSupabaseServer()
