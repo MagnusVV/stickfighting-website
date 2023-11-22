@@ -11,7 +11,7 @@ import AdminImageGallery from '@/components/AdminImageGallery/AdminImageGallery'
 const AdminPage = () => {
   return (
     <main className={`${styles.main} ${adminStyles.wrapper}`}>
-      <NavBar />
+      <NavBar hamburgerColor="white" />
       <h1>Welcome Admin</h1>
       <AdminHome />
       <AdminCalendar />
