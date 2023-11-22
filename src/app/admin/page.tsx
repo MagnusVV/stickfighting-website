@@ -12,7 +12,7 @@ const AdminPage = () => {
   return (
     <main className={`${styles.main} ${adminStyles.wrapper}`}>
       <NavBar hamburgerColor="white" />
-      <h1>Welcome Admin</h1>
+      <h2>Administration</h2>
       <AdminHome />
       <AdminCalendar />
       <AdminAboutUs />
