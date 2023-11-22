@@ -2,10 +2,8 @@
 import { useEffect, useState } from 'react'
 import styles from './AboutUs.module.css'
 import { fetchObj } from '@/lib/types'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
-import { Database } from '@/lib/codeBlockSupabase'
 import TipTap, { MenuBar } from '@/components/Tiptap/Tiptap'
-import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import { EditorContent, useEditor, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
 import Button from '@/components/Button/Button'
@@ -18,7 +16,6 @@ interface AboutUsProps {
 
 const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
   const [aboutjson, setAboutJson] = useState<JSONContent>()
-  const [count, setCount] = useState<number>(0)
   const [ready, setReady] = useState<boolean>(false)
   //connect to supabase
   // const supabase = createClientComponentClient<Database>()
@@ -37,8 +34,6 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
       }
 
       if (data && data.length > 0) {
-        // console.log('about ' + data[0]?.body_text)
-
         //@ts-ignore //FIXME: throwing an error when building
         editor?.commands.setContent(data[0].body_text)
         setReady(true)
@@ -46,8 +41,6 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
     }
     fetchAbout()
   }, [userId])
-
-  // console.log(count)
 
   const updateAbout = async () => {
     const { error } = await supabase
@@ -79,7 +72,6 @@ const AboutUs: React.FC<AboutUsProps> = ({ about, setAbout }) => {
           <h2>Om oss</h2>
           <MenuBar editor={editor} />
           <EditorContent editor={editor} />
-          {/* <button onClick={fetchAbout}>fetch data</button> */}
           <Button
             text="Uppdatera"
             styling={genericButton}

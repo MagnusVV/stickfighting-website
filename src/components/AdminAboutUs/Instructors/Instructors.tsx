@@ -1,12 +1,11 @@
 'use client'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import styles from './Instructors.module.css'
-import { InstructorCollection, InstructorParams } from '@/lib/types'
+import { InstructorCollection } from '@/lib/types'
 import { MenuBar } from '@/components/Tiptap/Tiptap'
-import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import { EditorContent, useEditor, JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
-import { Json } from '@/lib/codeBlockSupabase'
 import EditInstructor from './EditInstructor'
 import Button from '@/components/Button/Button'
 import { genericButton } from '@/components/Button/assortedButtons'
@@ -35,7 +34,6 @@ const Instructors: React.FC<InstructorsProps> = ({ instructors }) => {
       }
 
       if (data && data.length > 0) {
-        // console.log('instructors ', data)
         setInstructorsFetch(data)
       }
     }

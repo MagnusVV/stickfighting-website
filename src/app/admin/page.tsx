@@ -1,4 +1,3 @@
-import AboutUsText from '@/components/AdminAboutUs/OurPhilosophy/OurPhilosophy'
 import styles from '../page.module.css'
 import LogoutBtn from '@/components/LogoutBtn/LogoutBtn'
 import NavBar from '@/components/NavBar/NavBar'
