@@ -1,6 +1,6 @@
 'use client'
 import useSupabaseClient from '@/lib/supabaseClient'
-import { FormattedEvent, FetchedEvent } from '@/lib/types'
+import { FormattedEvent } from '@/lib/types'
 import { useState, useEffect } from 'react'
 import moment from 'moment'
 import styles from './AdminCalendar.module.css'

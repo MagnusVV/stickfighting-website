@@ -213,10 +213,6 @@ const EventHandler: React.FC<EventHandlerProps> = ({
   return (
     <div className={styles.wrapper}>
       {/* --- Remove one or more chosen events --- -MV */}
-
-      {/* {selectedEvents.map(eventId => (
-        <p key={eventId}>Selected Event ID: {eventId}</p>
-      ))} */}
       <div>
         <h3>Ta bort valda händelser</h3>
         <form

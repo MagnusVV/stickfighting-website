@@ -8,15 +8,6 @@
   gap: 1rem;
 }
 
-@media only screen and (min-width: 360px) {
-}
-
-@media only screen and (min-width: 768px) {
-}
-
-@media only screen and (min-width: 1024px) {
-}
-
 @media only screen and (min-width: 1366px) {
   .wrapper {
     flex-direction: row;

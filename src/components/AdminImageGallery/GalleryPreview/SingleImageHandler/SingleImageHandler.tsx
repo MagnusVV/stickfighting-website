@@ -134,7 +134,7 @@ const SingleImageHandler = ({
             className={labelButton}
             htmlFor={`addReplace_${suffix.toString()}_upload`}
           >
-            Byt bild?{' '}
+            Byt bild{' '}
             <input
               type="file"
               name="uploadImage"

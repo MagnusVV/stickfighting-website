@@ -6,7 +6,6 @@ import moment from 'moment-timezone'
 import 'moment/locale/sv'
 // For formatting singele events -MV
 import { FormattedEvent } from '@/lib/types'
-// import { Views } from 'react-big-calendar' TODO: Remove when testing is done -MV
 
 // Sets default time-zone -MV
 moment.tz.setDefault('Europe/Stockholm')
@@ -45,7 +44,6 @@ const EventCalendar = (props: Omit<CalendarProps, 'localizer'>) => {
   return (
     <div className={styles.calendarFrame}>
       <Calendar
-        // defaultView={Views.DAY} TODO: Remove when testing is done -MV
         views={['month' /* 'week', 'day' */]} // FIXME: If they need week and day view, uncomment them to activate them. -MV
         localizer={localizer}
         events={formattedEvents}

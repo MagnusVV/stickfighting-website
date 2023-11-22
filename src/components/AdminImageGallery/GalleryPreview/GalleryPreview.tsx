@@ -2,7 +2,7 @@
 import SingleImageHandler from './SingleImageHandler/SingleImageHandler'
 import styles from './GalleryPreview.module.css'
 import useSupabaseClient from '@/lib/supabaseClient'
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useState } from 'react'
 
 const GalleryPreview = () => {
   // Controls maximum number of images in the gallery -MV

@@ -5,9 +5,8 @@ import '../../app/globals.css'
 import { EditorContent, useEditor, Editor } from '@tiptap/react'
 
 import StarterKit from '@tiptap/starter-kit'
-import React, { ReactNode, useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import useSupabaseClient from '@/lib/supabaseClient'
-import { Json } from '@/lib/codeBlockSupabase'
 
 interface MenuBarProps {
   editor: Editor | null
@@ -170,8 +169,6 @@ const TipTap = () => {
     <>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      {/* <button onClick={edidorUpdate}>update</button>
-      <button onClick={fetchTestData}>fetchData</button> */}
     </>
   )
 }

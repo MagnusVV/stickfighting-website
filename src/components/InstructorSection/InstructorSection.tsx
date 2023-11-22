@@ -13,7 +13,7 @@ const InstructorSection = () => {
   const { supabase } = useSupabaseClient()
 
   useEffect(() => {
-    const newsFetch = async () => {
+    const instructorsFetch = async () => {
       const { data: instructors, error } = await supabase
         .from('instructors')
         .select('*')
@@ -27,7 +27,7 @@ const InstructorSection = () => {
         setinstructors(instructors)
       }
     }
-    newsFetch()
+    instructorsFetch()
   }, [])
 
   useEffect(() => {

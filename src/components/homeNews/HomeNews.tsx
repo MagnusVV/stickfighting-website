@@ -1,6 +1,6 @@
 'use client'
 import { generateHTML } from '@tiptap/core'
-import React, { useEffect, useMemo, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './HomeNews.module.css'
 import parser from 'html-react-parser'
 import useSupabaseClient from '@/lib/supabaseClient'
@@ -28,10 +28,6 @@ const HomeNews: React.FC = () => {
     }
     newsFetch()
   }, [])
-
-  const bodyText = text.map(body => {
-    return body.body_text
-  })
 
   return (
     <>

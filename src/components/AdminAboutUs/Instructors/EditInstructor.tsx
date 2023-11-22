@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import Styles from './EditInstructor.module.css'
-import { EditorContent, useEditor, Editor, JSONContent } from '@tiptap/react'
+import { EditorContent, useEditor, JSONContent } from '@tiptap/react'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { MenuBar } from '@/components/Tiptap/Tiptap'
 import StarterKit from '@tiptap/starter-kit'
