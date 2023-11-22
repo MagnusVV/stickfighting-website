@@ -29,6 +29,23 @@
   }
 }
 
+.genericButtonMargin {
+  display: inline-block;
+  font-family: inherit;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border: 2px solid var(--rust-red);
+  color: white;
+  background-color: var(--matte-black-bg);
+  border-radius: 0.25rem;
+  margin: 10px 0px;
+  &.genericButtonMargin:hover {
+    background-color: white;
+    color: black;
+  }
+}
+
 /* Covers an entire "single news" */
 .openNewsModalButton {
   width: 100%;
@@ -45,9 +62,21 @@
     width: 5rem;
     padding: 6px 8px;
   }
+
+  .genericButtonMargin {
+    font-size: x-small;
+    width: 5rem;
+    padding: 6px 8px;
+  }
 }
 @media only screen and (min-width: 768px) {
   .genericButton {
+    font-size: smaller;
+    width: 6rem;
+    padding: 8px 12px;
+  }
+
+  .genericButtonMargin {
     font-size: smaller;
     width: 6rem;
     padding: 8px 12px;
@@ -59,9 +88,21 @@
     width: 7rem;
     padding: 10px 16px;
   }
+
+  .genericButtonMargin {
+    font-size: small;
+    width: 7rem;
+    padding: 10px 16px;
+  }
 }
 @media only screen and (min-width: 1366px) {
   .genericButton {
+    font-size: medium;
+    width: 8rem;
+    padding: 12px 20px;
+  }
+
+  .genericButtonMargin {
     font-size: medium;
     width: 8rem;
     padding: 12px 20px;

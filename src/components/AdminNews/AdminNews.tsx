@@ -8,7 +8,7 @@ import StarterKit from '@tiptap/starter-kit'
 import useSupabaseClient from '@/lib/supabaseClient'
 import { Json } from '@/lib/codeBlockSupabase'
 import Button from '../Button/Button'
-import { genericButton } from '../Button/assortedButtons'
+import { genericButton, genericButtonMargin } from '../Button/assortedButtons'
 
 export interface newsFetch {
   id: number
@@ -90,46 +90,9 @@ const AdminNews = () => {
 
   return (
     <div className={styles.wrapper}>
-      <h1>Nyheter</h1>
-      {editNews && (
-        <EditNews
-          newsId={newsId}
-          newsArticle={newsArticles}
-          setEditNews={setEditNews}
-        />
-      )}
-      <div>
-        <h3>redigera nyheter</h3>
-        <div className={styles.newscarousel}>
-          {newsArticles.map(article => {
-            return (
-              <div
-                className={styles.article}
-                key={article.id}
-                id={article.id.toString()}
-              >
-                <h3>{article.title}</h3>
-                <h4>{article.ingress}</h4>
-                {/* return the component to update editor content properly */}
-                {/* TODO: Make them non editable */}
-                <ArticleEditor content={article.body_text} />
-                <p>{article.created_at.slice(0, 10)}</p>
-                <Button
-                  text="Redigera"
-                  type="button"
-                  styling={genericButton}
-                  onClickEvent={() => {
-                    setNewsId(article.id), setEditNews(true)
-                  }}
-                />
-              </div>
-            )
-          })}
-        </div>
-      </div>
       <div className={styles.addNewsSection}>
-        <h3>Ny nyhet</h3>
         <form onSubmit={handleInsert} className={styles.form}>
+          <h2>Ny nyhet</h2>
           <input
             className={styles.input}
             type="text"
@@ -152,6 +115,43 @@ const AdminNews = () => {
             type="submit"
           />
         </form>
+      </div>
+      <h2>Nyheter</h2>
+      {editNews && (
+        <EditNews
+          newsId={newsId}
+          newsArticle={newsArticles}
+          setEditNews={setEditNews}
+        />
+      )}
+      <div>
+        <h3>Redigera nyheter</h3>
+        <div className={styles.newscarousel}>
+          {newsArticles.map(article => {
+            return (
+              <div
+                className={styles.article}
+                key={article.id}
+                id={article.id.toString()}
+              >
+                <h3>{article.title}</h3>
+                <h4>{article.ingress}</h4>
+                {/* return the component to update editor content properly */}
+                {/* TODO: Make them non editable */}
+                <ArticleEditor content={article.body_text} />
+                <p>{article.created_at.slice(0, 10)}</p>
+                <Button
+                  text="Redigera"
+                  type="button"
+                  styling={genericButtonMargin}
+                  onClickEvent={() => {
+                    setNewsId(article.id), setEditNews(true)
+                  }}
+                />
+              </div>
+            )
+          })}
+        </div>
       </div>
     </div>
   )

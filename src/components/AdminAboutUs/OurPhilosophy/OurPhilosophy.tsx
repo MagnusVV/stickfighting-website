@@ -27,22 +27,25 @@ const OurPhilosophy = () => {
   const { supabase, userId } = useSupabaseClient()
   const [philosophy, setPhilosophy] = useState<JSONContent>()
 
-  const fetchPhilosophy = async () => {
-    const { data, error } = await supabase
-      .from('our_philosophy')
-      .select('body_text')
-      .eq('id', 2)
+  useEffect(() => {
+    const fetchPhilosophy = async () => {
+      const { data, error } = await supabase
+        .from('our_philosophy')
+        .select('body_text')
+        .eq('id', 2)
 
-    if (error) {
-      console.log(error)
-      return
-    }
+      if (error) {
+        console.log(error)
+        return
+      }
 
-    if (data && data.length > 0) {
-      //@ts-ignore //FIXME: throwing an error when building
-      editor?.commands.setContent(data[0].body_text)
+      if (data && data.length > 0) {
+        //@ts-ignore //FIXME: throwing an error when building
+        editor?.commands.setContent(data[0].body_text)
+      }
     }
-  }
+    fetchPhilosophy()
+  }, [userId])
 
   const updatePhilosophy = async () => {
     //make update call to supabase
@@ -73,7 +76,7 @@ const OurPhilosophy = () => {
       <h2>Vår filosofi</h2>
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      <button onClick={fetchPhilosophy}>fetch philosophy</button>
+      {/* <button onClick={fetchPhilosophy}>fetch philosophy</button> */}
       <Button
         text="Uppdatera"
         styling={genericButton}

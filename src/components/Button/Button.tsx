@@ -5,6 +5,7 @@ interface ButtonProps {
   type?: 'button' | 'submit' | 'reset'
   styling?: string
   onClickEvent?: () => void
+  className?: string
 }
 
 const Button = ({
