@@ -1,6 +1,7 @@
 import useSupabaseClient from '@/lib/supabaseClient'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import styles from './Gallery.module.css'
 
 const Gallery = () => {
   const { supabase } = useSupabaseClient()
@@ -33,20 +34,21 @@ const Gallery = () => {
   }, [])
 
   return (
-    <div>
+    <section className={styles.gallerySection}>
       {images.map((url, index) =>
         url ? (
-          <Image
-            key={index}
-            src={url}
-            quality={75}
-            alt="Träningsträff"
-            width={500}
-            height={300}
-          />
+          <div key={index} className={styles.imageContainer}>
+            <Image
+              src={url}
+              quality={75}
+              alt="Träningsträff"
+              layout="fill"
+              objectFit="contain"
+            />
+          </div>
         ) : null,
       )}
-    </div>
+    </section>
   )
 }
 
