@@ -5,6 +5,8 @@ import useSupabaseClient from '@/lib/supabaseClient'
 import { MenuBar } from '@/components/Tiptap/Tiptap'
 import StarterKit from '@tiptap/starter-kit'
 import { Json } from '@/lib/codeBlockSupabase'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 interface instructorProp {
   instructorId: number
@@ -97,6 +99,7 @@ const EditInstructor: React.FC<instructorProp> = ({
         name="editInstructor"
       >
         <input
+          className={Styles.input}
           id="name"
           name="name"
           type="text"
@@ -105,7 +108,11 @@ const EditInstructor: React.FC<instructorProp> = ({
         />
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
-        <button type="submit">Updatera Instruktör</button>
+        <Button
+          text="Updatera instruktör"
+          styling={genericButton}
+          type="submit"
+        />
       </form>
     </div>
   )
