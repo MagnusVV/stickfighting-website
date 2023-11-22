@@ -18,6 +18,11 @@
   flex-direction: column;
 }
 
+.input {
+  height: 1.5rem;
+  width: 300px;
+}
+
 @media only screen and (min-width: 768px) {
   .wrapper {
     height: 700px;
@@ -28,6 +33,7 @@
     transform: translate(-50%, -50%);
     -ms-transform: translate(-50%, -50%);
     border-radius: 20px;
+    padding: 10px;
   }
 }
 

@@ -98,7 +98,7 @@ const EditNews: React.FC<newsProps> = ({
         text="Stäng"
         onClickEvent={() => setEditNews(false)}
       />
-      <h1>Redigera nyheter</h1>
+      <h2>Redigera nyheter</h2>
       <form
         className={styles.form}
         onSubmit={submitNews}
@@ -107,6 +107,7 @@ const EditNews: React.FC<newsProps> = ({
       >
         <label htmlFor="title">titel</label>
         <input
+          className={styles.input}
           id="title"
           name="title"
           type="text"
@@ -116,6 +117,7 @@ const EditNews: React.FC<newsProps> = ({
         />
         <label htmlFor="ingress">Ingress</label>
         <input
+          className={styles.input}
           id="ingress"
           name="ingress"
           type="text"
@@ -126,7 +128,7 @@ const EditNews: React.FC<newsProps> = ({
         <label htmlFor="body_text">Text</label>
         <MenuBar editor={editor} />
         <EditorContent editor={editor} />
-        <button type="submit">Updatera</button>
+        <Button text="Uppdatera" styling={genericButton} type="submit" />
       </form>
     </div>
   )
