@@ -1,0 +1,14 @@
+.pageName {
+  position: absolute;
+  top: 5vh;
+  right: 0;
+  color: white;
+  font-weight: 300;
+  margin-right: 7.5vw;
+}
+
+@media only screen and (min-width: 564px) {
+  .pageName {
+    display: none;
+  }
+}
