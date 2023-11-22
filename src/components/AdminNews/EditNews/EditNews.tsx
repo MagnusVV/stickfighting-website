@@ -98,7 +98,7 @@ const EditNews: React.FC<newsProps> = ({
         text="Stäng"
         onClickEvent={() => setEditNews(false)}
       />
-      <h1>Redigera nyheter</h1>
+      <h2>Redigera nyheter</h2>
       <form
         className={styles.form}
         onSubmit={submitNews}
