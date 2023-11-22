@@ -11,6 +11,13 @@
   padding: 6px 12px;
   font-family: inherit;
   cursor: pointer;
+  border: 2px solid var(--rust-red);
+  background-color: var(--matte-black-bg);
+  border-radius: 0.25rem;
+  &.labelButton:hover {
+    background-color: white;
+    color: black;
+  }
 }
 
 .genericButton {

@@ -38,8 +38,9 @@ const GalleryPreview = () => {
   }, [])
 
   return (
-    <>
+    <div className={styles.wrapper}>
       <h2>Bildgalleri</h2>
+      <p>Klicka på bild för att välja ny</p>
       <ul className={styles.galleryList}>
         {maxImages.map((imageSuffix: number) => (
           <li key={imageSuffix}>
@@ -51,7 +52,7 @@ const GalleryPreview = () => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   )
 }
 

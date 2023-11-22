@@ -1,9 +1,16 @@
 /* For viewing and selecting event list items */
 
+.pageWrapper {
+  width: 100%;
+  border-top: 0.5px solid var(--rust-red);
+  display: flex;
+  justify-content: center;
+}
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 10rem;
+  width: 60%;
 }
 
 .eventContainer {

@@ -1,3 +1,14 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 0.5px solid var(--rust-red);
+}
+
+.wrapper p {
+  margin-bottom: 1rem;
+}
 .galleryList {
   list-style: none;
 }
