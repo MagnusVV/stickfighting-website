@@ -46,11 +46,9 @@ const AdminAboutUs = () => {
     <p>Loading...</p>
   ) : (
     <div className={styles.wrapper}>
-      <div className={styles.wrapper}>
-        <AboutUs about={about} setAbout={setAbout} />
-        <OurPhilosophy />
-        <Instructors instructors={instructors} />
-      </div>
+      <AboutUs about={about} setAbout={setAbout} />
+      <OurPhilosophy />
+      <Instructors instructors={instructors} />
     </div>
   )
 }

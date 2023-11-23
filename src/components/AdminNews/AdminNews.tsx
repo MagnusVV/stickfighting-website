@@ -92,7 +92,7 @@ const AdminNews = () => {
     <div className={styles.wrapper}>
       <div className={styles.addNewsSection}>
         <form onSubmit={handleInsert} className={styles.form}>
-          <h2>Ny nyhet</h2>
+          <h2>Lägg till nyhet</h2>
           <input
             className={styles.input}
             type="text"
@@ -116,7 +116,6 @@ const AdminNews = () => {
           />
         </form>
       </div>
-      <h2>Nyheter</h2>
       {editNews && (
         <EditNews
           newsId={newsId}
@@ -125,7 +124,7 @@ const AdminNews = () => {
         />
       )}
       <div>
-        <h3>Redigera nyheter</h3>
+        <h2>Redigera nyheter</h2>
         <div className={styles.newscarousel}>
           {newsArticles.map(article => {
             return (
