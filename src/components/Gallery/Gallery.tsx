@@ -2,6 +2,7 @@ import useSupabaseClient from '@/lib/supabaseClient'
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import styles from './Gallery.module.css'
+import { motion } from 'framer-motion'
 
 const Gallery = () => {
   const { supabase } = useSupabaseClient()
@@ -45,8 +46,11 @@ const Gallery = () => {
     <section className={styles.gallerySection}>
       {images.map((url, index) =>
         url ? (
-          <div
+          <motion.div
             key={index}
+            initial={{ opacity: 0, y: 100 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.1 }}
             className={`${styles.imageContainer} ${getClassForIndex(
               index,
               images.length,
@@ -60,7 +64,7 @@ const Gallery = () => {
               layout="fill"
               objectFit="cover"
             />
-          </div>
+          </motion.div>
         ) : null,
       )}
     </section>
