@@ -2,7 +2,9 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import styles from '../page.module.css'
+import styles from './page.module.css'
+import Button from '@/components/Button/Button'
+import { genericButton } from '@/components/Button/assortedButtons'
 
 const Page = () => {
   const [email, setEmail] = useState('')
@@ -29,28 +31,30 @@ const Page = () => {
   }
 
   return (
-    <main className={styles.main}>
+    <main>
       <div>
-        <form onSubmit={handleSubmit}>
-          <label>
-            E-postadress
+        <form className={styles.loginWrapper} onSubmit={handleSubmit}>
+          <div>
+            <label>E-postadress</label>
             <input
+              className={styles.loginInput}
               name="email"
               type="email"
               onChange={e => setEmail(e.target.value)}
               value={email}
             />
-          </label>
-          <label>
-            Lösenord
+          </div>
+          <div>
+            <label>Lösenord</label>
             <input
+              className={styles.loginInput}
               type="password"
               name="password"
               onChange={e => setPassword(e.target.value)}
               value={password}
             />
-          </label>
-          <button type="submit">Logga in</button>
+          </div>
+          <Button text="Logga in" styling={genericButton} type="submit" />
         </form>
       </div>
     </main>
