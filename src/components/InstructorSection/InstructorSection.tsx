@@ -64,13 +64,11 @@ const InstructorSection = () => {
                 const output = generateHTML(instructor.body_text, [StarterKit])
                 return (
                   <div className={styles.container} key={instructor.id}>
-                    <div>
-                      <div className={styles.infoContainer}>
-                        <h3 className={styles.instructorName}>
-                          {instructor.name}
-                        </h3>
-                        {parser(output)}
-                      </div>
+                    <div className={styles.infoContainer}>
+                      <h3 className={styles.instructorName}>
+                        {instructor.name}
+                      </h3>
+                      {parser(output)}
                     </div>
                   </div>
                 )
