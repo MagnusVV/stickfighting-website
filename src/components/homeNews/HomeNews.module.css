@@ -9,11 +9,13 @@
   align-items: center;
   gap: 10px;
   height: 32vh;
-  display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
   width: 100%;
 }
+
+/* .newsCarousel {
+} */
 
 .p {
   color: black;
@@ -41,6 +43,7 @@
   filter: drop-shadow(0 0 1rem #6c0e11);
   transform: scale(1.05);
   overflow: visible;
+  margin: 0px 1rem;
 }
 
 @media only screen and (min-width: 360px) {

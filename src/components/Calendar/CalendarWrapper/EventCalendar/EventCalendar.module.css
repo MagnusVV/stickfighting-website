@@ -1,6 +1,17 @@
 .calendarFrame {
   height: 80vh;
-  width: 80vw;
   display: flex;
   flex-direction: column;
+}
+
+@media only screen and (min-width: 360px) {
+  .calendarFrame {
+    width: 95vw;
+  }
+}
+
+@media only screen and (min-width: 564px) {
+  .calendarFrame {
+    width: 80vw;
+  }
 }
