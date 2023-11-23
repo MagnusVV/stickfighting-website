@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react'
 
 const GalleryPreview = () => {
   // Controls maximum number of images in the gallery -MV
-  const maxImages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+  const maxImages: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
   const { supabase } = useSupabaseClient()
   const [images, setImages] = useState<{ [key: number]: string | null }>({})
 

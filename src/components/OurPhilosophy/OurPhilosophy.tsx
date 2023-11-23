@@ -8,12 +8,22 @@ import styles from './OurPhilosophy.module.css'
 import { JSONContent, generateHTML } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
+// Framer Motion animation, triggering when a certain amount of a section comes into view. -MV
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
 const OurPhilosophy = () => {
   const [philosophy, setPhilosophy] = useState<JSONContent>()
   const [philosophyInfo, setPhilosophyInfo] = useState<JSONContent | Json>()
   const [philosophyString, setPhilosophyString] = useState<string>('')
   const [philosophyTitle, setPhilosophyTitle] = useState<Json>()
   const { supabase } = useSupabaseClient()
+
+  // Defines when animation should trigger. -MV
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-25% 0px',
+  })
 
   useEffect(() => {
     const philosophyFetch = async () => {
@@ -49,11 +59,18 @@ const OurPhilosophy = () => {
   }, [philosophyInfo])
 
   return (
-    <div className={styles.wrapper}>
+    <motion.div
+      className={styles.wrapper}
+      ref={ref}
+      initial={{ opacity: 0, y: 200 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}
+    >
       {/* @ts-ignore FIXME: remove ts-ignore */}
-      <h2>{philosophyTitle}</h2>
+      {/* <h2>{philosophyTitle}</h2> */}
+      <h2>Vår filosofi</h2>
       <div className={styles.container}>{parser(philosophyString)}</div>
-    </div>
+    </motion.div>
   )
 }
 

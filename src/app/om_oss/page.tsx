@@ -33,7 +33,6 @@ const Page = async () => {
       </section>
       {/* "Våra instruktörer" section */}
       <section className={styles.section}>
-        <h2>Våra instruktörer</h2>
         <InstructorSection />
       </section>
       {/* "Vår filosofi" section */}

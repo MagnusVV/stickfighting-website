@@ -8,3 +8,15 @@
 .changeImageForm {
   display: flex;
 }
+
+.noImage {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.noImage > p {
+  font-size: xx-large;
+}

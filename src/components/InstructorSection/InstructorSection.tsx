@@ -7,10 +7,20 @@ import { JSONContent, generateHTML } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import parser from 'html-react-parser'
 
+// Framer Motion animation, triggering when a certain amount of a section comes into view. -MV
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
+
 const InstructorSection = () => {
   const [instructors, setinstructors] = useState<JSONContent[]>([])
   const [instructorReady, setInstructorReady] = useState<boolean>(false)
   const { supabase } = useSupabaseClient()
+
+  // Defines when animation should trigger. -MV
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    rootMargin: '-25% 0px',
+  })
 
   useEffect(() => {
     const instructorsFetch = async () => {
@@ -39,15 +49,21 @@ const InstructorSection = () => {
   }, [instructors])
 
   return (
-    <>
-      {instructorReady ? (
-        <div className={styles.wrapper}>
-          <div className={styles.instructorsContainer}>
-            {instructors.map(instructor => {
-              const output = generateHTML(instructor.body_text, [StarterKit])
-              return (
-                <div className={styles.container} key={instructor.id}>
-                  <div>
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 200 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.5 }}
+    >
+      <>
+        {instructorReady ? (
+          <div className={styles.wrapper}>
+            <div className={styles.instructorsContainer}>
+              <h2 className={styles.instructorsHeader}>Våra instruktörer</h2>
+              {instructors.map(instructor => {
+                const output = generateHTML(instructor.body_text, [StarterKit])
+                return (
+                  <div className={styles.container} key={instructor.id}>
                     <div className={styles.infoContainer}>
                       <h3 className={styles.instructorName}>
                         {instructor.name}
@@ -55,15 +71,15 @@ const InstructorSection = () => {
                       {parser(output)}
                     </div>
                   </div>
-                </div>
-              )
-            })}
+                )
+              })}
+            </div>
           </div>
-        </div>
-      ) : (
-        <p>Loading.....</p>
-      )}
-    </>
+        ) : (
+          <p>Loading.....</p>
+        )}
+      </>
+    </motion.div>
   )
 }
 
