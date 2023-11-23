@@ -144,7 +144,7 @@ const SingleImageHandler = ({
               style={{ display: 'none' }}
               onChange={handleSelectedImage}
             />
-            {bucketImage && (
+            {bucketImage ? (
               <div className={styles.previewWrapper}>
                 <Image
                   src={bucketImage}
@@ -156,6 +156,10 @@ const SingleImageHandler = ({
                   placeholder="blur"
                   blurDataURL={`data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8/5+hHgAHggJ/PchI7wAAAABJRU5ErkJggg==`}
                 />
+              </div>
+            ) : (
+              <div className={styles.noImage}>
+                <p>&#43;</p>
               </div>
             )}
           </label>

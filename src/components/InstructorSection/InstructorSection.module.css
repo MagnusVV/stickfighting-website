@@ -22,7 +22,7 @@
 }
 
 .container:last-of-type {
-  margin-top: 5rem;
+  margin-top: 3rem;
 }
 
 .container h3 {
@@ -50,10 +50,10 @@
   }
 
   .container {
-    justify-content: flex-start;
+    align-items: flex-start;
   }
 
   .container:last-of-type .infoContainer {
-    align-items: flex-end;
+    align-self: flex-end;
   }
 }
