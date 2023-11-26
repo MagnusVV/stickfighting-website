@@ -8,6 +8,9 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 The font used is [Work sans](https://fonts.google.com/specimen/Work+Sans?query=work+sans). It's deployed on the [Vercel Platform](https://vercel.com/).
 
+  
+[Deployed site](https://stickfighting-website.vercel.app/)
+
 ## About
 
 The multipage website is a (WIP) live project for a martial arts association in Gothenburg. It consists of the landing page, a calendar page, an about us page, an image gallery, and an admin page for the logged in superuser. The admin page is a small scale CMS of our own design, and every page has items that can be manipulated from it.
