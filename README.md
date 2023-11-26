@@ -1,40 +1,48 @@
-## stickfighting-website
+# stickfighting-website
 
-Repo for the exam project for Robin Persson and Magnus Vargvinter at the Web developer course 2022-24 at YRGO, Gothenburg.
+*Repo for the exam project for Robin Persson and Magnus Vargvinter at the Web developer course 2022-24 at YRGO, Gothenburg.*
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![Bruce Lee wisdom](https://media.giphy.com/media/9WHE2bo5Na9Gg/giphy.gif)
 
-## Getting Started
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). The backend and database is handled by [Supabase](https://supabase.com/). It uses the [React big calendar](https://github.com/jquense/react-big-calendar#readme) component as a calendar, [Tiptap](https://tiptap.dev/) for editing rich text, and the [Framer motion](https://www.framer.com/motion/) library for animations.
 
-First, run the development server:
+The font used is [Work sans](https://fonts.google.com/specimen/Work+Sans?query=work+sans). It's deployed on the [Vercel Platform](https://vercel.com/).
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## About
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The multipage website is a (WIP) live project for a martial arts association in Gothenburg. It consists of the landing page, a calendar page, an about us page, an image gallery, and an admin page for the logged in superuser. The admin page is a small scale CMS of our own design, and every page has items that can be manipulated from it.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Status
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The site is fully functional, but is waiting for feedback from the clients.  
+  
+List of current tasks (will be converted to issues):
 
-## Learn More
+Overall
+- Minor margin fixes on all pages.
+- Convert News section on start page to carousel.
+- More responsive calendar. Clickable events?
+- Images section layout to heavy on left side. Needs to be evened out.
+- More animations?
 
-To learn more about Next.js, take a look at the following resources:
+Admin page
+- Larger margin and layout fixes on admin page, including clearer separation of sections.
+- Video upload section will be more fleshed out.
+- Convert News edit section to carousel.
+- Calendar item selection on admin page to be placed in sorted views, instead of the long line now.
+- Better and clearer layout in images section. Add option for removing images? Add option to increase/decrease number of images?
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Code
+- One more round of code cleanup.
+- Some client side pages can (probably) be rewritten to SSR.
+- Hide login page deeper in the structure Perhaps create a separate route layout?
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Database
+- Clean up table names.
+- Reset ID:s?
 
-## Deploy on Vercel
+Other
+- Help client buy domain name.
+- Client needs a Supabse paid subscription.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
