@@ -34,7 +34,10 @@ const AdminNews = () => {
   //fetch news
   useEffect(() => {
     const fetchNews = async () => {
-      const { data, error } = await supabase.from('news').select('*')
+      const { data, error } = await supabase
+        .from('news')
+        .select('*')
+        .order('created_at', { ascending: false })
 
       if (error) {
         console.log(error)

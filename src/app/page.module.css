@@ -23,7 +23,7 @@
 }
 /* <---------------------------------------------------> */
 
-.velcomeText {
+.welcomeText {
   font-weight: 200;
 }
 
@@ -35,7 +35,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
+  gap: 20px;
 }
 
 /* News Section -------------------------------------->  */
@@ -76,8 +76,10 @@
     padding: 12rem 0rem 2rem 0rem;
     min-height: 75vh;
   }
-  .velcomeText {
+  .welcomeText {
     font-size: 21px;
+    position: relative;
+    bottom: 4rem;
   }
 
   .section {
@@ -89,7 +91,7 @@
   .main {
     padding: 12rem 0rem 4rem 0rem;
   }
-  .velcomeText {
+  .welcomeText {
     font-size: 36px;
   }
 }
@@ -98,17 +100,17 @@
     padding: 16rem 0rem 6rem 0rem;
     min-height: 100vh;
   }
-  .velcomeText {
+  .welcomeText {
     font-size: 48px;
   }
 
   .section {
-    padding: 4rem 4rem 3rem 4rem;
+    padding: 3rem 4rem 3rem 4rem;
   }
 }
 
 @media only screen and (min-width: 1366px) {
-  .velcomeText {
+  .welcomeText {
     font-size: 54px;
   }
 }

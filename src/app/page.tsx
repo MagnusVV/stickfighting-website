@@ -1,7 +1,6 @@
 import styles from './page.module.css'
 import NavBar from '@/components/NavBar/NavBar'
 import useSupabaseServer from '@/lib/supabaseServer'
-
 import HomeNews from '@/components/homeNews/HomeNews'
 
 export default async function Home() {
@@ -15,7 +14,7 @@ export default async function Home() {
 
     return (
       <div className={styles.videoContainer}>
-        <video autoPlay muted loop className={styles.video}>
+        <video autoPlay muted playsInline loop className={styles.video}>
           <source src={publicUrl} type="video/mp4" />
           Your browser does not support the video tag.
         </video>
@@ -28,7 +27,7 @@ export default async function Home() {
       <WelcomeVideo />
       <main className={styles.main}>
         <NavBar hamburgerColor="black" />
-        <div className={styles.velcomeText}>
+        <div className={styles.welcomeText}>
           Välkommen till stickfighting.se
         </div>
         <section className={styles.newsSection}>

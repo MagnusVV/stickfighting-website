@@ -20,7 +20,6 @@ const Page = async () => {
   }
 
   if (aboutPage) {
-    // console.log('aboutPage ', aboutPage)
   }
 
   return (
