@@ -28,7 +28,7 @@ const HomeNews: React.FC = () => {
       const { data: news, error } = await supabase
         .from('news')
         .select('*')
-        .order('created_at', { ascending: true })
+        .order('created_at', { ascending: false })
 
       if (error) {
         console.log(error)
