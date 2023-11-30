@@ -61,8 +61,8 @@ const Gallery = () => {
               src={url}
               quality={75}
               alt="Träningsträff"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: 'cover' }}
             />
           </motion.div>
         ) : null,

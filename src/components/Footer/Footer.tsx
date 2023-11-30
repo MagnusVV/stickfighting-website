@@ -20,12 +20,17 @@ const Footer = () => {
         </a>
       </div>
 
-      <div className={`${styles.logoContainer} ${styles.rotateImage}`}>
-        <Image src="/biting-rattan-logo.png" alt="biting rattan logo" fill />
+      <div className={`${styles.logoContainer}`}>
+        <Image
+          src="/biting-rattan-logo.png"
+          alt="biting rattan logo"
+          fill
+          style={{ objectFit: 'contain' }}
+        />
       </div>
 
       <div className={styles.copyRightContainer}>
-        <p>&copy; Biting Rattan FC</p>
+        <p>&copy; Biting Rattan IF</p>
       </div>
     </div>
   )
