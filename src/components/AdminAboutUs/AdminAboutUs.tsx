@@ -1,5 +1,12 @@
 'use client'
-import { useEffect, useState } from 'react'
+import {
+  JSXElementConstructor,
+  ReactComponentElement,
+  ReactElement,
+  ReactNode,
+  useEffect,
+  useState,
+} from 'react'
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { Database } from '@/lib/codeBlockSupabase'
 import { fetchObj, InstructorCollection } from '@/lib/types'
@@ -7,12 +14,16 @@ import OurPhilosophy from './OurPhilosophy/OurPhilosophy'
 import AboutUs from './AboutUs/AboutUs'
 import Instructors from './Instructors/Instructors'
 import styles from './AdminAboutUs.module.css'
+import Button from '../Button/Button'
+import { genericButton } from '../Button/assortedButtons'
+import DynamicSection from '../dynamicSection/DynamicSection'
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
   const [instructors, setInstructors] = useState<InstructorCollection>([])
   const [philosophy, setPhilosophy] = useState<fetchObj>()
   const supabase = createClientComponentClient<Database>()
+  const [dynamicSections, setDynamicSections] = useState<Array<JSX.Element>>([])
 
   //fetch from the pivot table to get the specific information from the different tables
   useEffect(() => {
@@ -41,6 +52,15 @@ const AdminAboutUs = () => {
     handleMasterFetch()
   }, [supabase])
 
+  //dynamic component
+  const section = (): JSX.Element => {
+    return <DynamicSection />
+  }
+
+  const addSection = () => {
+    setDynamicSections(dynamicSections => [...dynamicSections, section()])
+    console.log(dynamicSections.length)
+  }
   // if Philosophy, imstructors or about hasn't finished fetching data from supabase return a loading paragraph.
   return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
@@ -49,6 +69,13 @@ const AdminAboutUs = () => {
       <AboutUs about={about} setAbout={setAbout} />
       <OurPhilosophy />
       <Instructors instructors={instructors} />
+      {dynamicSections.length > 0 && dynamicSections}
+      <Button
+        text="&#43;"
+        styling={genericButton}
+        type="button"
+        onClickEvent={addSection}
+      />
     </div>
   )
 }

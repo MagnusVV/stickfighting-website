@@ -39,7 +39,9 @@ const Page = async () => {
       <section className={styles.section}>
         <OurPhilosophy />
       </section>
-      <div></div>
+      {/* Dynamic sections */}
+      {/* some check to see if array contains anything */}
+      <section className={styles.section}></section>
     </main>
   )
 }
