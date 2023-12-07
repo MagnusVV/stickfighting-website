@@ -23,7 +23,10 @@ const AdminAboutUs = () => {
   const [instructors, setInstructors] = useState<InstructorCollection>([])
   const [philosophy, setPhilosophy] = useState<fetchObj>()
   const supabase = createClientComponentClient<Database>()
-  const [dynamicSections, setDynamicSections] = useState<Array<JSX.Element>>([])
+  // const [dynamicSections, setDynamicSections] = useState<Array<JSX.Element>>([])
+  const [dynamicTestSections, setDynamicTestSections] = useState<
+    Array<JSX.Element>
+  >([])
 
   //fetch from the pivot table to get the specific information from the different tables
   useEffect(() => {
@@ -52,15 +55,24 @@ const AdminAboutUs = () => {
     handleMasterFetch()
   }, [supabase])
 
-  //dynamic component
-  const section = (): JSX.Element => {
-    return <DynamicSection />
+  //dynamic component----------------------------------->
+  const section = (key: number): JSX.Element => {
+    return <DynamicSection key={key} />
   }
 
+  //create a random key for the dynamic component
+  let randomKey: number = Math.floor(Math.random() * 100000)
+  // add dynamic component to array
   const addSection = () => {
-    setDynamicSections(dynamicSections => [...dynamicSections, section()])
-    console.log(dynamicSections.length)
+    setDynamicTestSections(dynamicTestSections => [
+      ...dynamicTestSections,
+      section(randomKey++),
+    ])
   }
+  console.log('dynamic section ', dynamicTestSections)
+
+  //dynamic component----------------------------------->
+
   // if Philosophy, imstructors or about hasn't finished fetching data from supabase return a loading paragraph.
   return !philosophy || !about || !instructors ? (
     <p>Loading...</p>
@@ -69,7 +81,7 @@ const AdminAboutUs = () => {
       <AboutUs about={about} setAbout={setAbout} />
       <OurPhilosophy />
       <Instructors instructors={instructors} />
-      {dynamicSections.length > 0 && dynamicSections}
+      {dynamicTestSections.length > 0 && dynamicTestSections}
       <Button
         text="&#43;"
         styling={genericButton}
