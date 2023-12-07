@@ -28,6 +28,7 @@ const AdminAboutUs = () => {
     Array<JSX.Element>
   >([])
 
+  //TODO: remove unnecessary fetches
   //fetch from the pivot table to get the specific information from the different tables
   useEffect(() => {
     const handleMasterFetch = async () => {
@@ -70,6 +71,17 @@ const AdminAboutUs = () => {
     ])
   }
   console.log('dynamic section ', dynamicTestSections)
+
+  // insert dynamic component to supabase
+  // const insertSection = async () => {
+  //   const { data, error } = await supabase
+  //     .from('dynamic_section')
+  //     .insert([{ title: 'test', body_text: 'test' }])
+  //   if (error) {
+  //     console.log(error)
+  //   }
+  //   console.log(data)
+  // }
 
   //dynamic component----------------------------------->
 
