@@ -1,5 +1,10 @@
+/* Media query breakpoints:
+@media only screen and (min-width: 360px)
+@media only screen and (min-width: 768px)
+@media only screen and (min-width: 1024px)
+@media only screen and (min-width: 1366px) */
+
 .calendarFrame {
-  height: 80vh;
   display: flex;
   flex-direction: column;
 }
@@ -7,11 +12,19 @@
 @media only screen and (min-width: 360px) {
   .calendarFrame {
     width: 95vw;
+    height: 110vw;
   }
 }
 
 @media only screen and (min-width: 564px) {
   .calendarFrame {
-    width: 80vw;
+    width: 82vw;
+    height: 65vw;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .calendarFrame {
+    height: 55vw;
   }
 }

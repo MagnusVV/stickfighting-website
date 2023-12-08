@@ -1,17 +1,18 @@
 'use client'
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs'
 import { useState, useEffect } from 'react'
 import EventCalendar from './EventCalendar/EventCalendar'
 import { FormattedEvent } from '@/lib/types'
 import moment from 'moment'
-import { Database } from '@/lib/codeBlockSupabase'
 import './calendar.css'
-
-// Supabase connection -MV
-const supabase = createClientComponentClient<Database>()
+import useSupabaseClient from '@/lib/supabaseClient'
+import TestCalendar from './EventCalendar/TestCalendar'
+import { test } from '@/lib/test'
 
 const CalendarWrapper = () => {
+  // Supabase connection -MV
+  const { supabase } = useSupabaseClient()
   const [events, setEvents] = useState<FormattedEvent[]>([])
+  const [loading, setLoading] = useState<boolean>(true)
 
   useEffect(() => {
     const fetchEvents = async () => {
@@ -30,6 +31,7 @@ const CalendarWrapper = () => {
         const start = moment(
           `${item.event_date}T${item.event_start_time}`,
         ).toDate()
+
         const end = moment(`${item.event_date}T${item.event_end_time}`).toDate()
 
         const startTime = moment(item.event_start_time, 'HH:mm:ss').format(
@@ -49,6 +51,7 @@ const CalendarWrapper = () => {
       })
 
       setEvents(formattedEvents)
+      setLoading(false)
     }
 
     fetchEvents()
@@ -56,7 +59,8 @@ const CalendarWrapper = () => {
 
   return (
     <div>
-      <EventCalendar events={events} />
+      <EventCalendar events={events} loading={loading} />
+      {/* <TestCalendar events={test} /> */}
     </div>
   )
 }

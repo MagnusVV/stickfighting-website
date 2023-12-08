@@ -33,6 +33,7 @@
   .newsModalContent {
     width: 65vw;
     padding: 1rem;
+    line-height: 150%;
   }
 }
 
@@ -40,6 +41,7 @@
   .newsModalContent {
     width: 50vw;
     padding: 1rem 3rem;
+    line-height: 175%;
   }
 }
 .newsModalContent > p {

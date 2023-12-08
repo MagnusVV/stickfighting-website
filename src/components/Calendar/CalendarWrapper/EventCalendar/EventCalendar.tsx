@@ -13,13 +13,21 @@ moment.locale('sv')
 
 const localizer = momentLocalizer(moment)
 
-const EventCalendar = (props: Omit<CalendarProps, 'localizer'>) => {
-  const { events } = props
+const EventCalendar = (
+  props: Omit<CalendarProps, 'localizer'> & { loading: boolean },
+) => {
+  const { events, loading } = props
+
+  console.log('Events:', events)
+
+  if (loading) {
+    return <div>Läser in kalender...</div>
+  }
 
   // Stupid TS-error. Thanks Chat-GPT for suggesting this. -MV
   const formattedEvents = events as FormattedEvent[]
 
-  // Custom styling for React big calendar works a bid different, so this is easiet way to do it (for now?) to accomplish it.
+  // Custom styling for React big calendar works a bid different, so this is easiet way to do it (for now?) to accomplish styling. -MV
   const eventStyleGetter = (
     event: FormattedEvent,
     start: Date,
