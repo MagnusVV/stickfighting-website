@@ -5,8 +5,6 @@ import { FormattedEvent } from '@/lib/types'
 import moment from 'moment'
 import './calendar.css'
 import useSupabaseClient from '@/lib/supabaseClient'
-import TestCalendar from './EventCalendar/TestCalendar'
-import { test } from '@/lib/test'
 
 const CalendarWrapper = () => {
   // Supabase connection -MV
@@ -60,7 +58,6 @@ const CalendarWrapper = () => {
   return (
     <div>
       <EventCalendar events={events} loading={loading} />
-      {/* <TestCalendar events={test} /> */}
     </div>
   )
 }

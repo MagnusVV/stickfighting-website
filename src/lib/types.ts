@@ -79,4 +79,21 @@ export interface NewEvent extends Omit<FetchedEvent, 'id'> {
 export interface NavBarProps {
   hamburgerColor: string
 }
+
+// MODALS
+// PortalModal.tsx
+export interface PortalModalProps {
+  modalIsOpen?: boolean // This property is to set if modal is opened or closed depending on outside input -MV
+  content: React.ReactNode
+  hasExtraButton?: boolean
+  buttonStyling?: string
+  buttonText?: string
+  buttonType?: 'button' | 'submit' | 'reset'
+}
+
+// ModalContent.tsx
+export interface ModalContentProps {
+  onClose: () => void
+  content: React.ReactNode
+}
 // <--- --- --- --- --- --- --- --- --- ---|

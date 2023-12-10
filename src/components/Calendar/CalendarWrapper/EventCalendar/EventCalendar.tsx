@@ -6,6 +6,8 @@ import moment from 'moment-timezone'
 import 'moment/locale/sv'
 // For formatting singele events -MV
 import { FormattedEvent } from '@/lib/types'
+import { useCallback, useRef } from 'react'
+import PortalModal from '@/components/Modal/PortalModal'
 
 // Sets default time-zone -MV
 moment.tz.setDefault('Europe/Stockholm')
@@ -58,6 +60,7 @@ const EventCalendar = (
         popup
         startAccessor="start"
         endAccessor="end"
+        // onSelectEvent={() => alert('clicked')} TODO: Add edit event functionality -MV
         messages={{
           today: 'Idag',
           previous: '<',

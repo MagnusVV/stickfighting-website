@@ -13,6 +13,12 @@
   width: 60%;
 }
 
+/* The single purpose for this is to center the imported calendar. -MV */
+.calendarPlacement {
+  display: flex;
+  justify-content: center;
+}
+
 .eventContainer {
   background-color: white;
   color: black;

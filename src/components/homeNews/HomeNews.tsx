@@ -7,6 +7,7 @@ import useSupabaseClient from '@/lib/supabaseClient'
 import { JSONContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 import PortalModal from '../Modal/PortalModal'
+import { openNewsModal } from '../Button/assortedButtons'
 
 // Framer Motion animation, triggering when a certain amount of a section comes into view. -MV
 import { motion } from 'framer-motion'
@@ -61,6 +62,7 @@ const HomeNews: React.FC = () => {
                 <h4>{t.ingress}</h4>
                 {parser(output)}
                 <PortalModal
+                  buttonStyling={openNewsModal}
                   content={
                     <>
                       <p>{t.created_at.slice(0, 10)}</p>

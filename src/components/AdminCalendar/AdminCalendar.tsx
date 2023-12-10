@@ -6,6 +6,7 @@ import moment from 'moment'
 import styles from './AdminCalendar.module.css'
 import ViewEvents from './ViewEvents/ViewEvents'
 import EventHandler from './EventHandler/EventHandler'
+import CalendarWrapper from '../Calendar/CalendarWrapper/CalendarWrapper'
 
 const AdminCalendar: React.FC = () => {
   // Get supabase connection and user id from import. -MV
@@ -63,6 +64,9 @@ const AdminCalendar: React.FC = () => {
       <div className={styles.wrapper}>
         <div>
           <h2>Schema händelser</h2>
+          <div className={styles.calendarPlacement}>
+            <CalendarWrapper />
+          </div>
           <ViewEvents events={events} onEventClick={handleEventClick} />
         </div>
         <div>

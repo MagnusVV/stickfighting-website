@@ -34,11 +34,17 @@
   .rbc-event-content {
     font-size: 8px;
   }
+  .rbc-button-link {
+    font-size: 10px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   .rbc-event-content {
     font-size: x-small;
+  }
+  .rbc-button-link {
+    font-size: 12px;
   }
 }
 
@@ -46,10 +52,16 @@
   .rbc-event-content {
     font-size: small;
   }
+  .rbc-button-link {
+    font-size: 13px;
+  }
 }
 
 @media only screen and (min-width: 1366px) {
   .rbc-event-content {
     font-size: medium;
+  }
+  .rbc-button-link {
+    font-size: 14px;
   }
 }

@@ -4,7 +4,7 @@
 @media only screen and (min-width: 1024px)
 @media only screen and (min-width: 1366px) */
 
-.newsModal {
+.modal {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -16,7 +16,7 @@
   text-align: center;
 }
 
-.newsModalContent {
+.modalContent {
   position: fixed;
   filter: drop-shadow(0 0 1rem #6c0e11);
   display: flex;
@@ -30,7 +30,7 @@
 }
 
 @media only screen and (min-width: 360px) {
-  .newsModalContent {
+  .modalContent {
     width: 65vw;
     padding: 1rem;
     line-height: 150%;
@@ -38,12 +38,12 @@
 }
 
 @media only screen and (min-width: 1024px) {
-  .newsModalContent {
+  .modalContent {
     width: 50vw;
     padding: 1rem 3rem;
     line-height: 175%;
   }
 }
-.newsModalContent > p {
+.modalContent > p {
   margin-bottom: 1rem;
 }
