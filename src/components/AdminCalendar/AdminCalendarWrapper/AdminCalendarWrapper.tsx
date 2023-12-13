@@ -1,13 +1,13 @@
 'use client'
 import { useState, useEffect, ReactNode } from 'react'
-import EventCalendar from './EventCalendar/EventCalendar'
+import EventCalendar from '@/components/Calendar/CalendarWrapper/EventCalendar/EventCalendar'
 import { FormattedEvent } from '@/lib/types'
 import moment from 'moment'
-import './calendar.css'
+import '../../Calendar/CalendarWrapper/calendar.css'
 import useSupabaseClient from '@/lib/supabaseClient'
 import PortalModal from '@/components/Modal/PortalModal'
 
-const CalendarWrapper = () => {
+const AdminCalendarWrapper = () => {
   // Supabase connection -MV
   const { supabase } = useSupabaseClient()
   const [events, setEvents] = useState<FormattedEvent[]>([])
@@ -17,8 +17,11 @@ const CalendarWrapper = () => {
   const [selectedEvent, setSelectedEvent] = useState<FormattedEvent | null>(
     null,
   )
-  const handleEventClick = (event: FormattedEvent) => {
+  const handleEventClick = (event: FormattedEvent): void => {
     setSelectedEvent(event)
+  }
+  const onModalClose = () => {
+    setSelectedEvent(null)
   }
 
   useEffect(() => {
@@ -72,10 +75,22 @@ const CalendarWrapper = () => {
         onEventClick={handleEventClick}
       />
       {selectedEvent && (
-        <PortalModal content={selectedEvent as unknown as ReactNode} />
+        <PortalModal
+          content={
+            <>
+              <p>{selectedEvent.id}</p>
+              <p>{selectedEvent.title}</p>
+              <p>{selectedEvent.locale as unknown as string}</p>
+              {/* <p>{selectedEvent.start as unknown as string}</p>
+              <p>{selectedEvent.end as unknown as string}</p> */}
+              <p>{selectedEvent.instructors as unknown as string}</p>
+            </>
+          }
+          modalIsOpen={selectedEvent === null ? false : true}
+        />
       )}
     </div>
   )
 }
 
-export default CalendarWrapper
+export default AdminCalendarWrapper

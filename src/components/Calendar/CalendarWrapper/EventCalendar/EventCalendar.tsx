@@ -6,8 +6,6 @@ import moment from 'moment-timezone'
 import 'moment/locale/sv'
 // For formatting singele events -MV
 import { FormattedEvent } from '@/lib/types'
-import { useCallback, useRef } from 'react'
-import PortalModal from '@/components/Modal/PortalModal'
 
 // Sets default time-zone -MV
 moment.tz.setDefault('Europe/Stockholm')
@@ -16,11 +14,12 @@ moment.locale('sv')
 const localizer = momentLocalizer(moment)
 
 const EventCalendar = (
-  props: Omit<CalendarProps, 'localizer'> & { loading: boolean },
+  props: Omit<CalendarProps, 'localizer'> & {
+    loading: boolean
+    onEventClick: (event: FormattedEvent) => void
+  },
 ) => {
-  const { events, loading } = props
-
-  console.log('Events:', events)
+  const { events, loading, onEventClick } = props
 
   if (loading) {
     return <div>Läser in kalender...</div>
@@ -70,6 +69,7 @@ const EventCalendar = (
           day: 'Dag',
           agenda: 'Agenda',
         }}
+        onSelectEvent={event => onEventClick(event as FormattedEvent)}
         // Input and handlng of formatted events -MV
         eventPropGetter={eventStyleGetter}
         // Thanks Chat-GPT. Wouldn't have solved this by myself in time. -MV

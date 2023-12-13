@@ -15,6 +15,9 @@ const PortalModal: React.FC<PortalModalProps> = ({
   buttonType = 'button',
 }) => {
   const [showModal, setShowModal] = useState<boolean>(modalIsOpen)
+
+  console.log({ content })
+
   return (
     <div className={styles.modal}>
       {hasExtraButton && (
