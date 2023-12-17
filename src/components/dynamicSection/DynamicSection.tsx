@@ -9,6 +9,7 @@ import { JSONContent } from '@tiptap/react'
 import useSupabaseClient from '@/lib/supabaseClient'
 import Button from '../Button/Button'
 import { genericButton } from '../Button/assortedButtons'
+import { Json } from '@/lib/codeBlockSupabase'
 
 function DynamicSection(): JSX.Element {
   const [sectionTitle, setSectionTitle] = useState<string>('')
@@ -30,16 +31,16 @@ function DynamicSection(): JSX.Element {
   const insertSection = async () => {
     const { data, error } = await supabase.from('dynamic_section').insert([
       {
-        section_title: 'test',
-        title: 'test',
-        body_text: 'test',
+        section_title: sectionTitle,
+        title: title,
+        body_text: bodyText || {},
         profile_id: userId,
       },
     ])
     if (error) {
       console.log(error)
     }
-    console.log(data)
+    alert('sektion tillagd')
   }
 
   return (
@@ -63,7 +64,15 @@ function DynamicSection(): JSX.Element {
 
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-      <Button text="Lägg till sektion" styling={genericButton} type="button" />
+      <div className={styles.actionBtns}>
+        <Button
+          text="Lägg till sektion"
+          styling={genericButton}
+          type="button"
+          onClickEvent={insertSection}
+        />
+        <Button text="Ta bort sektion" styling={genericButton} type="button" />
+      </div>
     </div>
   )
 }

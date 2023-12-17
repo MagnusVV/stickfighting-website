@@ -14,3 +14,8 @@
   outline: none;
   max-width: 300px;
 }
+
+.actionBtns {
+  display: flex;
+  gap: 10px;
+}
