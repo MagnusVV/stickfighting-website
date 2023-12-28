@@ -21,13 +21,18 @@ import {
 } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
 
-// interface dynamicSectionType {
-//   sectionTitle: string
-//   title: string
-//   bodyText: JSONContent
-// }
+interface dynamicSectionType {
+  sectionTitle: string
+  title: string
+  bodyText: JSONContent
+  id: number
+}
 
 // type dynamicSectionsTypes = Array<dynamicSectionType>
+
+interface idType {
+  item: number
+}
 
 const AdminAboutUs = () => {
   const [about, setAbout] = useState<fetchObj>()
@@ -101,6 +106,31 @@ const AdminAboutUs = () => {
     return <EditorContent editor={editor} />
   }
 
+  const deleteSection = async () => {
+    // const { error } = await supabase
+    // .from('dynamic_section')
+    // .delete()
+    // .match({ id: newDynamicSection[0].id })
+
+    const sectionId = newDynamicSection.find(
+      (item: dynamicSectionType) => item.id,
+    )
+
+    const { error } = await supabase
+      .from('dynamic_section')
+      .delete()
+      .eq('id', sectionId.id)
+
+    if (error) {
+      console.log(error)
+      return
+    }
+
+    if (!error) {
+      console.log('deleted')
+    }
+  }
+
   //create menu editor
   const menuEditor = useEditor({
     content: '',
@@ -138,13 +168,19 @@ const AdminAboutUs = () => {
       />
       {newDynamicSection.map((item: any, index: number) => {
         return (
-          <div>
+          <div id={item.id}>
             {/* <div key={index}>
               // <h1>{item.sectionTitle}</h1>
               // <p>{item.bodyText}</p>
             </div> */}
             <MenuBar editor={menuEditor} />
             <DynamicEditor content={item.body_text} />
+            <Button
+              text="Radera"
+              styling={genericButton}
+              type="button"
+              onClickEvent={deleteSection}
+            />
           </div>
         )
       })}
