@@ -43,6 +43,7 @@ const AdminAboutUs = () => {
   >([])
   const [dynamicText, setDynamicText] = useState<JSONContent>()
   const [newDynamicSection, setNewDynamicSection] = useState<JSONContent>([])
+  const [chosenId, setChosenId] = useState<number>(0)
 
   //connect to supabase
   const { supabase, userId } = useSupabaseClient()
@@ -106,20 +107,13 @@ const AdminAboutUs = () => {
     return <EditorContent editor={editor} />
   }
 
-  const deleteSection = async () => {
-    // const { error } = await supabase
-    // .from('dynamic_section')
-    // .delete()
-    // .match({ id: newDynamicSection[0].id })
-
-    const sectionId = newDynamicSection.find(
-      (item: dynamicSectionType) => item.id,
-    )
+  const deleteSection = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
 
     const { error } = await supabase
       .from('dynamic_section')
       .delete()
-      .eq('id', sectionId.id)
+      .match({ id: chosenId })
 
     if (error) {
       console.log(error)
@@ -153,6 +147,8 @@ const AdminAboutUs = () => {
   }
   //end dynamic component----------------------------------->
 
+  console.log(chosenId)
+
   // if Philosophy, imstructors or about hasn't finished fetching data from supabase return a loading paragraph.
   return (
     <div className={styles.wrapper}>
@@ -168,20 +164,22 @@ const AdminAboutUs = () => {
       />
       {newDynamicSection.map((item: any, index: number) => {
         return (
-          <div id={item.id}>
-            {/* <div key={index}>
+          <form onSubmit={deleteSection}>
+            <div id={item.id}>
+              {/* <div key={index}>
               // <h1>{item.sectionTitle}</h1>
               // <p>{item.bodyText}</p>
             </div> */}
-            <MenuBar editor={menuEditor} />
-            <DynamicEditor content={item.body_text} />
-            <Button
-              text="Radera"
-              styling={genericButton}
-              type="button"
-              onClickEvent={deleteSection}
-            />
-          </div>
+              <MenuBar editor={menuEditor} />
+              <DynamicEditor content={item.body_text} />
+              <Button
+                text="Radera"
+                styling={genericButton}
+                type="submit"
+                onClickEvent={() => setChosenId(item.id)}
+              />
+            </div>
+          </form>
         )
       })}
     </div>
